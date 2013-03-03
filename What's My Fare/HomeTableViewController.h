@@ -1,5 +1,5 @@
 //
-//  FareViewController.h
+//  HomeTableViewController.h
 //  What's My Fare
 //
 //  Created by Martin Tracey on 03/03/2013.
@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FareViewController : UIViewController
+@interface HomeTableViewController : UITableViewController
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

@@ -17,7 +17,7 @@
 		4B75929516E3B86800E97980 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929416E3B86800E97980 /* Default@2x.png */; };
 		4B75929716E3B86800E97980 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929616E3B86800E97980 /* Default-568h@2x.png */; };
 		4B75929A16E3B86800E97980 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929816E3B86800E97980 /* MainStoryboard.storyboard */; };
-		4B75929D16E3B86800E97980 /* FareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B75929C16E3B86800E97980 /* FareViewController.m */; };
+		4B7592A516E3C1FB00E97980 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,8 +35,8 @@
 		4B75929416E3B86800E97980 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4B75929616E3B86800E97980 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		4B75929916E3B86800E97980 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		4B75929B16E3B86800E97980 /* FareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FareViewController.h; sourceTree = "<group>"; };
-		4B75929C16E3B86800E97980 /* FareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FareViewController.m; sourceTree = "<group>"; };
+		4B7592A316E3C1FB00E97980 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
+		4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +86,8 @@
 				4B75928F16E3B86800E97980 /* FareAppDelegate.h */,
 				4B75929016E3B86800E97980 /* FareAppDelegate.m */,
 				4B75929816E3B86800E97980 /* MainStoryboard.storyboard */,
-				4B75929B16E3B86800E97980 /* FareViewController.h */,
-				4B75929C16E3B86800E97980 /* FareViewController.m */,
+				4B7592A316E3C1FB00E97980 /* HomeTableViewController.h */,
+				4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */,
 				4B75928716E3B86800E97980 /* Supporting Files */,
 			);
 			path = "What's My Fare";
@@ -176,7 +176,7 @@
 			files = (
 				4B75928D16E3B86800E97980 /* main.m in Sources */,
 				4B75929116E3B86800E97980 /* FareAppDelegate.m in Sources */,
-				4B75929D16E3B86800E97980 /* FareViewController.m in Sources */,
+				4B7592A516E3C1FB00E97980 /* HomeTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,7 +227,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -251,7 +251,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -264,6 +264,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "What's My Fare/What's My Fare-Prefix.pch";
 				INFOPLIST_FILE = "What's My Fare/What's My Fare-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -275,6 +276,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "What's My Fare/What's My Fare-Prefix.pch";
 				INFOPLIST_FILE = "What's My Fare/What's My Fare-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
