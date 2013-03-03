@@ -1,0 +1,306 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4B75928116E3B86800E97980 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928016E3B86800E97980 /* UIKit.framework */; };
+		4B75928316E3B86800E97980 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928216E3B86800E97980 /* Foundation.framework */; };
+		4B75928516E3B86800E97980 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928416E3B86800E97980 /* CoreGraphics.framework */; };
+		4B75928B16E3B86800E97980 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B75928916E3B86800E97980 /* InfoPlist.strings */; };
+		4B75928D16E3B86800E97980 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B75928C16E3B86800E97980 /* main.m */; };
+		4B75929116E3B86800E97980 /* FareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B75929016E3B86800E97980 /* FareAppDelegate.m */; };
+		4B75929316E3B86800E97980 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929216E3B86800E97980 /* Default.png */; };
+		4B75929516E3B86800E97980 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929416E3B86800E97980 /* Default@2x.png */; };
+		4B75929716E3B86800E97980 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929616E3B86800E97980 /* Default-568h@2x.png */; };
+		4B75929A16E3B86800E97980 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929816E3B86800E97980 /* MainStoryboard.storyboard */; };
+		4B75929D16E3B86800E97980 /* FareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B75929C16E3B86800E97980 /* FareViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4B75927D16E3B86800E97980 /* What's My Fare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What's My Fare.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B75928016E3B86800E97980 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		4B75928216E3B86800E97980 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		4B75928416E3B86800E97980 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		4B75928816E3B86800E97980 /* What's My Fare-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "What's My Fare-Info.plist"; sourceTree = "<group>"; };
+		4B75928A16E3B86800E97980 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4B75928C16E3B86800E97980 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4B75928E16E3B86800E97980 /* What's My Fare-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "What's My Fare-Prefix.pch"; sourceTree = "<group>"; };
+		4B75928F16E3B86800E97980 /* FareAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FareAppDelegate.h; sourceTree = "<group>"; };
+		4B75929016E3B86800E97980 /* FareAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FareAppDelegate.m; sourceTree = "<group>"; };
+		4B75929216E3B86800E97980 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		4B75929416E3B86800E97980 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		4B75929616E3B86800E97980 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4B75929916E3B86800E97980 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		4B75929B16E3B86800E97980 /* FareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FareViewController.h; sourceTree = "<group>"; };
+		4B75929C16E3B86800E97980 /* FareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FareViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4B75927A16E3B86800E97980 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B75928116E3B86800E97980 /* UIKit.framework in Frameworks */,
+				4B75928316E3B86800E97980 /* Foundation.framework in Frameworks */,
+				4B75928516E3B86800E97980 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4B75927416E3B86800E97980 = {
+			isa = PBXGroup;
+			children = (
+				4B75928616E3B86800E97980 /* What's My Fare */,
+				4B75927F16E3B86800E97980 /* Frameworks */,
+				4B75927E16E3B86800E97980 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4B75927E16E3B86800E97980 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4B75927D16E3B86800E97980 /* What's My Fare.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4B75927F16E3B86800E97980 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4B75928016E3B86800E97980 /* UIKit.framework */,
+				4B75928216E3B86800E97980 /* Foundation.framework */,
+				4B75928416E3B86800E97980 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4B75928616E3B86800E97980 /* What's My Fare */ = {
+			isa = PBXGroup;
+			children = (
+				4B75928F16E3B86800E97980 /* FareAppDelegate.h */,
+				4B75929016E3B86800E97980 /* FareAppDelegate.m */,
+				4B75929816E3B86800E97980 /* MainStoryboard.storyboard */,
+				4B75929B16E3B86800E97980 /* FareViewController.h */,
+				4B75929C16E3B86800E97980 /* FareViewController.m */,
+				4B75928716E3B86800E97980 /* Supporting Files */,
+			);
+			path = "What's My Fare";
+			sourceTree = "<group>";
+		};
+		4B75928716E3B86800E97980 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4B75928816E3B86800E97980 /* What's My Fare-Info.plist */,
+				4B75928916E3B86800E97980 /* InfoPlist.strings */,
+				4B75928C16E3B86800E97980 /* main.m */,
+				4B75928E16E3B86800E97980 /* What's My Fare-Prefix.pch */,
+				4B75929216E3B86800E97980 /* Default.png */,
+				4B75929416E3B86800E97980 /* Default@2x.png */,
+				4B75929616E3B86800E97980 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4B75927C16E3B86800E97980 /* What's My Fare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4B7592A016E3B86800E97980 /* Build configuration list for PBXNativeTarget "What's My Fare" */;
+			buildPhases = (
+				4B75927916E3B86800E97980 /* Sources */,
+				4B75927A16E3B86800E97980 /* Frameworks */,
+				4B75927B16E3B86800E97980 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "What's My Fare";
+			productName = "What's My Fare";
+			productReference = 4B75927D16E3B86800E97980 /* What's My Fare.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4B75927516E3B86800E97980 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Fare;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "Martin Tracey";
+			};
+			buildConfigurationList = 4B75927816E3B86800E97980 /* Build configuration list for PBXProject "What's My Fare" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 4B75927416E3B86800E97980;
+			productRefGroup = 4B75927E16E3B86800E97980 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4B75927C16E3B86800E97980 /* What's My Fare */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4B75927B16E3B86800E97980 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B75928B16E3B86800E97980 /* InfoPlist.strings in Resources */,
+				4B75929316E3B86800E97980 /* Default.png in Resources */,
+				4B75929516E3B86800E97980 /* Default@2x.png in Resources */,
+				4B75929716E3B86800E97980 /* Default-568h@2x.png in Resources */,
+				4B75929A16E3B86800E97980 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4B75927916E3B86800E97980 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B75928D16E3B86800E97980 /* main.m in Sources */,
+				4B75929116E3B86800E97980 /* FareAppDelegate.m in Sources */,
+				4B75929D16E3B86800E97980 /* FareViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4B75928916E3B86800E97980 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B75928A16E3B86800E97980 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		4B75929816E3B86800E97980 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B75929916E3B86800E97980 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4B75929E16E3B86800E97980 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4B75929F16E3B86800E97980 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4B7592A116E3B86800E97980 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "What's My Fare/What's My Fare-Prefix.pch";
+				INFOPLIST_FILE = "What's My Fare/What's My Fare-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4B7592A216E3B86800E97980 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "What's My Fare/What's My Fare-Prefix.pch";
+				INFOPLIST_FILE = "What's My Fare/What's My Fare-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4B75927816E3B86800E97980 /* Build configuration list for PBXProject "What's My Fare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B75929E16E3B86800E97980 /* Debug */,
+				4B75929F16E3B86800E97980 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4B7592A016E3B86800E97980 /* Build configuration list for PBXNativeTarget "What's My Fare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4B7592A116E3B86800E97980 /* Debug */,
+				4B7592A216E3B86800E97980 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4B75927516E3B86800E97980 /* Project object */;
+}
