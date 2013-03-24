@@ -45,8 +45,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"Origin"])
+    {
+        UIViewController *stopSelect = segue.destinationViewController;
+        
+        stopSelect.navigationController.title = segue.identifier;
+    }
+}
+
 #pragma mark - UITableViewDataSource
 
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 3;
@@ -57,7 +68,7 @@
     // Return the number of rows in the section.
     return 1;
 }
-/*
+ 
  - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
  {
  static NSString *CellIdentifier = @"origin";
@@ -68,6 +79,7 @@
  return cell;
  }
  */
+
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="QdE-7E-MkH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="QdE-7E-MkH">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -54,7 +54,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="aeW-KO-42S" kind="push" identifier="origin" id="j6a-Az-zM9"/>
+                                            <segue destination="aeW-KO-42S" kind="push" identifier="Origin" id="j6a-Az-zM9"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -86,7 +86,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="aeW-KO-42S" kind="push" identifier="destination" id="hSZ-2d-t4P"/>
+                                            <segue destination="aeW-KO-42S" kind="push" identifier="Destination" id="hSZ-2d-t4P"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -138,10 +138,10 @@
             </objects>
             <point key="canvasLocation" x="640" y="35"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Stop Select Table View Controller-->
         <scene sceneID="eJF-Sw-bhd">
             <objects>
-                <tableViewController id="aeW-KO-42S" sceneMemberID="viewController">
+                <tableViewController id="aeW-KO-42S" customClass="StopSelectTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="PfS-Gf-l88">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -174,13 +174,40 @@
                             <outlet property="delegate" destination="aeW-KO-42S" id="p39-Nd-oXK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="3Hx-8i-Zva"/>
+                    <navigationItem key="navigationItem" id="3Hx-8i-Zva">
+                        <barButtonItem key="rightBarButtonItem" title="Refresh" id="kk5-Ei-J0b">
+                            <connections>
+                                <action selector="refreshData:" destination="aeW-KO-42S" id="iCH-MT-ZNr"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="refreshButton" destination="kk5-Ei-J0b" id="cKc-Li-CVP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCR-7G-wYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1057" y="35"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="HomeTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="StopSelectTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StopSelectTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshData:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="refreshButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

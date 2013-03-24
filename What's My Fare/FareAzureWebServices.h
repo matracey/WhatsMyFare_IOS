@@ -1,17 +1,17 @@
 //
-//  FareAppDelegate.h
+//  FareAzureWebServices.h
 //  What's My Fare
 //
-//  Created by Martin Tracey on 03/03/2013.
+//  Created by Martin Tracey on 09/03/2013.
 //  Copyright (c) 2013 Martin Tracey. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
 
-@interface FareAppDelegate : UIResponder <UIApplicationDelegate>
+@interface FareAzureWebServices : NSObject
 
-@property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MSTable *luasTable;
+@property (strong, nonatomic) MSClient *client;
 
 @end

@@ -16,19 +16,10 @@
 @implementation FareAppDelegate
 @synthesize luasTable = _luasTable;
 
-- (NSArray *)luasTable
+- (MSTable *)luasTable
 {
-    if(!_luasTable)
-    {
-        MSClient *client = [MSClient clientWithApplicationURLString:AZURE_SERVICE_URL  withApplicationKey:AZURE_SERVICE_KEY];
-        MSTable *table = [client getTable:AZURE_SERVICE_DB];
-        [table readWithCompletion:^(NSArray *items, NSInteger totalCount, NSError *error)
-        {
-            if(!error) _luasTable = items;
-            else _luasTable = nil;
-        }];
-        
-    }
+    MSClient *client = [MSClient clientWithApplicationURLString:AZURE_SERVICE_URL  withApplicationKey:AZURE_SERVICE_KEY];
+    _luasTable = [client getTable:AZURE_SERVICE_DB];
     return _luasTable;
 }
 

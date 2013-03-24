@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B6C5B4B16EB93C200673253 /* FareAzureWebServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */; };
 		4B75928116E3B86800E97980 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928016E3B86800E97980 /* UIKit.framework */; };
 		4B75928316E3B86800E97980 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928216E3B86800E97980 /* Foundation.framework */; };
 		4B75928516E3B86800E97980 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928416E3B86800E97980 /* CoreGraphics.framework */; };
@@ -19,9 +20,12 @@
 		4B75929A16E3B86800E97980 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929816E3B86800E97980 /* MainStoryboard.storyboard */; };
 		4B7592A516E3C1FB00E97980 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */; };
 		4BC0618716E8DDBE0067889B /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */; };
+		4BC0618A16E9154A0067889B /* StopSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC0618916E9154A0067889B /* StopSelectTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B6C5B4916EB93C200673253 /* FareAzureWebServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareAzureWebServices.h; sourceTree = "<group>"; };
+		4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareAzureWebServices.m; sourceTree = "<group>"; };
 		4B75927D16E3B86800E97980 /* What's My Fare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What's My Fare.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B75928016E3B86800E97980 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4B75928216E3B86800E97980 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -39,6 +43,8 @@
 		4B7592A316E3C1FB00E97980 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
+		4BC0618816E9154A0067889B /* StopSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopSelectTableViewController.h; sourceTree = "<group>"; };
+		4BC0618916E9154A0067889B /* StopSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopSelectTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +98,10 @@
 				4B75929816E3B86800E97980 /* MainStoryboard.storyboard */,
 				4B7592A316E3C1FB00E97980 /* HomeTableViewController.h */,
 				4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */,
+				4BC0618816E9154A0067889B /* StopSelectTableViewController.h */,
+				4BC0618916E9154A0067889B /* StopSelectTableViewController.m */,
+				4B6C5B4916EB93C200673253 /* FareAzureWebServices.h */,
+				4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */,
 				4B75928716E3B86800E97980 /* Supporting Files */,
 			);
 			path = "What's My Fare";
@@ -181,6 +191,8 @@
 				4B75928D16E3B86800E97980 /* main.m in Sources */,
 				4B75929116E3B86800E97980 /* FareAppDelegate.m in Sources */,
 				4B7592A516E3C1FB00E97980 /* HomeTableViewController.m in Sources */,
+				4BC0618A16E9154A0067889B /* StopSelectTableViewController.m in Sources */,
+				4B6C5B4B16EB93C200673253 /* FareAzureWebServices.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
