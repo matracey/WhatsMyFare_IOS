@@ -22,7 +22,17 @@
 @end
 
 @implementation StopSelectTableViewController
-@synthesize stopsDataModel = _stopsDataModel, webService = _webService;
+@synthesize stopsDataModel = _stopsDataModel;
+@synthesize webService = _webService;
+
+- (FareAzureWebServices *)webService
+{
+    if(!_webService)
+    {
+        _webService = [[FareAzureWebServices alloc] init];
+    }
+    return _webService;
+}
 
 - (IBAction)refreshData:(UIBarButtonItem *)sender
 {
@@ -97,10 +107,10 @@
 {
     self.selectedItem = [self.stopsDataModel objectAtIndex:indexPath.item];
     
-    //return to previous nav controller
-    HomeTableViewController *home = [[HomeTableViewController alloc] initWithStyle:UITableViewStylePlain];
+    NSLog(@"%@", self.selectedItem);
     
-    //[self.navigationController popToViewController:home animated:YES];
+    //return to previous nav controller
+    
 }
 
 - (void)viewDidUnload {
