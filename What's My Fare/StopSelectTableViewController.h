@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void (^CompletionBlock) ();
-
 @interface StopSelectTableViewController : UITableViewController
 
 @end

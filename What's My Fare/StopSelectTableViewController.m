@@ -9,47 +9,22 @@
 #import "StopSelectTableViewController.h"
 #import "FareAzureWebServices.h"
 #import "HomeTableViewController.h"
+#import "FareAppDelegate.h"
 
 @interface StopSelectTableViewController ()
 //Class Properties
 @property (strong, nonatomic) NSArray *stopsDataModel; //data model
 @property (strong, nonatomic) FareAzureWebServices *webService;
+@property (strong, nonatomic) FareAppDelegate *appDelegate;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
-@property (strong, nonatomic) NSDictionary *selectedItem;
 
 //Target-Action methods
 - (IBAction)refreshData:(UIBarButtonItem *)sender;
 @end
 
 @implementation StopSelectTableViewController
-@synthesize stopsDataModel = _stopsDataModel;
-@synthesize webService = _webService;
 
-- (FareAzureWebServices *)webService
-{
-    if(!_webService)
-    {
-        _webService = [[FareAzureWebServices alloc] init];
-    }
-    return _webService;
-}
-
-- (IBAction)refreshData:(UIBarButtonItem *)sender
-{
-    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-    [activityIndicator startAnimating];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
-    
-    
-    
-    [self.webService.luasTable readWithCompletion:^(NSArray *items, NSInteger totalCount, NSError *error) {
-        self.stopsDataModel = [items copy];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-            self.navigationItem.rightBarButtonItem = sender;
-        });
-    }];
-}
+#pragma mark - StopSelectTableViewController init methods
 
 - (StopSelectTableViewController *)initWithStyle:(UITableViewStyle)style
 {
@@ -63,24 +38,22 @@
     return self;
 }
 
+#pragma mark - StopSelectTableViewController object instantiation
+
+- (FareAzureWebServices *)webService
+{
+    if(!_webService)
+    {
+        _webService = [[FareAzureWebServices alloc] init];
+    }
+    return _webService;
+}
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     [self refreshData:self.refreshButton];
-    
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UITableViewDataSource
@@ -101,16 +74,38 @@
     return cell;
 }
 
+- (IBAction)refreshData:(UIBarButtonItem *)sender
+{
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [activityIndicator startAnimating];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
+    
+    [self.webService.stopsDataTable readWithCompletion:^(NSArray *items, NSInteger totalCount, NSError *error) {
+        self.stopsDataModel = [items copy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //sleep(1); //added so that activityIndicator can be seen.
+            [self.tableView reloadData];
+            self.navigationItem.rightBarButtonItem = sender;
+        });
+    }];
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.selectedItem = [self.stopsDataModel objectAtIndex:indexPath.item];
     
-    NSLog(@"%@", self.selectedItem);
+    if([self.title isEqualToString:@"Origin"])
+    {
+        self.appDelegate.origin = [self.stopsDataModel objectAtIndex:indexPath.item];
+    }
+    if ([self.title isEqualToString:@"Destination"])
+    {
+        self.appDelegate.destin = [self.stopsDataModel objectAtIndex:indexPath.item];
+    }
     
     //return to previous nav controller
-    
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewDidUnload {

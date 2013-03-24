@@ -11,7 +11,7 @@
 
 @interface FareAzureWebServices : NSObject
 
-@property (strong, nonatomic) MSTable *luasTable;
+@property (strong, nonatomic) MSTable *stopsDataTable;
 @property (strong, nonatomic) MSClient *client;
 
 @end

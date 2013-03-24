@@ -93,7 +93,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="" id="S8v-xd-yil">
                                 <cells>
-                                    <tableViewCell opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="bottom" selectionStyle="none" indentationWidth="10" reuseIdentifier="calculate" id="AUa-Tw-Aag">
+                                    <tableViewCell opaque="NO" contentMode="bottom" selectionStyle="blue" indentationWidth="10" reuseIdentifier="calculate" id="AUa-Tw-Aag">
                                         <rect key="frame" x="0.0" y="204" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -112,7 +112,6 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <rect key="contentStretch" x="0.0" y="0.0" width="0.49999999999999961" height="1"/>
                                         <constraints>
                                             <constraint firstItem="S90-eQ-DGj" firstAttribute="top" secondItem="AUa-Tw-Aag" secondAttribute="top" constant="12" id="pao-Kr-hWZ"/>

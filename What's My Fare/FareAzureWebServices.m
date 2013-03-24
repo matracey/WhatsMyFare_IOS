@@ -7,20 +7,22 @@
 //
 
 #import "FareAzureWebServices.h"
+#import "FareAppDelegate.h"
 
 #define AZURE_SERVICE_URL @"https://whats-my-fare.azure-mobile.net"
 #define AZURE_SERVICE_KEY @"RCegDxlgLbeqphBsIBONspgchGaofN19"
 #define AZURE_SERVICE_DB  @"LuasStops"
 
-@implementation FareAzureWebServices
+@interface FareAzureWebServices ()
+@property (strong, nonatomic) FareAppDelegate *appDelegate;
+@end
 
-@synthesize luasTable = _luasTable;
-@synthesize client = _client;
+@implementation FareAzureWebServices
 
 - (FareAzureWebServices *)init
 {
     self.client = [MSClient clientWithApplicationURLString:AZURE_SERVICE_URL  withApplicationKey:AZURE_SERVICE_KEY];
-    self.luasTable = [self.client getTable:AZURE_SERVICE_DB];
+    self.stopsDataTable = [self.client getTable:AZURE_SERVICE_DB];
     
     return self;
 }
@@ -33,8 +35,8 @@
 
 - (MSTable *)luasTable
 {
-    if(!_luasTable) [self.client getTable:AZURE_SERVICE_DB];
-    return _luasTable;
+    if(!_stopsDataTable) [self.client getTable:AZURE_SERVICE_DB];
+    return _stopsDataTable;
 }
 
 @end

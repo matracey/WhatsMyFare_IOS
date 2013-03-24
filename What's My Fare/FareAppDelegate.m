@@ -7,21 +7,8 @@
 //
 
 #import "FareAppDelegate.h"
-//#import <WindowsAzureMobileServices/WindowsAzureMobileServices.h>
-
-#define AZURE_SERVICE_URL @"https://whats-my-fare.azure-mobile.net"
-#define AZURE_SERVICE_KEY @"RCegDxlgLbeqphBsIBONspgchGaofN19"
-#define AZURE_SERVICE_DB  @"LuasStops"
 
 @implementation FareAppDelegate
-@synthesize luasTable = _luasTable;
-
-- (MSTable *)luasTable
-{
-    MSClient *client = [MSClient clientWithApplicationURLString:AZURE_SERVICE_URL  withApplicationKey:AZURE_SERVICE_KEY];
-    _luasTable = [client getTable:AZURE_SERVICE_DB];
-    return _luasTable;
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

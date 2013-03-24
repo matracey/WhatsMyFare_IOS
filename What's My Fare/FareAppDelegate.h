@@ -12,6 +12,7 @@
 @interface FareAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) MSTable *luasTable;
+@property (strong, nonatomic) NSDictionary *origin;
+@property (strong, nonatomic) NSDictionary *destin;
 
 @end
