@@ -9,29 +9,40 @@
 #import "HomeTableViewController.h"
 
 @interface HomeTableViewController ()
-@property (strong, nonatomic) IBOutlet UITableView *myTableView;
+@property (strong, nonatomic) NSDictionary *defaultValues;
 @end
 
 @implementation HomeTableViewController
-@synthesize myTableView = _myTableView;
-
-- (UITableView *)myTableView
-{
-    if(!_myTableView)
-    {
-        id myTableView = [self initWithStyle:UITableViewStyleGrouped];
-        if([myTableView isKindOfClass:[UITableView class]]) _myTableView = myTableView;
-    }
-    return _myTableView;
-}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    if (self) {        
+        //self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:117 green:4 blue:32 alpha:1];
     }
     return self;
+}
+
+- (NSDictionary *)defaultValues
+{
+    if(!_defaultValues)
+    {
+        NSArray *keys = [[NSArray alloc] initWithObjects:@"id", @"luasLine", @"luasRoute", @"stopName", nil];
+        NSArray *defaults = [[NSArray alloc] initWithObjects:@"(null)", @"Service", @"(null)", @"Point",nil];
+        _defaultValues = [[NSDictionary alloc] initWithObjects:defaults forKeys:keys];
+    }
+    return _defaultValues;
+}
+
+- (void)setOrigin:(NSMutableDictionary *)origin
+{
+    NSLog(@"defaultValues = %@", self.defaultValues);
+    self.origin = [origin copy];
+}
+
+- (void)setDestin:(NSMutableDictionary *)destin
+{
+    self.destin = [destin copy];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -45,11 +56,13 @@
 
 #pragma mark - UITableViewDataSource
 
-
-
 #pragma mark - UITableViewDelegate
 
-
+#pragma mark - UIViewControllerLifeCycle
+- (void)viewDidLoad
+{
+    NSLog(@"Default values are: %@", self.defaultValues);
+}
 
 - (void)viewDidUnload {
     [self setTableView:nil];

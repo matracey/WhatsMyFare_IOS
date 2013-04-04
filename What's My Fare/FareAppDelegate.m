@@ -8,6 +8,9 @@
 
 #import "FareAppDelegate.h"
 
+@interface FareAppDelegate ()
+@end
+
 @implementation FareAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

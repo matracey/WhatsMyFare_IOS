@@ -70,6 +70,8 @@
     // Configure the cell...
     cell.textLabel.text = [[self.stopsDataModel objectAtIndex:indexPath.item] objectForKey:@"stopName"];
     cell.detailTextLabel.text = [[self.stopsDataModel objectAtIndex:indexPath.item] objectForKey:@"luasLine"];
+    if([cell.detailTextLabel.text isEqualToString:@"Green"])cell.detailTextLabel.textColor = [UIColor greenColor];
+    if([cell.detailTextLabel.text isEqualToString:@"Red"])cell.detailTextLabel.textColor = [UIColor redColor];
     
     return cell;
 }
@@ -94,14 +96,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    HomeTableViewController *homeViewController = [self.navigationController.viewControllers
+                                                   objectAtIndex:self.navigationController.viewControllers.count-2];
     if([self.title isEqualToString:@"Origin"])
     {
-        self.appDelegate.origin = [self.stopsDataModel objectAtIndex:indexPath.item];
+        [homeViewController setOrigin:[[self.stopsDataModel objectAtIndex:indexPath.item] mutableCopy]];
+        NSLog(@"%@", [self.stopsDataModel objectAtIndex:indexPath.item]);
     }
     if ([self.title isEqualToString:@"Destination"])
     {
-        self.appDelegate.destin = [self.stopsDataModel objectAtIndex:indexPath.item];
+        [homeViewController setDestin:[[self.stopsDataModel objectAtIndex:indexPath.item] mutableCopy]];
+        NSLog(@"destin = %@", [homeViewController destin]);
     }
     
     //return to previous nav controller

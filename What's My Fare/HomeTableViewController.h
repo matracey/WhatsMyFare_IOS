@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeTableViewController : UITableViewController
-
+@property (strong, nonatomic) NSMutableDictionary *origin;
+@property (strong, nonatomic) NSMutableDictionary *destin;
 @end
