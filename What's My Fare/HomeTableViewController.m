@@ -9,6 +9,8 @@
 #import "HomeTableViewController.h"
 
 @interface HomeTableViewController ()
+@property (strong, nonatomic) IBOutlet UITableViewCell *originTableViewCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *destinationTableViewCell;
 @property (strong, nonatomic) NSDictionary *defaultValues;
 @end
 
@@ -34,17 +36,6 @@
     return _defaultValues;
 }
 
-- (void)setOrigin:(NSMutableDictionary *)origin
-{
-    NSLog(@"defaultValues = %@", self.defaultValues);
-    self.origin = [origin copy];
-}
-
-- (void)setDestin:(NSMutableDictionary *)destin
-{
-    self.destin = [destin copy];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.destinationViewController isKindOfClass:[UIViewController class]])
@@ -55,17 +46,35 @@
 }
 
 #pragma mark - UITableViewDataSource
+- (void)refreshData
+{
+    self.originTableViewCell.textLabel.text = [self.origin objectForKey:@"stopName"];
+    self.originTableViewCell.detailTextLabel.text = [self.origin objectForKey:@"luasLine"];
+    
+    self.destinationTableViewCell.textLabel.text = [self.destin objectForKey:@"stopName"];
+    self.destinationTableViewCell.detailTextLabel.text = [self.destin objectForKey:@"luasLine"];
+}
 
 #pragma mark - UITableViewDelegate
 
 #pragma mark - UIViewControllerLifeCycle
-- (void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"Default values are: %@", self.defaultValues);
+    if (!self.origin)
+    {
+        self.origin = [self.defaultValues copy];
+    }
+    if (!self.destin)
+    {
+        self.destin = [self.defaultValues copy];
+    }
+    [self refreshData];
 }
 
 - (void)viewDidUnload {
     [self setTableView:nil];
+    [self setOriginTableViewCell:nil];
+    [self setDestinationTableViewCell:nil];
     [super viewDidUnload];
 }
 @end

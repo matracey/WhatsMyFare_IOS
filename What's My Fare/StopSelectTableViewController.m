@@ -101,12 +101,10 @@
     if([self.title isEqualToString:@"Origin"])
     {
         [homeViewController setOrigin:[[self.stopsDataModel objectAtIndex:indexPath.item] mutableCopy]];
-        NSLog(@"%@", [self.stopsDataModel objectAtIndex:indexPath.item]);
     }
     if ([self.title isEqualToString:@"Destination"])
     {
         [homeViewController setDestin:[[self.stopsDataModel objectAtIndex:indexPath.item] mutableCopy]];
-        NSLog(@"destin = %@", [homeViewController destin]);
     }
     
     //return to previous nav controller
