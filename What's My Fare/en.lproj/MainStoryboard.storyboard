@@ -96,10 +96,39 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Fare Bracket" id="kTh-TF-gYq">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="destination" textLabel="bQ9-FW-SKK" detailTextLabel="FKT-AU-tMp" style="IBUITableViewCellStyleValue1" id="sLE-4d-Wrf">
+                                        <rect key="frame" x="0.0" y="230" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bQ9-FW-SKK">
+                                                    <rect key="frame" x="10" y="11" width="0.0" height="0.0"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FKT-AU-tMp">
+                                                    <rect key="frame" x="226" y="11" width="44" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.21960784310000001" green="0.3294117647" blue="0.52941176469999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="" id="S8v-xd-yil">
                                 <cells>
                                     <tableViewCell opaque="NO" contentMode="bottom" selectionStyle="blue" indentationWidth="10" reuseIdentifier="calculate" id="AUa-Tw-Aag">
-                                        <rect key="frame" x="0.0" y="204" width="320" height="46"/>
+                                        <rect key="frame" x="0.0" y="296" width="320" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="1" width="300" height="43"/>
@@ -134,6 +163,7 @@
                     <navigationItem key="navigationItem" title="What's My Fare" id="iME-YA-liX"/>
                     <connections>
                         <outlet property="destinationTableViewCell" destination="Ex6-lS-CfF" id="Aha-kb-aDO"/>
+                        <outlet property="fareBracketTableViewCell" destination="sLE-4d-Wrf" id="s8b-fa-mmc"/>
                         <outlet property="originTableViewCell" destination="6eL-sY-PJV" id="NiD-V9-o41"/>
                         <outlet property="tableView" destination="gxA-uG-t8G" id="CWC-bv-qOD"/>
                     </connections>
@@ -199,6 +229,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeTableViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="destinationTableViewCell" candidateClass="UITableViewCell"/>
+                <relationship kind="outlet" name="fareBracketTableViewCell" candidateClass="UITableViewCell"/>
                 <relationship kind="outlet" name="originTableViewCell" candidateClass="UITableViewCell"/>
             </relationships>
         </class>

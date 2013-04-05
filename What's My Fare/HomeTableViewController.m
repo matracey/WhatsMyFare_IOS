@@ -12,6 +12,8 @@
 @property (strong, nonatomic) IBOutlet UITableViewCell *originTableViewCell;
 @property (strong, nonatomic) IBOutlet UITableViewCell *destinationTableViewCell;
 @property (strong, nonatomic) NSDictionary *defaultValues;
+@property (strong, nonatomic) NSString *fareBracket;
+@property (strong, nonatomic) IBOutlet UITableViewCell *fareBracketTableViewCell;
 @end
 
 @implementation HomeTableViewController
@@ -30,7 +32,7 @@
     if(!_defaultValues)
     {
         NSArray *keys = [[NSArray alloc] initWithObjects:@"id", @"luasLine", @"luasRoute", @"stopName", nil];
-        NSArray *defaults = [[NSArray alloc] initWithObjects:@"(null)", @"Service", @"(null)", @"Point",nil];
+        NSArray *defaults = [[NSArray alloc] initWithObjects:@"", @"", @"", @"Choose a stop...",nil];
         _defaultValues = [[NSDictionary alloc] initWithObjects:defaults forKeys:keys];
     }
     return _defaultValues;
@@ -53,13 +55,16 @@
     
     self.destinationTableViewCell.textLabel.text = [self.destin objectForKey:@"stopName"];
     self.destinationTableViewCell.detailTextLabel.text = [self.destin objectForKey:@"luasLine"];
+    
+    self.fareBracketTableViewCell.textLabel.text = self.fareBracket;
 }
 
 #pragma mark - UITableViewDelegate
 
 #pragma mark - UIViewControllerLifeCycle
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidLoad
 {
+    self.fareBracket = @"Choose a fare bracket...";
     if (!self.origin)
     {
         self.origin = [self.defaultValues copy];
@@ -71,10 +76,16 @@
     [self refreshData];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self refreshData];
+}
+
 - (void)viewDidUnload {
     [self setTableView:nil];
     [self setOriginTableViewCell:nil];
     [self setDestinationTableViewCell:nil];
+    [self setFareBracketTableViewCell:nil];
     [super viewDidUnload];
 }
 @end
