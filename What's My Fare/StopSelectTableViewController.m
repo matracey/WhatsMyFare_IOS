@@ -13,7 +13,7 @@
 
 @interface StopSelectTableViewController ()
 //Class Properties
-@property (strong, nonatomic) NSArray *stopsDataModel; //data model
+@property (strong, nonatomic) NSArray *points; //data model
 @property (strong, nonatomic) FareAzureWebServices *webService;
 @property (strong, nonatomic) FareAppDelegate *appDelegate;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
@@ -59,7 +59,7 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.stopsDataModel.count;
+    return self.points.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,8 +68,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = [[self.stopsDataModel objectAtIndex:indexPath.item] objectForKey:@"stopName"];
-    cell.detailTextLabel.text = [[self.stopsDataModel objectAtIndex:indexPath.item] objectForKey:@"luasLine"];
+    cell.textLabel.text = [[self.points objectAtIndex:indexPath.item] objectForKey:@"stopName"];
+    cell.detailTextLabel.text = [[self.points objectAtIndex:indexPath.item] objectForKey:@"luasLine"];
     if([cell.detailTextLabel.text isEqualToString:@"Green"])cell.detailTextLabel.textColor = [UIColor greenColor];
     if([cell.detailTextLabel.text isEqualToString:@"Red"])cell.detailTextLabel.textColor = [UIColor redColor];
     
@@ -83,7 +83,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
     
     [self.webService.stopsDataTable readWithCompletion:^(NSArray *items, NSInteger totalCount, NSError *error) {
-        self.stopsDataModel = [items copy];
+        self.points = [items copy];
         dispatch_async(dispatch_get_main_queue(), ^{
             //sleep(1); //added so that activityIndicator can be seen.
             [self.tableView reloadData];
@@ -100,13 +100,12 @@
                                                    objectAtIndex:self.navigationController.viewControllers.count-2];
     if([self.title isEqualToString:@"Origin"])
     {
-        [homeViewController setOrigin:[[self.stopsDataModel objectAtIndex:indexPath.item] mutableCopy]];
+        [homeViewController setOrigin:[[self.points objectAtIndex:indexPath.item] mutableCopy]];
     }
     if ([self.title isEqualToString:@"Destination"])
     {
-        [homeViewController setDestin:[[self.stopsDataModel objectAtIndex:indexPath.item] mutableCopy]];
+        [homeViewController setDestin:[[self.points objectAtIndex:indexPath.item] mutableCopy]];
     }
-    
     //return to previous nav controller
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
