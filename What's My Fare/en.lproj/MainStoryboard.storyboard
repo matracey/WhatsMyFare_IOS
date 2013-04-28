@@ -88,11 +88,27 @@
                     <connections>
                         <outlet property="tableView" destination="gxA-uG-t8G" id="CWC-bv-qOD"/>
                         <segue destination="aeW-KO-42S" kind="push" identifier="stopSelect" id="zoG-Ox-UNu"/>
+                        <segue destination="Nma-eu-csN" kind="push" id="dTw-1w-jxJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iof-Lt-NMO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="640" y="35"/>
+        </scene>
+        <!--Fare Results View Controller-->
+        <scene sceneID="dcm-88-WO0">
+            <objects>
+                <viewController id="Nma-eu-csN" customClass="FareResultsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lqz-R6-RQR">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ETk-Db-Frq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nOG-Wb-zO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1281" y="182"/>
         </scene>
         <!--Stop Select Table View Controller - Stop Select-->
         <scene sceneID="eJF-Sw-bhd">
@@ -146,6 +162,21 @@
             <point key="canvasLocation" x="1281" y="-398"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="FareResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FareResultsViewController.h"/>
+        </class>
+        <class className="HomeTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeTableViewController.h"/>
+        </class>
+        <class className="StopSelectTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StopSelectTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshData:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="refreshButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
