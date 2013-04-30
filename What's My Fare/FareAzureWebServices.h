@@ -11,7 +11,9 @@
 
 @interface FareAzureWebServices : NSObject
 
-@property (strong, nonatomic) MSTable *stopsDataTable;
+@property (strong, nonatomic) MSTable *veldt;
 @property (strong, nonatomic) MSClient *client;
+
+- (FareAzureWebServices *)initWithTableName:(NSString *)tableName;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface FareResultsViewController : UIViewController
 
+@property (strong, nonatomic) NSArray *model; //data model set by HomeTableViewController
+
 @end

@@ -88,27 +88,119 @@
                     <connections>
                         <outlet property="tableView" destination="gxA-uG-t8G" id="CWC-bv-qOD"/>
                         <segue destination="aeW-KO-42S" kind="push" identifier="stopSelect" id="zoG-Ox-UNu"/>
-                        <segue destination="Nma-eu-csN" kind="push" id="dTw-1w-jxJ"/>
+                        <segue destination="Nma-eu-csN" kind="push" identifier="fareResultSegue" id="dTw-1w-jxJ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iof-Lt-NMO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="640" y="35"/>
         </scene>
-        <!--Fare Results View Controller-->
+        <!--Fare Results View Controller - Result-->
         <scene sceneID="dcm-88-WO0">
             <objects>
                 <viewController id="Nma-eu-csN" customClass="FareResultsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lqz-R6-RQR">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Origin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gck-MG-GDX">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="R6u-ht-vgY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Destination" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Pl-9j-xDe">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Total Fare:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hr-xu-2uh">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="Pf2-Qo-weo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vIv-YB-eO7">
+                                <segments>
+                                    <segment title="Cash"/>
+                                    <segment title="Leap Card"/>
+                                </segments>
+                                <connections>
+                                    <action selector="paymentPlatformDidChange:" destination="Nma-eu-csN" eventType="valueChanged" id="sp6-VV-vc4"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fare Bracket" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEU-Cm-lhs">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cLX-gS-AHW">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HtA-kg-ZbH">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O78-gX-T3I">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="165" id="7Sb-Uy-FEZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AQf-W9-O7H">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Pl-9j-xDe" firstAttribute="leading" secondItem="gck-MG-GDX" secondAttribute="leading" type="default" id="2w3-LQ-2I3"/>
+                            <constraint firstItem="gck-MG-GDX" firstAttribute="top" secondItem="Lqz-R6-RQR" secondAttribute="top" constant="20" symbolic="YES" type="default" id="3Mh-Y8-UKH"/>
+                            <constraint firstItem="HtA-kg-ZbH" firstAttribute="trailing" secondItem="O78-gX-T3I" secondAttribute="trailing" type="default" id="8WC-Be-yGy"/>
+                            <constraint firstItem="HtA-kg-ZbH" firstAttribute="leading" secondItem="5Pl-9j-xDe" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="FqJ-HL-Afc"/>
+                            <constraint firstItem="AQf-W9-O7H" firstAttribute="leading" secondItem="NEU-Cm-lhs" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="JbS-SF-AAR"/>
+                            <constraint firstItem="HtA-kg-ZbH" firstAttribute="leading" secondItem="cLX-gS-AHW" secondAttribute="leading" type="default" id="NWP-ZZ-ntF"/>
+                            <constraint firstItem="O78-gX-T3I" firstAttribute="trailing" secondItem="AQf-W9-O7H" secondAttribute="trailing" type="default" id="PAe-mb-d4w"/>
+                            <constraint firstItem="vIv-YB-eO7" firstAttribute="centerX" secondItem="Lqz-R6-RQR" secondAttribute="centerX" type="default" id="Pnu-LQ-I8u"/>
+                            <constraint firstItem="8hr-xu-2uh" firstAttribute="leading" secondItem="5Pl-9j-xDe" secondAttribute="leading" type="default" id="StE-LM-dEk"/>
+                            <constraint firstItem="5Pl-9j-xDe" firstAttribute="top" secondItem="gck-MG-GDX" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Upz-lr-nqG"/>
+                            <constraint firstItem="gck-MG-GDX" firstAttribute="leading" secondItem="Lqz-R6-RQR" secondAttribute="leading" constant="10" id="ZJG-ua-oPp"/>
+                            <constraint firstItem="O78-gX-T3I" firstAttribute="top" secondItem="Lqz-R6-RQR" secondAttribute="top" constant="146" id="ZUk-t9-iNg"/>
+                            <constraint firstItem="HtA-kg-ZbH" firstAttribute="trailing" secondItem="cLX-gS-AHW" secondAttribute="trailing" type="default" id="bbu-2q-DPo"/>
+                            <constraint firstItem="NEU-Cm-lhs" firstAttribute="top" secondItem="O78-gX-T3I" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="c6t-66-eeL"/>
+                            <constraint firstItem="O78-gX-T3I" firstAttribute="leading" secondItem="8hr-xu-2uh" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="dxh-nl-toz"/>
+                            <constraint firstItem="O78-gX-T3I" firstAttribute="leading" secondItem="AQf-W9-O7H" secondAttribute="leading" type="default" id="e0h-tJ-vKu"/>
+                            <constraint firstItem="8hr-xu-2uh" firstAttribute="top" secondItem="vIv-YB-eO7" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="gg9-dJ-H3N"/>
+                            <constraint firstItem="AQf-W9-O7H" firstAttribute="baseline" secondItem="NEU-Cm-lhs" secondAttribute="baseline" type="default" id="iis-9C-fOT"/>
+                            <constraint firstItem="cLX-gS-AHW" firstAttribute="top" secondItem="Lqz-R6-RQR" secondAttribute="top" constant="20" symbolic="YES" type="default" id="lLl-gw-I93"/>
+                            <constraint firstItem="NEU-Cm-lhs" firstAttribute="leading" secondItem="8hr-xu-2uh" secondAttribute="leading" type="default" id="n9g-gD-53R"/>
+                            <constraint firstItem="cLX-gS-AHW" firstAttribute="leading" secondItem="gck-MG-GDX" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="pE8-Md-pBr"/>
+                            <constraint firstItem="HtA-kg-ZbH" firstAttribute="baseline" secondItem="5Pl-9j-xDe" secondAttribute="baseline" type="default" id="qIH-sh-n7f"/>
+                            <constraint firstItem="vIv-YB-eO7" firstAttribute="top" secondItem="Lqz-R6-RQR" secondAttribute="top" constant="94" id="zRE-SX-zVD"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ETk-Db-Frq"/>
+                    <navigationItem key="navigationItem" title="Result" id="ETk-Db-Frq"/>
+                    <connections>
+                        <outlet property="destinLabel" destination="HtA-kg-ZbH" id="weU-9d-L1R"/>
+                        <outlet property="fareBracketLabel" destination="AQf-W9-O7H" id="Fur-Fu-Mtw"/>
+                        <outlet property="originLabel" destination="cLX-gS-AHW" id="jiL-kM-Q0p"/>
+                        <outlet property="platformSelector" destination="vIv-YB-eO7" id="Px7-HN-yYh"/>
+                        <outlet property="totalFareLabel" destination="O78-gX-T3I" id="NUY-xU-JUt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nOG-Wb-zO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1281" y="182"/>
+            <point key="canvasLocation" x="1279" y="400"/>
         </scene>
         <!--Stop Select Table View Controller - Stop Select-->
         <scene sceneID="eJF-Sw-bhd">
@@ -159,15 +251,26 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dCR-7G-wYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1281" y="-398"/>
+            <point key="canvasLocation" x="1279" y="-325"/>
         </scene>
     </scenes>
     <classes>
         <class className="FareResultsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FareResultsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="paymentPlatformDidChange:" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="destinLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fareBracketLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="originLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="platformSelector" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="totalFareLabel" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="HomeTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeTableViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
         <class className="StopSelectTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StopSelectTableViewController.h"/>

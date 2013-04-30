@@ -7,12 +7,16 @@
 //
 
 #import "HomeTableViewController.h"
+#import "FareResultsViewController.h"
 
 #define PRIMAR_CELL_ID @"primaryCell"
 #define CALCUL_CELL_ID @"calculateButtonCell"
 #define CALCUL_CELL_TEXT @"Calculate!"
 #define ORIGIN_CELL_TEXT @"Choose an origin..."
 #define DESTIN_CELL_TEXT @"Choose a destination..."
+
+#define RESULT_SEGUE @"fareResultSegue"
+#define STOP_SELECT_SEGUE @"stopSelect"
 
 @interface HomeTableViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (strong, nonatomic) NSDictionary *defaultValues;
@@ -65,12 +69,21 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
 {
-    if ([segue.destinationViewController isKindOfClass:[UIViewController class]])
+    
+    if([segue.identifier isEqualToString:STOP_SELECT_SEGUE])
     {
-        UIViewController *stopSelect = segue.destinationViewController;
-        stopSelect.title = self.segueTitle;
+        if ([segue.destinationViewController isKindOfClass:[UIViewController class]])
+        {
+            UIViewController *destination = segue.destinationViewController;
+            destination.title = self.segueTitle;
+        }
         
-    }else NSLog(@"Err: Segue did not execute correctly.");
+    }else if ([segue.identifier isEqualToString:RESULT_SEGUE])
+    {
+        FareResultsViewController *resultViewController = segue.destinationViewController;
+        resultViewController.model = [self.model copy];
+    }
+    else NSLog(@"Err: Segue did not execute correctly.");
 }
 
 #pragma mark - UITableViewDataSource
@@ -123,16 +136,20 @@
     if (indexPath.section == 0)
     {
         self.segueTitle = @"Origin";
-        [self performSegueWithIdentifier:@"stopSelect" sender:target];
+        [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
     }else if (indexPath.section == 1)
     {
         self.segueTitle = @"Destination";
-        [self performSegueWithIdentifier:@"stopSelect" sender:target];
+        [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
     }
     else if (indexPath.section == 2)
 {
     [self displayPickerView];
 }
+    else if (indexPath.section == 3)
+    {
+        [self performSegueWithIdentifier:RESULT_SEGUE sender:target];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

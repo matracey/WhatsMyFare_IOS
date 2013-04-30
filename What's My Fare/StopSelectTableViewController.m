@@ -44,7 +44,7 @@
 {
     if(!_webService)
     {
-        _webService = [[FareAzureWebServices alloc] init];
+        _webService = [[FareAzureWebServices alloc] initWithTableName:@"LuasStops"];
     }
     return _webService;
 }
@@ -82,11 +82,12 @@
     [activityIndicator startAnimating];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
     
-    [self.webService.stopsDataTable readWithCompletion:^(NSArray *items, NSInteger totalCount, NSError *error) {
+    [self.webService.veldt readWithCompletion:^(NSArray *items, NSInteger totalCount, NSError *error) {
         self.points = [items copy];
         dispatch_async(dispatch_get_main_queue(), ^{
             //sleep(1); //added so that activityIndicator can be seen.
             [self.tableView reloadData];
+            [activityIndicator stopAnimating];
             self.navigationItem.rightBarButtonItem = sender;
         });
     }];

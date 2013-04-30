@@ -11,18 +11,26 @@
 
 #define AZURE_SERVICE_URL @"https://whats-my-fare.azure-mobile.net"
 #define AZURE_SERVICE_KEY @"RCegDxlgLbeqphBsIBONspgchGaofN19"
-#define AZURE_SERVICE_DB  @"LuasStops"
+#define DEFAULT_TABLE @"LuasStops"
 
 @interface FareAzureWebServices ()
 @property (strong, nonatomic) FareAppDelegate *appDelegate;
+@property (strong, nonatomic) NSString *table;
 @end
 
 @implementation FareAzureWebServices
 
 - (FareAzureWebServices *)init
 {
+    return [self initWithTableName:DEFAULT_TABLE];
+}
+
+- (FareAzureWebServices *)initWithTableName:(NSString *)tableName
+{
+    self = [super init];
+    self.table = [tableName copy];
     self.client = [MSClient clientWithApplicationURLString:AZURE_SERVICE_URL  withApplicationKey:AZURE_SERVICE_KEY];
-    self.stopsDataTable = [self.client getTable:AZURE_SERVICE_DB];
+    self.veldt = [self.client getTable:tableName];
     
     return self;
 }
@@ -35,8 +43,8 @@
 
 - (MSTable *)luasTable
 {
-    if(!_stopsDataTable) [self.client getTable:AZURE_SERVICE_DB];
-    return _stopsDataTable;
+    if(!_veldt) [self.client getTable:self.table];
+    return _veldt;
 }
 
 @end
