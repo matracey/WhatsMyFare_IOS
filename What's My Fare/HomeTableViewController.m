@@ -22,6 +22,7 @@
 @property (strong, nonatomic) NSDictionary *defaultValues;
 @property (strong, nonatomic) NSArray *fareBrackets;
 @property (strong, nonatomic) NSString *fareBracket;
+@property (strong, nonatomic) NSString *ticketType;
 @property (strong, nonatomic) NSString *segueTitle;
 @property (strong, nonatomic) NSArray *model; //
 @property (strong, nonatomic) UIPickerView *pickerView;
@@ -43,7 +44,7 @@
 #pragma mark - Property getters
 - (NSArray *)fareBrackets
 {
-    return @[@"Adult", @"Child", @"Student"];
+    return @[@[@"Adult", @"Child", @"Student"], @[@"Single", @"Return"]];
 }
 
 - (NSString *)fareBracket
@@ -55,9 +56,18 @@
     return _fareBracket;
 }
 
+- (NSString *)ticketType
+{
+    if(!_ticketType)
+    {
+        _ticketType = @"";
+    }
+    return _ticketType;
+}
+
 - (NSArray *)model
 {
-    return @[self.origin, self.destin, self.fareBracket, CALCUL_CELL_TEXT];
+    return @[self.origin, self.destin, @[self.fareBracket, self.ticketType], CALCUL_CELL_TEXT];
 }
 
 - (NSDictionary *)defaultValues
@@ -115,10 +125,11 @@
         cell = [tableView dequeueReusableCellWithIdentifier:PRIMAR_CELL_ID forIndexPath:indexPath];
         cell.textLabel.text = [data objectForKey:@"stopName"];
         cell.detailTextLabel.text = [data objectForKey:@"luasLine"];
-    }else if ([data isKindOfClass:[NSString class]] && indexPath.section == 2)
+    }else if ([data isKindOfClass:[NSArray class]])
     {
         cell = [tableView dequeueReusableCellWithIdentifier:PRIMAR_CELL_ID forIndexPath:indexPath];
-        cell.textLabel.text = data;
+        cell.textLabel.text = [data objectAtIndex:0];
+        cell.detailTextLabel.text = [data objectAtIndex:1];
     }else
     {
         cell = [tableView dequeueReusableCellWithIdentifier:CALCUL_CELL_ID forIndexPath:indexPath];
@@ -189,8 +200,8 @@
 
 - (void)dismissPickerView
 {
-    NSInteger selectedRow = [self.pickerView selectedRowInComponent:0];
-    self.fareBracket = [self.fareBrackets objectAtIndex:selectedRow];
+    self.fareBracket = [[self.fareBrackets objectAtIndex:0] objectAtIndex:[self.pickerView selectedRowInComponent:0]];
+    self.ticketType = [[self.fareBrackets objectAtIndex:1] objectAtIndex:[self.pickerView selectedRowInComponent:1]];
     [self.actionSheet dismissWithClickedButtonIndex:0 animated:YES];
     [self.tableView reloadData];
 }
@@ -198,19 +209,19 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [self.fareBrackets objectAtIndex:row];
+    return [[self.fareBrackets objectAtIndex:component] objectAtIndex:row];
 }
 
 #pragma mark - UIPickerViewDataSource
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
-    return 1;
+    return self.fareBrackets.count;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
 {
-    return self.fareBrackets.count;
+    return [[self.fareBrackets objectAtIndex:component] count];
 }
 
 
