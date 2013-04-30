@@ -251,6 +251,7 @@
         self.destin = [self.defaultValues copy];
     }
     [self.tableView reloadData];
+    [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil]];
 }
 
 - (void)viewWillAppear:(BOOL)animated

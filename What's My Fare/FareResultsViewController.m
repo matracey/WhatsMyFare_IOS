@@ -120,7 +120,7 @@
     [super viewDidLoad];
     [self refreshData];
     self.paymentPlatformID = [NSNumber numberWithInt:0];
-    self.totalFareLabel.text = @"";
+    self.totalFareLabel.text = @"Loading...";
 }
 
 - (void)refreshData
