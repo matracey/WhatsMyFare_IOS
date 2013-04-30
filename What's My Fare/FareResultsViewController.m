@@ -12,15 +12,18 @@
 #import "FareAzureWebServices.h"
 
 @interface FareResultsViewController ()
+//UIView Outlets
 @property (strong, nonatomic) IBOutlet UILabel *originLabel;
 @property (strong, nonatomic) IBOutlet UILabel *destinLabel;
 @property (strong, nonatomic) IBOutlet UILabel *totalFareLabel;
 @property (strong, nonatomic) IBOutlet UILabel *fareBracketLabel;
-@property (strong, nonatomic) FareAzureWebServices *webService;
-@property (strong, nonatomic) IBOutlet UISegmentedControl *platformSelector;
-@property (strong, nonatomic) NSDictionary *fareResult;
-@property (strong, nonatomic) NSDictionary *fareBrackets;
 
+//Properties & Model
+@property (strong, nonatomic) NSDictionary *fareResult;
+@property (strong, nonatomic) NSNumber *paymentPlatformID; //0 is cash, 1 is Leap Card
+@property (strong, nonatomic) FareAzureWebServices *webService;
+
+//Target-Action methods
 - (IBAction)paymentPlatformDidChange:(UISegmentedControl *)sender;
 @end
 
@@ -43,15 +46,81 @@
     return _webService;
 }
 
-- (NSDictionary *)fareBrackets
+- (NSString *)getFareBracketFromArray:(NSArray *)fareInfo
 {
-    return @{@"Adult":@"AdultSingle", @"Child":@"ChildSingle", @"Student":@""};
+    NSString *fare;
+    NSString *fareBracket = [fareInfo objectAtIndex:0];
+    NSString *ticketTypes = [fareInfo objectAtIndex:1];
+    if([self.paymentPlatformID isEqualToNumber:[NSNumber numberWithInt:0]])
+    {
+        if([fareBracket isEqualToString:@"Adult"])
+        {
+            if ([ticketTypes isEqualToString:@"Single"])
+            {
+                fare = @"AdultSingle";
+            }else if ([ticketTypes isEqualToString:@"Return"])
+            {
+                fare = @"AdultReturn";
+            }
+        }else if ([fareBracket isEqualToString:@"Child"])
+        {
+            if ([ticketTypes isEqualToString:@"Single"])
+            {
+                fare = @"ChildSingle";
+            }else if ([ticketTypes isEqualToString:@"Return"])
+            {
+                fare = @"ChildReturn";
+            }
+        }else if ([fareBracket isEqualToString:@"Student"])
+        {
+            if ([ticketTypes isEqualToString:@"Single"])
+            {
+                fare = @"AdultSingle";
+            }else if ([ticketTypes isEqualToString:@"Return"])
+            {
+                fare = @"AdultReturn";
+            }
+        }
+    }else if ([self.paymentPlatformID isEqualToNumber:[NSNumber numberWithInt:1]])
+    {
+        if([fareBracket isEqualToString:@"Adult"])
+        {
+            if ([ticketTypes isEqualToString:@"Single"])
+            {
+                fare = @"ScAdult";
+            }else if ([ticketTypes isEqualToString:@"Return"])
+            {
+                fare = @"ScAdultReturn";
+            }
+        }else if ([fareBracket isEqualToString:@"Child"])
+        {
+            if ([ticketTypes isEqualToString:@"Single"])
+            {
+                fare = @"ScChild";
+            }else if ([ticketTypes isEqualToString:@"Return"])
+            {
+                fare = @"ScChildReturn";
+            }
+        }else if ([fareBracket isEqualToString:@"Student"])
+        {
+            if ([ticketTypes isEqualToString:@"Single"])
+            {
+                fare = @"ScStudent";
+            }else if ([ticketTypes isEqualToString:@"Return"])
+            {
+                fare = @"ScStudentReturn";
+            }
+        }
+    }
+    return fare;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self refreshData];
+    self.paymentPlatformID = [NSNumber numberWithInt:0];
+    self.totalFareLabel.text = @"";
 }
 
 - (void)refreshData
@@ -69,28 +138,32 @@
          self.navigationItem.rightBarButtonItem = nil;
          if([[items objectAtIndex:0] isKindOfClass:[NSDictionary class]] && items.count == 1){
              self.fareResult = [items objectAtIndex:0];
-             NSNumber *myFare = [self getPriceWithZone:[self.fareResult objectForKey:@"zone_code"]];
-             self.totalFareLabel.text = [NSString stringWithFormat:@"%@", myFare];
+             [self getPriceWithZone:[self.fareResult objectForKey:@"zone_code"]];
          }
          else NSLog(@"Something went wrong. :(");
      }];
     
     self.originLabel.text = [[self.model objectAtIndex:0] objectForKey:@"stopName"];
     self.destinLabel.text = [[self.model objectAtIndex:1] objectForKey:@"stopName"];
-    self.fareBracketLabel.text = [self.model objectAtIndex:2];
+    self.fareBracketLabel.text = [NSString stringWithFormat:@"%@ %@", [[self.model objectAtIndex:2] objectAtIndex:0], [[self.model objectAtIndex:2] objectAtIndex:1]];
 }
 
-- (NSNumber *)getPriceWithZone:(NSString *)zone
+- (void)getPriceWithZone:(NSString *)zone
 {
     FareAzureWebServices *fareTarriffs = [[FareAzureWebServices alloc] initWithTableName:@"FareTarrifs"];
     NSPredicate *query = [NSPredicate predicateWithFormat:@"ZoneCode == %@", zone];
-    [fareTarriffs.veldt readWhere:query completion:^(NSArray *items, NSInteger totalCount, NSError *error) {
-        if([[items objectAtIndex:0] isKindOfClass:[NSDictionary class]] && items.count == 1){
-            NSDictionary *price = [items objectAtIndex:0];
-            self.totalFareLabel.text = [NSString stringWithFormat:@"€%@", [price objectForKey:[self.fareBrackets objectForKey:[self.model objectAtIndex:2]]]];
+    [fareTarriffs.veldt readWhere:query completion:^(NSArray *items, NSInteger totalCount, NSError *error)
+    {
+        if([[items objectAtIndex:0] isKindOfClass:[NSDictionary class]] && items.count == 1)
+        {
+            NSDictionary *priceDictionary = [items objectAtIndex:0];
+            NSNumber *price = [priceDictionary objectForKey:[self getFareBracketFromArray:[self.model objectAtIndex:2]]];
+            NSNumberFormatter *priceFormatter = [[NSNumberFormatter alloc] init];
+            [priceFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_IE"]];
+            [priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+            self.totalFareLabel.text = [priceFormatter stringFromNumber:price];
         }
     }];
-    return 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -101,13 +174,13 @@
 
 - (void)viewDidUnload {
     [self setOriginLabel:nil];
-    [self setPlatformSelector:nil];
     [super viewDidUnload];
 }
 
 - (IBAction)paymentPlatformDidChange:(UISegmentedControl *)sender
 {
-    NSLog(@"%i", self.platformSelector.selectedSegmentIndex);
+    self.paymentPlatformID = [NSNumber numberWithInteger:sender.selectedSegmentIndex];
+    [self refreshData];
 }
 
 @end

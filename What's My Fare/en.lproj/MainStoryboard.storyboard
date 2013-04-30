@@ -194,7 +194,6 @@
                         <outlet property="destinLabel" destination="HtA-kg-ZbH" id="weU-9d-L1R"/>
                         <outlet property="fareBracketLabel" destination="AQf-W9-O7H" id="Fur-Fu-Mtw"/>
                         <outlet property="originLabel" destination="cLX-gS-AHW" id="jiL-kM-Q0p"/>
-                        <outlet property="platformSelector" destination="vIv-YB-eO7" id="Px7-HN-yYh"/>
                         <outlet property="totalFareLabel" destination="O78-gX-T3I" id="NUY-xU-JUt"/>
                     </connections>
                 </viewController>
@@ -262,7 +261,6 @@
                 <relationship kind="outlet" name="destinLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="fareBracketLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="originLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="platformSelector" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="totalFareLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
