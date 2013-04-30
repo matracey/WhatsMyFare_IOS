@@ -182,6 +182,19 @@
     self.pickerView.showsSelectionIndicator = YES;
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
+    int bracketInt = 0;
+    int ticketsInt = 0;
+    for (int i=0; i<[[self.fareBrackets objectAtIndex:0] count]; i++)
+    {
+        if([self.fareBracket isEqualToString:[[self.fareBrackets objectAtIndex:0] objectAtIndex:i]]) bracketInt = i;
+    }
+    for (int j=0; j<[[self.fareBrackets objectAtIndex:1] count]; j++)
+    {
+        if([self.ticketType isEqualToString:[[self.fareBrackets objectAtIndex:1] objectAtIndex:j]]) ticketsInt = j;
+    }
+    
+    [self.pickerView selectRow:bracketInt inComponent:0 animated:NO];
+    [self.pickerView selectRow:ticketsInt inComponent:1 animated:NO];
     
     [self.actionSheet addSubview:self.pickerView];
     
