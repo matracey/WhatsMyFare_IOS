@@ -11,12 +11,16 @@
 #import "HomeTableViewController.h"
 #import "FareAppDelegate.h"
 
-@interface StopSelectTableViewController ()
+@interface StopSelectTableViewController () <UISearchBarDelegate, UISearchDisplayDelegate>
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
+@property (strong, nonatomic) IBOutlet UISearchBar *pointSearchBar;
+
 //Class Properties
+@property (strong, nonatomic) NSString *searchQuery;
 @property (strong, nonatomic) NSArray *points; //data model
+@property (strong, nonatomic) NSMutableArray *filteredPoints; //filtered data model
 @property (strong, nonatomic) FareAzureWebServices *webService;
 @property (strong, nonatomic) FareAppDelegate *appDelegate;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 
 //Target-Action methods
 - (IBAction)refreshData:(UIBarButtonItem *)sender;
@@ -53,25 +57,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.filteredPoints = [NSMutableArray arrayWithCapacity:self.points.count];
     [self refreshData:self.refreshButton];
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.points.count;
+    if(tableView == self.searchDisplayController.searchResultsTableView) return self.filteredPoints.count;
+    else return self.points.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"stopCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
+    }
+    
+    NSDictionary *point;
+    
+    if(tableView == self.searchDisplayController.searchResultsTableView) {
+        point = [self.filteredPoints objectAtIndex:indexPath.row];
+    }else point = [self.points objectAtIndex:indexPath.row];
+    
+    //Configure the cell...
+    cell.textLabel.text = [point objectForKey:@"stopName"];
+    cell.detailTextLabel.text = [point objectForKey:@"luasLine"];
+    if([cell.detailTextLabel.text isEqualToString:@"Green"])cell.detailTextLabel.textColor = [UIColor greenColor];
+    if([cell.detailTextLabel.text isEqualToString:@"Red"])cell.detailTextLabel.textColor = [UIColor redColor];
+    
+    /*
     cell.textLabel.text = [[self.points objectAtIndex:indexPath.item] objectForKey:@"stopName"];
     cell.detailTextLabel.text = [[self.points objectAtIndex:indexPath.item] objectForKey:@"luasLine"];
     if([cell.detailTextLabel.text isEqualToString:@"Green"])cell.detailTextLabel.textColor = [UIColor greenColor];
     if([cell.detailTextLabel.text isEqualToString:@"Red"])cell.detailTextLabel.textColor = [UIColor redColor];
+     */
     
     return cell;
 }
@@ -101,11 +124,11 @@
                                                    objectAtIndex:self.navigationController.viewControllers.count-2];
     if([self.title isEqualToString:@"Origin"])
     {
-        [homeViewController setOrigin:[[self.points objectAtIndex:indexPath.item] mutableCopy]];
+        [homeViewController setOrigin:[[self.points objectAtIndex:indexPath.row] mutableCopy]];
     }
     if ([self.title isEqualToString:@"Destination"])
     {
-        [homeViewController setDestin:[[self.points objectAtIndex:indexPath.item] mutableCopy]];
+        [homeViewController setDestin:[[self.points objectAtIndex:indexPath.row] mutableCopy]];
     }
     //return to previous nav controller
     [self.navigationController popToRootViewControllerAnimated:YES];
@@ -115,4 +138,23 @@
     [self setRefreshButton:nil];
     [super viewDidUnload];
 }
+
+#pragma mark - UISearchDisplayControllerDelegate methods
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    //filter the content by the search string and the scope selector!
+    [self filterContentForSearchQuery:searchString];
+    return YES;
+}
+
+#pragma mark - UITableViewSearch methods
+- (void)filterContentForSearchQuery:(NSString *)searchQuery
+{
+    //Clean out the filtered array
+    [self.filteredPoints removeAllObjects];
+    //Create a predicate that will be used to filter results
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"stopName contains[c] %@", searchQuery];
+    self.filteredPoints = [NSMutableArray arrayWithArray:[self.points filteredArrayUsingPredicate:searchPredicate]];
+}
+
 @end
