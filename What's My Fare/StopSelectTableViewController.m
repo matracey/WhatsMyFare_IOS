@@ -120,15 +120,20 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *result;
+    if(tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        result = [self.filteredPoints objectAtIndex:indexPath.row];
+    }else result = [self.points objectAtIndex:indexPath.row];
     HomeTableViewController *homeViewController = [self.navigationController.viewControllers
                                                    objectAtIndex:self.navigationController.viewControllers.count-2];
     if([self.title isEqualToString:@"Origin"])
     {
-        [homeViewController setOrigin:[[self.points objectAtIndex:indexPath.row] mutableCopy]];
+        [homeViewController setOrigin:[result mutableCopy]];
     }
     if ([self.title isEqualToString:@"Destination"])
     {
-        [homeViewController setDestin:[[self.points objectAtIndex:indexPath.row] mutableCopy]];
+        [homeViewController setDestin:[result mutableCopy]];
     }
     //return to previous nav controller
     [self.navigationController popToRootViewControllerAnimated:YES];
