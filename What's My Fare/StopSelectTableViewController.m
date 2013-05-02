@@ -59,6 +59,7 @@
     [super viewDidLoad];
     self.filteredPoints = [NSMutableArray arrayWithCapacity:self.points.count];
     [self refreshData:self.refreshButton];
+    self.searchDisplayController.searchBar.alpha = 0.0;
 }
 
 #pragma mark - UITableViewDataSource
@@ -112,6 +113,9 @@
             [self.tableView reloadData];
             [activityIndicator stopAnimating];
             self.navigationItem.rightBarButtonItem = sender;
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+            self.searchDisplayController.searchBar.alpha = 1.0;
         });
     }];
 }
