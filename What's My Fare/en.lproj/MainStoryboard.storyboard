@@ -38,7 +38,7 @@
                         <label key="tableFooterView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" id="XCg-7G-aV7">
                             <rect key="frame" x="0.0" y="146" width="320" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                             <color key="textColor" red="1" green="0.054199093339397986" blue="0.0" alpha="0.81000000000000005" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>

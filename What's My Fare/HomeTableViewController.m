@@ -194,8 +194,10 @@
     [UIView animateWithDuration:1.0 animations:^{
         self.errLabel.alpha = 1.0;
     }];
-    [UIView animateWithDuration:3.0 animations:^{
+    [UIView animateWithDuration:3.0 delay:3.0 options:UIViewAnimationOptionTransitionNone animations:^{
         self.errLabel.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        
     }];
 }
 
