@@ -8,12 +8,13 @@
 
 #import "HomeTableViewController.h"
 #import "FareResultsViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define PRIMAR_CELL_ID @"primaryCell"
 #define CALCUL_CELL_ID @"calculateButtonCell"
 #define CALCUL_CELL_TEXT @"Calculate!"
-#define ORIGIN_CELL_TEXT @"Choose an origin..."
-#define DESTIN_CELL_TEXT @"Choose a destination..."
+#define POINTS_CELL_TEXT @"Choose a stop..."
+#define FAREBR_CELL_TEXT @"Choose a fare bracket..."
 
 #define RESULT_SEGUE @"fareResultSegue"
 #define STOP_SELECT_SEGUE @"stopSelect"
@@ -27,6 +28,7 @@
 @property (strong, nonatomic) NSArray *model; //
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIActionSheet *actionSheet;
+@property (strong, nonatomic) IBOutlet UILabel *errLabel;
 @end
 
 @implementation HomeTableViewController
@@ -51,7 +53,7 @@
 {
     if(!_fareBracket)
     {
-        _fareBracket = @"Choose a fare bracket...";
+        _fareBracket = FAREBR_CELL_TEXT;
     }
     return _fareBracket;
 }
@@ -72,7 +74,7 @@
 
 - (NSDictionary *)defaultValues
 {
-    return @{@"id":@"", @"stopName":@"Choose a stop...", @"luasLine":@"", @"luasRoute":@""};
+    return @{@"id":@"", @"stopName":POINTS_CELL_TEXT, @"luasLine":@"", @"luasRoute":@""};
 }
 
 #pragma mark - Segue methods
@@ -122,17 +124,17 @@
     // Configure the cell...
     if([data isKindOfClass:[NSDictionary class]])
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:PRIMAR_CELL_ID forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:PRIMAR_CELL_ID];
         cell.textLabel.text = [data objectForKey:@"stopName"];
         cell.detailTextLabel.text = [data objectForKey:@"luasLine"];
     }else if ([data isKindOfClass:[NSArray class]])
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:PRIMAR_CELL_ID forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:PRIMAR_CELL_ID];
         cell.textLabel.text = [data objectAtIndex:0];
         cell.detailTextLabel.text = [data objectAtIndex:1];
     }else
     {
-        cell = [tableView dequeueReusableCellWithIdentifier:CALCUL_CELL_ID forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:CALCUL_CELL_ID];
         cell.textLabel.text = CALCUL_CELL_TEXT;
     }
     
@@ -159,11 +161,43 @@
 }
     else if (indexPath.section == 3)
     {
-        [self performSegueWithIdentifier:RESULT_SEGUE sender:target];
+        if([[self.origin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT] || [[self.destin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT] || [self.fareBracket isEqualToString:FAREBR_CELL_TEXT])
+        {
+            //[self updateCellSelectionColourWithCell:target andColour:[UIColor redColor]];
+            
+            //Validation code -- ensuring that the user has set all required values.
+            if([[self.origin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT]) [self displayErrorLabelWithMessage:@"Please choose an origin before continuing..."];
+            else if([[self.destin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT]) [self displayErrorLabelWithMessage:@"Please choose a destination before continuing..."];
+            else if([self.fareBracket isEqualToString:FAREBR_CELL_TEXT]) [self displayErrorLabelWithMessage:@"Please choose a fare bracket before continuing..."];
+        }else
+        {
+            //[self updateCellSelectionColourWithCell:target andColour:[UIColor blueColor]];
+            target.selectionStyle = UITableViewCellSelectionStyleBlue;
+            [self performSegueWithIdentifier:@"fareResultSegue" sender:target];
+        }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)updateCellSelectionColourWithCell:(UITableViewCell *)cell andColour:(UIColor *)color
+{
+    UIView *view = [[UIView alloc] initWithFrame:cell.frame];
+    [view setBackgroundColor:color];
+    view.layer.cornerRadius = 5;
+    view.layer.masksToBounds = YES;
+    cell.selectedBackgroundView = view;
+}
+
+- (void)displayErrorLabelWithMessage:(NSString *)message
+{
+    self.errLabel.text = message;
+    [UIView animateWithDuration:1.0 animations:^{
+        self.errLabel.alpha = 1.0;
+    }];
+    [UIView animateWithDuration:3.0 animations:^{
+        self.errLabel.alpha = 0.0;
+    }];
+}
 
 #pragma mark - UIPickerViewDelegate
 - (void)displayPickerView
@@ -241,7 +275,7 @@
 #pragma mark - UIViewControllerLifeCycle
 - (void)viewDidLoad
 {
-    self.fareBracket = @"Choose a fare bracket...";
+    self.fareBracket = FAREBR_CELL_TEXT;
     if (!self.origin)
     {
         self.origin = [self.defaultValues copy];
@@ -261,6 +295,7 @@
 
 - (void)viewDidUnload {
     [self setTableView:nil];
+    [self setErrLabel:nil];
     [super viewDidUnload];
 }
 @end
