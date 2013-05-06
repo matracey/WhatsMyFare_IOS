@@ -21,6 +21,14 @@
 		4B7592A516E3C1FB00E97980 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */; };
 		4B8A7C48172D82AD0004D2A1 /* FareResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */; };
 		4BADFEB91738061A00836CC4 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEB81738061A00836CC4 /* logo.png */; };
+		4BADFEBD173828A200836CC4 /* adult.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEBA173828A200836CC4 /* adult.png */; };
+		4BADFEBE173828A200836CC4 /* child.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEBB173828A200836CC4 /* child.png */; };
+		4BADFEBF173828A200836CC4 /* student.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEBC173828A200836CC4 /* student.png */; };
+		4BADFEC21738363600836CC4 /* FareBracketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BADFEC11738363600836CC4 /* FareBracketCell.m */; };
+		4BADFEC61738479300836CC4 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEC31738479300836CC4 /* green.png */; };
+		4BADFEC71738479300836CC4 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEC41738479300836CC4 /* red.png */; };
+		4BADFEC81738479300836CC4 /* rail.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEC51738479300836CC4 /* rail.png */; };
+		4BADFECA1738529F00836CC4 /* both.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEC91738529F00836CC4 /* both.png */; };
 		4BC0618716E8DDBE0067889B /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */; };
 		4BC0618A16E9154A0067889B /* StopSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC0618916E9154A0067889B /* StopSelectTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -47,6 +55,15 @@
 		4B8A7C46172D82AD0004D2A1 /* FareResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareResultsViewController.h; sourceTree = "<group>"; };
 		4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareResultsViewController.m; sourceTree = "<group>"; };
 		4BADFEB81738061A00836CC4 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		4BADFEBA173828A200836CC4 /* adult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adult.png; sourceTree = "<group>"; };
+		4BADFEBB173828A200836CC4 /* child.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = child.png; sourceTree = "<group>"; };
+		4BADFEBC173828A200836CC4 /* student.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = student.png; sourceTree = "<group>"; };
+		4BADFEC01738363600836CC4 /* FareBracketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareBracketCell.h; sourceTree = "<group>"; };
+		4BADFEC11738363600836CC4 /* FareBracketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareBracketCell.m; sourceTree = "<group>"; };
+		4BADFEC31738479300836CC4 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
+		4BADFEC41738479300836CC4 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		4BADFEC51738479300836CC4 /* rail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rail.png; sourceTree = "<group>"; };
+		4BADFEC91738529F00836CC4 /* both.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = both.png; sourceTree = "<group>"; };
 		4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		4BC0618816E9154A0067889B /* StopSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopSelectTableViewController.h; sourceTree = "<group>"; };
 		4BC0618916E9154A0067889B /* StopSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopSelectTableViewController.m; sourceTree = "<group>"; };
@@ -118,6 +135,8 @@
 		4B75928716E3B86800E97980 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4BADFEC01738363600836CC4 /* FareBracketCell.h */,
+				4BADFEC11738363600836CC4 /* FareBracketCell.m */,
 				4B75928816E3B86800E97980 /* What's My Fare-Info.plist */,
 				4B75928916E3B86800E97980 /* InfoPlist.strings */,
 				4B75928C16E3B86800E97980 /* main.m */,
@@ -132,6 +151,13 @@
 		4BADFEB71738060400836CC4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4BADFEC91738529F00836CC4 /* both.png */,
+				4BADFEC31738479300836CC4 /* green.png */,
+				4BADFEC41738479300836CC4 /* red.png */,
+				4BADFEC51738479300836CC4 /* rail.png */,
+				4BADFEBA173828A200836CC4 /* adult.png */,
+				4BADFEBB173828A200836CC4 /* child.png */,
+				4BADFEBC173828A200836CC4 /* student.png */,
 				4BADFEB81738061A00836CC4 /* logo.png */,
 			);
 			name = Images;
@@ -195,6 +221,13 @@
 				4B75929716E3B86800E97980 /* Default-568h@2x.png in Resources */,
 				4B75929A16E3B86800E97980 /* MainStoryboard.storyboard in Resources */,
 				4BADFEB91738061A00836CC4 /* logo.png in Resources */,
+				4BADFEBD173828A200836CC4 /* adult.png in Resources */,
+				4BADFEBE173828A200836CC4 /* child.png in Resources */,
+				4BADFEBF173828A200836CC4 /* student.png in Resources */,
+				4BADFEC61738479300836CC4 /* green.png in Resources */,
+				4BADFEC71738479300836CC4 /* red.png in Resources */,
+				4BADFEC81738479300836CC4 /* rail.png in Resources */,
+				4BADFECA1738529F00836CC4 /* both.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,6 +244,7 @@
 				4BC0618A16E9154A0067889B /* StopSelectTableViewController.m in Sources */,
 				4B6C5B4B16EB93C200673253 /* FareAzureWebServices.m in Sources */,
 				4B8A7C48172D82AD0004D2A1 /* FareResultsViewController.m in Sources */,
+				4BADFEC21738363600836CC4 /* FareBracketCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

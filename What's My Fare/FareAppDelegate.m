@@ -20,31 +20,43 @@
 
 - (NSDictionary *)style1
 {
+    //regular font
     return @{@"font": [UIFont fontWithName:@"Futura-Medium" size:18.0],
              @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
 }
 
 - (NSDictionary *)style2
 {
+    //xtra-large font
     return @{@"font": [UIFont fontWithName:@"Futura-Medium" size:32.0],
              @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
 }
 
 - (NSDictionary *)style3
 {
-    return @{@"font": [UIFont fontWithName:@"Futura-Medium" size:18.0],
+    //large font
+    return @{@"font": [UIFont fontWithName:@"Futura-Medium" size:26.0],
              @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
 }
 
 - (NSDictionary *)style4
 {
-    return @{@"font": [UIFont fontWithName:@"Futura-CondensedMedium" size:28.0],
+    //condensed-large font
+    return @{@"font": [UIFont fontWithName:@"Futura-CondensedMedium" size:26.0],
              @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
 }
 
 - (NSDictionary *)style5
 {
-    return @{@"font": [UIFont fontWithName:@"Futura-CondensedMedium" size:28.0],
+    //small font
+    return @{@"font": [UIFont fontWithName:@"Futura-Medium" size:16.0],
+             @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
+}
+
+- (NSDictionary *)style6
+{
+    //small-condensed-bold font
+    return @{@"font": [UIFont fontWithName:@"Futura-CondensedExtraBold" size:16.0],
              @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
 }
 

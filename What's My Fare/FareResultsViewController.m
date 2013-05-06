@@ -10,6 +10,7 @@
 
 #import "FareResultsViewController.h"
 #import "FareAzureWebServices.h"
+#import "FareAppDelegate.h"
 
 @interface FareResultsViewController ()
 //UIView Outlets
@@ -17,11 +18,16 @@
 @property (strong, nonatomic) IBOutlet UILabel *destinLabel;
 @property (strong, nonatomic) IBOutlet UILabel *totalFareLabel;
 @property (strong, nonatomic) IBOutlet UILabel *fareBracketLabel;
+@property (strong, nonatomic) IBOutlet UILabel *lineLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *fareBracketImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *lineImageView;
 
 //Properties & Model
 @property (strong, nonatomic) NSDictionary *fareResult;
 @property (strong, nonatomic) NSNumber *paymentPlatformID; //0 is cash, 1 is Leap Card
+@property (strong, nonatomic) NSString *lineIdentifier;
 @property (strong, nonatomic) FareAzureWebServices *webService;
+@property (strong, nonatomic) FareAppDelegate *globalAppProperties;
 
 //Target-Action methods
 - (IBAction)paymentPlatformDidChange:(UISegmentedControl *)sender;
@@ -44,6 +50,24 @@
         _webService = [[FareAzureWebServices alloc] initWithTableName:LUAS_PRICES_TABLE];
     }
     return _webService;
+}
+
+- (FareAppDelegate *)globalAppProperties
+{
+    if(!_globalAppProperties)
+    {
+        _globalAppProperties = [[FareAppDelegate alloc] init];
+    }
+    return _globalAppProperties;
+}
+
+- (NSString *)lineIdentifier
+{
+    if(!_lineIdentifier)
+    {
+        _lineIdentifier = [[NSString alloc] init];
+    }
+    return _lineIdentifier;
 }
 
 - (NSString *)getFareBracketFromArray:(NSArray *)fareInfo
@@ -115,12 +139,48 @@
     return fare;
 }
 
+- (void)setLineIdentifierByOrigin:(NSString *)origin andDestination:(NSString *)destination
+{
+    if([origin isEqualToString:@"Red"])
+    {
+        if ([destination isEqualToString:@"Red"]) self.lineIdentifier = @"Red";
+        else if([destination isEqualToString:@"Green"]) self.lineIdentifier = @"Both";
+    }
+    else if([origin isEqualToString:@"Green"])
+    {
+        if ([destination isEqualToString:@"Green"]) self.lineIdentifier = @"Green";
+        else if([destination isEqualToString:@"Red"]) self.lineIdentifier = @"Both";
+    }else self.lineIdentifier = @"Rail";
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self refreshData];
     self.paymentPlatformID = [NSNumber numberWithInt:0];
     self.totalFareLabel.text = @"Loading...";
+    
+    //setting up styling
+    //originLabel
+    self.originLabel.font = [self.globalAppProperties.style5 objectForKey:@"font"];
+    self.originLabel.textColor = [self.globalAppProperties.style5 objectForKey:@"color"];
+    
+    //destinLabel
+    self.destinLabel.font = [self.globalAppProperties.style5 objectForKey:@"font"];
+    self.destinLabel.textColor = [self.globalAppProperties.style5 objectForKey:@"color"];
+    
+    //totalFareLabel
+    self.totalFareLabel.font = [self.globalAppProperties.style2 objectForKey:@"font"];
+    self.totalFareLabel.textColor = [self.globalAppProperties.style2 objectForKey:@"color"];
+    
+    //fareBracketLabel
+    self.fareBracketLabel.font = [self.globalAppProperties.style5 objectForKey:@"font"];
+    self.fareBracketLabel.textColor = [self.globalAppProperties.style5 objectForKey:@"color"];
+    
+    //lineLabel
+    self.lineLabel.font = [self.globalAppProperties.style3 objectForKey:@"font"];
+    self.lineLabel.textColor = [self.globalAppProperties.style3 objectForKey:@"color"];
+    
 }
 
 - (void)refreshData
@@ -142,10 +202,23 @@
          }
          else NSLog(@"Something went wrong. :(");
      }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //Update UI ONLY in main queue for fear of death otherwise
+        self.originLabel.text = [[self.model objectAtIndex:0] objectForKey:@"stopName"];
+        self.destinLabel.text = [[self.model objectAtIndex:1] objectForKey:@"stopName"];
+        
+        //Update FareBracket UI Elements
+        self.fareBracketLabel.text = [NSString stringWithFormat:@"%@ %@", [[self.model objectAtIndex:2] objectAtIndex:0], [[self.model objectAtIndex:2] objectAtIndex:1]];
+        self.fareBracketImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", [[self.model objectAtIndex:2] objectAtIndex:0]] lowercaseString]];
+        
+        //Update Line UI Elements
+        [self setLineIdentifierByOrigin:[[self.model objectAtIndex:0] objectForKey:@"luasLine"] andDestination:[[self.model objectAtIndex:1] objectForKey:@"luasLine"]];
+        self.lineImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", self.lineIdentifier] lowercaseString]];
+        if([self.lineIdentifier isEqualToString:@"Red"] || [self.lineIdentifier isEqualToString:@"Green"]) self.lineLabel.text = [NSString stringWithFormat:@"%@ Line", self.lineIdentifier];
+        else if([self.lineIdentifier isEqualToString:@"Both"]) self.lineLabel.text = @"Red & Green Line";
+        else self.lineLabel.text = @"DART/Commuter Rail";
+    });
     
-    self.originLabel.text = [[self.model objectAtIndex:0] objectForKey:@"stopName"];
-    self.destinLabel.text = [[self.model objectAtIndex:1] objectForKey:@"stopName"];
-    self.fareBracketLabel.text = [NSString stringWithFormat:@"%@ %@", [[self.model objectAtIndex:2] objectAtIndex:0], [[self.model objectAtIndex:2] objectAtIndex:1]];
 }
 
 - (void)getPriceWithZone:(NSString *)zone
@@ -174,6 +247,9 @@
 
 - (void)viewDidUnload {
     [self setOriginLabel:nil];
+    [self setLineLabel:nil];
+    [self setFareBracketImageView:nil];
+    [self setLineImageView:nil];
     [super viewDidUnload];
 }
 
