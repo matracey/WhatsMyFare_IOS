@@ -265,32 +265,6 @@
             <point key="canvasLocation" x="1279" y="-325"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="FareResultsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FareResultsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="paymentPlatformDidChange:" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="destinLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="fareBracketLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="originLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="totalFareLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="HomeTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="errLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="StopSelectTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StopSelectTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refreshData:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="pointSearchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="refreshButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

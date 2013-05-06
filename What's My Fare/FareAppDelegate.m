@@ -13,8 +13,63 @@
 
 @implementation FareAppDelegate
 
+- (NSArray *)styleKeys
+{
+    return @[@"font",@"color"];
+}
+
+- (NSDictionary *)style1
+{
+    return @{@"font": [UIFont fontWithName:@"Futura-Medium" size:14.0],
+             @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
+}
+
+- (NSDictionary *)style2
+{
+    return @{@"font": [UIFont fontWithName:@"Futura-Medium" size:32.0],
+             @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
+}
+
+- (NSDictionary *)style3
+{
+    return @{@"font": [UIFont fontWithName:@"Futura-Medium" size:18.0],
+             @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
+}
+
+- (NSDictionary *)style4
+{
+    return @{@"font": [UIFont fontWithName:@"Futura-CondensedMedium" size:28.0],
+             @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
+}
+
+- (NSDictionary *)style5
+{
+    return @{@"font": [UIFont fontWithName:@"Futura-CondensedMedium" size:28.0],
+             @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
+}
+
+- (NSDictionary *)navigationBarTitleStyle
+{
+    return @{@"font": [UIFont fontWithName:@"Futura-CondensedExtraBold" size:22.0],
+             @"color": [[UIColor alloc] initWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]};
+}
+
+- (UIColor *)backgroundColor
+{
+    return [UIColor colorWithRed:233.0/256.0 green:233.0/256.0 blue:233.0/256.0 alpha:1.0];
+}
+
+- (void)setNavigationBarStyling
+{
+    UIColor *navigationBarBackgroundColor = [UIColor colorWithRed:96.0/256.0 green:67.0/256.0 blue:142.0/256.0 alpha:1.0];
+    [[UINavigationBar appearance] setTintColor:navigationBarBackgroundColor];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeFont:[self.navigationBarTitleStyle objectForKey:@"font"]}];
+    
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self setNavigationBarStyling];
     return YES;
 }
 

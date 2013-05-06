@@ -9,6 +9,7 @@
 #import "HomeTableViewController.h"
 #import "FareResultsViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "FareAppDelegate.h"
 
 #define PRIMAR_CELL_ID @"primaryCell"
 #define CALCUL_CELL_ID @"calculateButtonCell"
@@ -29,24 +30,26 @@
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIActionSheet *actionSheet;
 @property (strong, nonatomic) IBOutlet UILabel *errLabel;
+@property (strong, nonatomic) FareAppDelegate *globalAppProperties;
 @end
 
 @implementation HomeTableViewController
 
 #pragma mark - Init methods
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {        
-        //self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:117 green:4 blue:32 alpha:1];
-    }
-    return self;
-}
 
 #pragma mark - Property getters
 - (NSArray *)fareBrackets
 {
     return @[@[@"Adult", @"Child", @"Student"], @[@"Single", @"Return"]];
+}
+
+- (FareAppDelegate *)globalAppProperties
+{
+    if(!_globalAppProperties)
+    {
+        _globalAppProperties = [[FareAppDelegate alloc] init];
+    }
+    return _globalAppProperties;
 }
 
 - (NSString *)fareBracket
@@ -127,11 +130,13 @@
         cell = [tableView dequeueReusableCellWithIdentifier:PRIMAR_CELL_ID];
         cell.textLabel.text = [data objectForKey:@"stopName"];
         cell.detailTextLabel.text = [data objectForKey:@"luasLine"];
+        cell.backgroundColor = [UIColor colorWithRed:(206.0/256.0) green:(206.0/256.0) blue:(206.0/256.0) alpha:1.0];
     }else if ([data isKindOfClass:[NSArray class]])
     {
         cell = [tableView dequeueReusableCellWithIdentifier:PRIMAR_CELL_ID];
         cell.textLabel.text = [data objectAtIndex:0];
         cell.detailTextLabel.text = [data objectAtIndex:1];
+        cell.backgroundColor = [UIColor colorWithRed:(206.0/256.0) green:(206.0/256.0) blue:(206.0/256.0) alpha:1.0];
     }else
     {
         cell = [tableView dequeueReusableCellWithIdentifier:CALCUL_CELL_ID];
@@ -287,7 +292,11 @@
         self.destin = [self.defaultValues copy];
     }
     [self.tableView reloadData];
+    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 41.0, 35.0)];
+    [logoImageView setImage:[UIImage imageNamed:@"logo.png"]];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoImageView];
     [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil]];
+    self.view.backgroundColor = self.globalAppProperties.backgroundColor;
 }
 
 - (void)viewWillAppear:(BOOL)animated
