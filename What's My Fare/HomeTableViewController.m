@@ -30,6 +30,7 @@
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIActionSheet *actionSheet;
 @property (strong, nonatomic) IBOutlet UILabel *errLabel;
+@property (strong, nonatomic) NSDictionary *fontColors;
 @property (strong, nonatomic) FareAppDelegate *globalAppProperties;
 @end
 
@@ -80,6 +81,14 @@
     return @{@"id":@"", @"stopName":POINTS_CELL_TEXT, @"luasLine":@"", @"luasRoute":@""};
 }
 
+- (NSDictionary *)fontColors
+{
+    return @{@"Red": [UIColor colorWithRed:170/256 green:53/256 blue:53/256 alpha:1.0],
+             @"Green": [UIColor colorWithRed:91/256 green:146/256 blue:47/256 alpha:1.0],
+             @"DART": [UIColor colorWithRed:51/256 green:169/256 blue:198/256 alpha:1.0],
+             @"Commuter Rail": [UIColor colorWithRed:170/256 green:53/256 blue:53/256 alpha:1.0]};
+}
+
 #pragma mark - Segue methods
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
@@ -112,11 +121,34 @@
     return 1;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSArray *titles = @[@"Origin", @"Destination", @"Fare Bracket"];
-    if(section != 3) return titles[section];
+    if(section != 3)
+    {
+        //Create label for title
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(18, 5, 284, 30)];
+        NSArray *titles = @[@"Origin:", @"Destination:", @"Fare type:"];
+        label.text = titles[section];
+        label.textColor = [self.globalAppProperties.style1 objectForKey:[self.globalAppProperties.styleKeys objectAtIndex:1]];
+        label.font = [self.globalAppProperties.style1 objectForKey:[self.globalAppProperties.styleKeys objectAtIndex:0]];
+        label.backgroundColor = self.globalAppProperties.backgroundColor;
+        
+        //Create UIView as a frame for label
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+        view.backgroundColor = self.globalAppProperties.backgroundColor;
+        [view addSubview:label];
+        
+        return view;
+    }
     else return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if(section != 3)
+    {
+        return 40;
+    }else return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -128,19 +160,33 @@
     if([data isKindOfClass:[NSDictionary class]])
     {
         cell = [tableView dequeueReusableCellWithIdentifier:PRIMAR_CELL_ID];
+        
+        //textLabel properties
         cell.textLabel.text = [data objectForKey:@"stopName"];
+        cell.textLabel.font = [self.globalAppProperties.style1 objectForKey:@"font"];
+        cell.textLabel.textColor = [self.globalAppProperties.style1 objectForKey:@"color"];
+        
+        //detailTextLabel properties
         cell.detailTextLabel.text = [data objectForKey:@"luasLine"];
+        cell.detailTextLabel.font = [self.globalAppProperties.style1 objectForKey:@"font"];
+        cell.detailTextLabel.textColor = [self.globalAppProperties.fontColors objectForKey:cell.detailTextLabel.text];
+        
+        //general cell properties
         cell.backgroundColor = [UIColor colorWithRed:(206.0/256.0) green:(206.0/256.0) blue:(206.0/256.0) alpha:1.0];
     }else if ([data isKindOfClass:[NSArray class]])
     {
         cell = [tableView dequeueReusableCellWithIdentifier:PRIMAR_CELL_ID];
         cell.textLabel.text = [data objectAtIndex:0];
+        cell.textLabel.font = [self.globalAppProperties.style1 objectForKey:@"font"];
         cell.detailTextLabel.text = [data objectAtIndex:1];
         cell.backgroundColor = [UIColor colorWithRed:(206.0/256.0) green:(206.0/256.0) blue:(206.0/256.0) alpha:1.0];
     }else
     {
         cell = [tableView dequeueReusableCellWithIdentifier:CALCUL_CELL_ID];
         cell.textLabel.text = CALCUL_CELL_TEXT;
+        cell.backgroundColor = [self.globalAppProperties.calculateCellStyle objectForKey:@"backgroundColor"];
+        cell.textLabel.font = [self.globalAppProperties.calculateCellStyle objectForKey:@"font"];
+        cell.textLabel.textColor = [self.globalAppProperties.calculateCellStyle objectForKey:@"color"];
     }
     
     return cell;

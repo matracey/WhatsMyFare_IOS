@@ -15,12 +15,12 @@
 
 - (NSArray *)styleKeys
 {
-    return @[@"font",@"color"];
+    return @[@"font",@"color", @"background"];
 }
 
 - (NSDictionary *)style1
 {
-    return @{@"font": [UIFont fontWithName:@"Futura-Medium" size:14.0],
+    return @{@"font": [UIFont fontWithName:@"Futura-Medium" size:18.0],
              @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0]};
 }
 
@@ -52,6 +52,21 @@
 {
     return @{@"font": [UIFont fontWithName:@"Futura-CondensedExtraBold" size:22.0],
              @"color": [[UIColor alloc] initWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]};
+}
+
+- (NSDictionary *)calculateCellStyle
+{
+    return @{@"font":[UIFont fontWithName:@"Futura-CondensedExtraBold" size:22.0],
+             @"color": [[UIColor alloc] initWithRed:1.0 green:1.0 blue:1.0 alpha:1.0],
+             @"backgroundColor": [[UIColor alloc] initWithRed:96.0/256.0 green:67.0/256.0 blue:142.0/256.0 alpha:1.0]};
+}
+
+- (NSDictionary *)fontColors
+{
+    return @{@"Red": [UIColor colorWithRed:170.0/256.0 green:53.0/256.0 blue:53.0/256.0 alpha:1.0],
+             @"Green": [UIColor colorWithRed:91.0/256.0 green:146.0/256.0 blue:47.0/256.0 alpha:1.0],
+             @"DART": [UIColor colorWithRed:51.0/256.0 green:169.0/256.0 blue:198.0/256.0 alpha:1.0],
+             @"Commuter Rail": [UIColor colorWithRed:170.0/256.0 green:53.0/256.0 blue:53.0/256.0 alpha:1.0]};
 }
 
 - (UIColor *)backgroundColor
