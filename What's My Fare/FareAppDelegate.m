@@ -62,7 +62,7 @@
 
 - (NSDictionary *)navigationBarTitleStyle
 {
-    return @{@"font": [UIFont fontWithName:@"Futura-CondensedExtraBold" size:22.0],
+    return @{@"font": [UIFont fontWithName:@"Futura-CondensedExtraBold" size:20.0],
              @"color": [[UIColor alloc] initWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]};
 }
 

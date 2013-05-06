@@ -29,6 +29,8 @@
 		4BADFEC71738479300836CC4 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEC41738479300836CC4 /* red.png */; };
 		4BADFEC81738479300836CC4 /* rail.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEC51738479300836CC4 /* rail.png */; };
 		4BADFECA1738529F00836CC4 /* both.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEC91738529F00836CC4 /* both.png */; };
+		4BADFED217385C5400836CC4 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFED117385C5400836CC4 /* AppIcon.png */; };
+		4BADFED417385C5D00836CC4 /* @2x-AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFED317385C5D00836CC4 /* @2x-AppIcon.png */; };
 		4BC0618716E8DDBE0067889B /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */; };
 		4BC0618A16E9154A0067889B /* StopSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC0618916E9154A0067889B /* StopSelectTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -64,6 +66,8 @@
 		4BADFEC41738479300836CC4 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
 		4BADFEC51738479300836CC4 /* rail.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rail.png; sourceTree = "<group>"; };
 		4BADFEC91738529F00836CC4 /* both.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = both.png; sourceTree = "<group>"; };
+		4BADFED117385C5400836CC4 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
+		4BADFED317385C5D00836CC4 /* @2x-AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "@2x-AppIcon.png"; sourceTree = "<group>"; };
 		4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		4BC0618816E9154A0067889B /* StopSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopSelectTableViewController.h; sourceTree = "<group>"; };
 		4BC0618916E9154A0067889B /* StopSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopSelectTableViewController.m; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 		4B75927416E3B86800E97980 = {
 			isa = PBXGroup;
 			children = (
+				4BADFED317385C5D00836CC4 /* @2x-AppIcon.png */,
+				4BADFED117385C5400836CC4 /* AppIcon.png */,
 				4B75928616E3B86800E97980 /* What's My Fare */,
 				4B75927F16E3B86800E97980 /* Frameworks */,
 				4B75927E16E3B86800E97980 /* Products */,
@@ -228,6 +234,8 @@
 				4BADFEC71738479300836CC4 /* red.png in Resources */,
 				4BADFEC81738479300836CC4 /* rail.png in Resources */,
 				4BADFECA1738529F00836CC4 /* both.png in Resources */,
+				4BADFED217385C5400836CC4 /* AppIcon.png in Resources */,
+				4BADFED417385C5D00836CC4 /* @2x-AppIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
