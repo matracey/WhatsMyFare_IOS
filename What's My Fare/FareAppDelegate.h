@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSDictionary *style4;
 @property (strong, nonatomic) NSDictionary *style5;
 @property (strong, nonatomic) NSDictionary *navigationBarTitleStyle;
+@property (strong, nonatomic) NSDictionary *standardCellStyle;
 @property (strong, nonatomic) NSDictionary *calculateCellStyle;
 @property (strong, nonatomic) NSDictionary *fontColors;
 

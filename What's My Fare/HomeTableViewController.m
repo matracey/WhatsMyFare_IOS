@@ -163,23 +163,32 @@
         
         //textLabel properties
         cell.textLabel.text = [data objectForKey:@"stopName"];
-        cell.textLabel.font = [self.globalAppProperties.style1 objectForKey:@"font"];
-        cell.textLabel.textColor = [self.globalAppProperties.style1 objectForKey:@"color"];
+        cell.textLabel.font = [self.globalAppProperties.standardCellStyle objectForKey:@"font"];
+        cell.textLabel.textColor = [self.globalAppProperties.standardCellStyle objectForKey:@"color"];
         
         //detailTextLabel properties
         cell.detailTextLabel.text = [data objectForKey:@"luasLine"];
-        cell.detailTextLabel.font = [self.globalAppProperties.style1 objectForKey:@"font"];
+        cell.detailTextLabel.font = [self.globalAppProperties.standardCellStyle objectForKey:@"font"];
         cell.detailTextLabel.textColor = [self.globalAppProperties.fontColors objectForKey:cell.detailTextLabel.text];
         
         //general cell properties
-        cell.backgroundColor = [UIColor colorWithRed:(206.0/256.0) green:(206.0/256.0) blue:(206.0/256.0) alpha:1.0];
+        cell.backgroundColor = [self.globalAppProperties.standardCellStyle objectForKey:@"backgroundColor"];
     }else if ([data isKindOfClass:[NSArray class]])
     {
         cell = [tableView dequeueReusableCellWithIdentifier:PRIMAR_CELL_ID];
+        
+        //textLabel properties
         cell.textLabel.text = [data objectAtIndex:0];
-        cell.textLabel.font = [self.globalAppProperties.style1 objectForKey:@"font"];
+        cell.textLabel.font = [self.globalAppProperties.standardCellStyle objectForKey:@"font"];
+        cell.textLabel.textColor = [self.globalAppProperties.standardCellStyle objectForKey:@"color"];
+        
+        //detailTextLabel properties
         cell.detailTextLabel.text = [data objectAtIndex:1];
-        cell.backgroundColor = [UIColor colorWithRed:(206.0/256.0) green:(206.0/256.0) blue:(206.0/256.0) alpha:1.0];
+        cell.detailTextLabel.font = [self.globalAppProperties.standardCellStyle objectForKey:@"font"];
+        cell.detailTextLabel.textColor = [self.globalAppProperties.standardCellStyle objectForKey:@"color"];
+        
+        //general cell properties
+        cell.backgroundColor = [self.globalAppProperties.standardCellStyle objectForKey:@"backgroundColor"];
     }else
     {
         cell = [tableView dequeueReusableCellWithIdentifier:CALCUL_CELL_ID];

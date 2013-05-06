@@ -20,7 +20,7 @@
 @property (strong, nonatomic) NSArray *points; //data model
 @property (strong, nonatomic) NSMutableArray *filteredPoints; //filtered data model
 @property (strong, nonatomic) FareAzureWebServices *webService;
-@property (strong, nonatomic) FareAppDelegate *appDelegate;
+@property (strong, nonatomic) FareAppDelegate *globalAppProperties;
 
 //Target-Action methods
 - (IBAction)refreshData:(UIBarButtonItem *)sender;
@@ -40,6 +40,15 @@
     }
     
     return self;
+}
+
+- (FareAppDelegate *)globalAppProperties
+{
+    if(!_globalAppProperties)
+    {
+        _globalAppProperties = [[FareAppDelegate alloc] init];
+    }
+    return _globalAppProperties;
 }
 
 #pragma mark - StopSelectTableViewController object instantiation
@@ -85,17 +94,18 @@
     }else point = [self.points objectAtIndex:indexPath.row];
     
     //Configure the cell...
+    //textLabel properties
     cell.textLabel.text = [point objectForKey:@"stopName"];
-    cell.detailTextLabel.text = [point objectForKey:@"luasLine"];
-    if([cell.detailTextLabel.text isEqualToString:@"Green"])cell.detailTextLabel.textColor = [UIColor greenColor];
-    if([cell.detailTextLabel.text isEqualToString:@"Red"])cell.detailTextLabel.textColor = [UIColor redColor];
+    cell.textLabel.font = [self.globalAppProperties.style1 objectForKey:@"font"];
+    cell.textLabel.textColor = [self.globalAppProperties.style1 objectForKey:@"color"];
     
-    /*
-    cell.textLabel.text = [[self.points objectAtIndex:indexPath.item] objectForKey:@"stopName"];
-    cell.detailTextLabel.text = [[self.points objectAtIndex:indexPath.item] objectForKey:@"luasLine"];
-    if([cell.detailTextLabel.text isEqualToString:@"Green"])cell.detailTextLabel.textColor = [UIColor greenColor];
-    if([cell.detailTextLabel.text isEqualToString:@"Red"])cell.detailTextLabel.textColor = [UIColor redColor];
-     */
+    //detailTextLabel properties
+    cell.detailTextLabel.text = [point objectForKey:@"luasLine"];
+    cell.detailTextLabel.textColor = [self.globalAppProperties.fontColors objectForKey:cell.detailTextLabel.text];
+    cell.detailTextLabel.font = [self.globalAppProperties.style1 objectForKey:@"font"];
+    
+    //general cell properties
+    cell.backgroundColor = [self.globalAppProperties.standardCellStyle objectForKey:@"backgroundColor"];
     
     return cell;
 }

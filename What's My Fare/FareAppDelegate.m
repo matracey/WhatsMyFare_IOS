@@ -54,6 +54,14 @@
              @"color": [[UIColor alloc] initWithRed:1.0 green:1.0 blue:1.0 alpha:1.0]};
 }
 
+- (NSDictionary *)standardCellStyle
+{
+    return @{@"font": [UIFont fontWithName:@"Futura-Medium" size:18.0],
+             @"color": [[UIColor alloc] initWithRed:0.0 green:0.0 blue:0.0 alpha:1.0],
+             @"backgroundColor":[[UIColor alloc] initWithRed:(206.0/256.0) green:(206.0/256.0) blue:(206.0/256.0) alpha:1.0]};
+}
+
+
 - (NSDictionary *)calculateCellStyle
 {
     return @{@"font":[UIFont fontWithName:@"Futura-CondensedExtraBold" size:22.0],
