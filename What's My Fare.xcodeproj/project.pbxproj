@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B05255B17393B4800989699 /* FareSplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B05255A17393B4800989699 /* FareSplashScreenViewController.m */; };
 		4B6C5B4B16EB93C200673253 /* FareAzureWebServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */; };
 		4B75928116E3B86800E97980 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928016E3B86800E97980 /* UIKit.framework */; };
 		4B75928316E3B86800E97980 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928216E3B86800E97980 /* Foundation.framework */; };
@@ -54,6 +55,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B05255917393B4800989699 /* FareSplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareSplashScreenViewController.h; sourceTree = "<group>"; };
+		4B05255A17393B4800989699 /* FareSplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareSplashScreenViewController.m; sourceTree = "<group>"; };
 		4B6C5B4916EB93C200673253 /* FareAzureWebServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareAzureWebServices.h; sourceTree = "<group>"; };
 		4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareAzureWebServices.m; sourceTree = "<group>"; };
 		4B75927D16E3B86800E97980 /* What's My Fare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What's My Fare.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,8 +79,8 @@
 		4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareResultsViewController.m; sourceTree = "<group>"; };
 		4BADFEC01738363600836CC4 /* FareBracketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareBracketCell.h; sourceTree = "<group>"; };
 		4BADFEC11738363600836CC4 /* FareBracketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareBracketCell.m; sourceTree = "<group>"; };
-		4BADFED117385C5400836CC4 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
-		4BADFED317385C5D00836CC4 /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon@2x.png"; sourceTree = "<group>"; };
+		4BADFED117385C5400836CC4 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon.png; path = ../AppIcon.png; sourceTree = "<group>"; };
+		4BADFED317385C5D00836CC4 /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon@2x.png"; path = "../AppIcon@2x.png"; sourceTree = "<group>"; };
 		4BADFEF41739314C00836CC4 /* add_to_faves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_to_faves.png; sourceTree = "<group>"; };
 		4BADFEF51739314C00836CC4 /* add_to_faves@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add_to_faves@2x.png"; sourceTree = "<group>"; };
 		4BADFEF61739314C00836CC4 /* adult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = adult.png; sourceTree = "<group>"; };
@@ -127,8 +130,6 @@
 		4B75927416E3B86800E97980 = {
 			isa = PBXGroup;
 			children = (
-				4BADFED317385C5D00836CC4 /* AppIcon@2x.png */,
-				4BADFED117385C5400836CC4 /* AppIcon.png */,
 				4B75928616E3B86800E97980 /* What's My Fare */,
 				4B75927F16E3B86800E97980 /* Frameworks */,
 				4B75927E16E3B86800E97980 /* Products */,
@@ -163,6 +164,8 @@
 				4B75929816E3B86800E97980 /* MainStoryboard.storyboard */,
 				4B8A7C46172D82AD0004D2A1 /* FareResultsViewController.h */,
 				4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */,
+				4B05255917393B4800989699 /* FareSplashScreenViewController.h */,
+				4B05255A17393B4800989699 /* FareSplashScreenViewController.m */,
 				4B7592A316E3C1FB00E97980 /* HomeTableViewController.h */,
 				4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */,
 				4BC0618816E9154A0067889B /* StopSelectTableViewController.h */,
@@ -193,6 +196,8 @@
 		4BADFEB71738060400836CC4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4BADFED317385C5D00836CC4 /* AppIcon@2x.png */,
+				4BADFED117385C5400836CC4 /* AppIcon.png */,
 				4BADFF241739366800836CC4 /* splash_screen.png */,
 				4BADFF251739366800836CC4 /* splash_screen@2x.png */,
 				4BADFEF41739314C00836CC4 /* add_to_faves.png */,
@@ -325,6 +330,7 @@
 				4B6C5B4B16EB93C200673253 /* FareAzureWebServices.m in Sources */,
 				4B8A7C48172D82AD0004D2A1 /* FareResultsViewController.m in Sources */,
 				4BADFEC21738363600836CC4 /* FareBracketCell.m in Sources */,
+				4B05255B17393B4800989699 /* FareSplashScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

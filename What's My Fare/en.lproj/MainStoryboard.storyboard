@@ -25,27 +25,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K3C-bQ-r9q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="193" y="35"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="5Ps-Ao-g8s">
-            <objects>
-                <viewController id="vcy-Sk-Jni" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="GcQ-Ch-lng">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="splash_screen.png" id="MzQ-EB-UUK">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="udb-ws-dgK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1327" y="-622"/>
+            <point key="canvasLocation" x="101" y="-269"/>
         </scene>
         <!--Home Table View Controller - What's My Fare-->
         <scene sceneID="zVS-2P-Lbe">
@@ -116,7 +96,7 @@
                         <outlet property="tableView" destination="gxA-uG-t8G" id="CWC-bv-qOD"/>
                         <segue destination="aeW-KO-42S" kind="push" identifier="stopSelect" id="zoG-Ox-UNu"/>
                         <segue destination="Nma-eu-csN" kind="push" identifier="fareResultSegue" id="dTw-1w-jxJ"/>
-                        <segue destination="vcy-Sk-Jni" kind="modal" id="VDC-0u-ngi"/>
+                        <segue destination="GtI-NK-e5r" kind="modal" identifier="splashSegue" animates="NO" id="idf-Yw-kIz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iof-Lt-NMO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -261,7 +241,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nOG-Wb-zO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1327" y="760"/>
+            <point key="canvasLocation" x="1163" y="633"/>
+        </scene>
+        <!--Fare Splash Screen View Controller-->
+        <scene sceneID="XNj-A0-5Ah">
+            <objects>
+                <viewController id="GtI-NK-e5r" customClass="FareSplashScreenViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EH0-IZ-Mtw">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="splash_screen.png" id="HvW-lA-XWg">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BZC-ZD-MPD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1163" y="-563"/>
         </scene>
         <!--Stop Select Table View Controller - Stop Select-->
         <scene sceneID="eJF-Sw-bhd">
@@ -333,7 +333,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1327" y="35"/>
+            <point key="canvasLocation" x="1163" y="26"/>
         </scene>
     </scenes>
     <resources>

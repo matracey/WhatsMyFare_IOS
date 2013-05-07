@@ -384,6 +384,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoImageView];
     [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil]];
     self.view.backgroundColor = self.globalAppProperties.backgroundColor;
+    [self performSegueWithIdentifier:@"splashSegue" sender:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
