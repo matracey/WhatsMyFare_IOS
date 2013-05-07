@@ -7,6 +7,7 @@
 //
 
 #import "HomeTableViewController.h"
+#import "StopSelectTableViewController.h"
 #import "FareResultsViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "FareAppDelegate.h"
@@ -103,12 +104,9 @@
     
     if([segue.identifier isEqualToString:STOP_SELECT_SEGUE])
     {
-        if ([segue.destinationViewController isKindOfClass:[UIViewController class]])
-        {
-            UIViewController *destination = segue.destinationViewController;
-            destination.title = self.segueTitle;
-        }
-        
+        StopSelectTableViewController *destination = segue.destinationViewController;
+        destination.title = self.segueTitle;
+        destination.selectedService = self.selectedService;
     }else if ([segue.identifier isEqualToString:RESULT_SEGUE])
     {
         FareResultsViewController *resultViewController = segue.destinationViewController;

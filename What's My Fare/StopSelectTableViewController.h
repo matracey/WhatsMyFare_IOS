@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface StopSelectTableViewController : UITableViewController
-
+@property (strong, nonatomic) NSNumber *selectedService; //0 is Luas, 1 is Rail
 @end
