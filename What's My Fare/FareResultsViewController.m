@@ -21,6 +21,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *lineLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *fareBracketImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *lineImageView;
+@property (strong, nonatomic) IBOutlet UIButton *CashButton;
+@property (strong, nonatomic) IBOutlet UIButton *LeapCardButton;
 
 //Properties & Model
 @property (strong, nonatomic) NSDictionary *fareResult;
@@ -30,7 +32,7 @@
 @property (strong, nonatomic) FareAppDelegate *globalAppProperties;
 
 //Target-Action methods
-- (IBAction)paymentPlatformDidChange:(UISegmentedControl *)sender;
+- (IBAction)paymentPlatformDidChange:(UIButton *)sender;
 @end
 
 @implementation FareResultsViewController
@@ -157,7 +159,8 @@
 {
     [super viewDidLoad];
     [self refreshData];
-    self.paymentPlatformID = [NSNumber numberWithInt:0];
+    [self paymentPlatformDidChange:self.CashButton];
+    self.view.backgroundColor = [self.globalAppProperties.standardCellStyle objectForKey:@"backgroundColor"];
     self.totalFareLabel.text = @"Loading...";
     
     //setting up styling
@@ -250,12 +253,24 @@
     [self setLineLabel:nil];
     [self setFareBracketImageView:nil];
     [self setLineImageView:nil];
+    [self setCashButton:nil];
+    [self setLeapCardButton:nil];
     [super viewDidUnload];
 }
 
-- (IBAction)paymentPlatformDidChange:(UISegmentedControl *)sender
+- (IBAction)paymentPlatformDidChange:(UIButton *)sender
 {
-    self.paymentPlatformID = [NSNumber numberWithInteger:sender.selectedSegmentIndex];
+    if ([sender.titleLabel.text isEqualToString:@"CASH"])
+    {
+        self.paymentPlatformID = @0;
+        self.LeapCardButton.enabled = YES;
+    }
+    else
+    {
+        self.paymentPlatformID = @1;
+        self.CashButton.enabled = YES;
+    }
+    sender.enabled = NO;
     [self refreshData];
 }
 
