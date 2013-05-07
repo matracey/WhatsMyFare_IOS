@@ -27,6 +27,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor colorWithRed:(96.0/256.0) green:(67.0/256.0) blue:(142.0/256.0) alpha:1.0];
 }
 
 - (void)viewDidAppear:(BOOL)animated

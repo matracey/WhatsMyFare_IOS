@@ -17,21 +17,28 @@
 #define POINTS_CELL_TEXT @"Choose a stop..."
 #define FAREBR_CELL_TEXT @"Choose a fare bracket..."
 
+#define SPLASH_SEGUE @"splashSegue"
 #define RESULT_SEGUE @"fareResultSegue"
 #define STOP_SELECT_SEGUE @"stopSelect"
 
 @interface HomeTableViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@property (strong, nonatomic) IBOutlet UILabel *errLabel;
+@property (strong, nonatomic) IBOutlet UIButton *luasServiceButton;
+@property (strong, nonatomic) IBOutlet UIButton *railServiceButton;
+@property (strong, nonatomic) UIPickerView *pickerView;
+@property (strong, nonatomic) UIActionSheet *actionSheet;
+
 @property (strong, nonatomic) NSDictionary *defaultValues;
-@property (strong, nonatomic) NSArray *fareBrackets;
+@property (strong, nonatomic) NSDictionary *fontColors;
 @property (strong, nonatomic) NSString *fareBracket;
 @property (strong, nonatomic) NSString *ticketType;
 @property (strong, nonatomic) NSString *segueTitle;
 @property (strong, nonatomic) NSArray *model; //
-@property (strong, nonatomic) UIPickerView *pickerView;
-@property (strong, nonatomic) UIActionSheet *actionSheet;
-@property (strong, nonatomic) IBOutlet UILabel *errLabel;
-@property (strong, nonatomic) NSDictionary *fontColors;
+@property (strong, nonatomic) NSArray *fareBrackets;
+@property (strong, nonatomic) NSNumber *selectedService; //0 for Luas, 1 for Rail
 @property (strong, nonatomic) FareAppDelegate *globalAppProperties;
+
+- (IBAction)didChangeSelectedService:(UIButton *)sender;
 @end
 
 @implementation HomeTableViewController
@@ -106,6 +113,9 @@
     {
         FareResultsViewController *resultViewController = segue.destinationViewController;
         resultViewController.model = [self.model copy];
+    }else if ([segue.identifier isEqualToString:SPLASH_SEGUE])
+    {
+        NSLog(@"Application launched successfully!");
     }
     else NSLog(@"Err: Segue did not execute correctly.");
 }
@@ -365,6 +375,20 @@
     return [[self.fareBrackets objectAtIndex:component] count];
 }
 
+- (IBAction)didChangeSelectedService:(UIButton *)sender
+{
+    if(sender.tag == 0)
+    {
+        self.selectedService = @0;
+        sender.enabled = NO;
+        self.railServiceButton.enabled = YES;
+    }else if(sender.tag == 1)
+    {
+        self.selectedService = @1;
+        sender.enabled = NO;
+        self.luasServiceButton.enabled = YES;
+    }
+}
 
 #pragma mark - UIViewControllerLifeCycle
 - (void)viewDidLoad
@@ -385,6 +409,7 @@
     [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil]];
     self.view.backgroundColor = self.globalAppProperties.backgroundColor;
     [self performSegueWithIdentifier:@"splashSegue" sender:self];
+    [self didChangeSelectedService:self.luasServiceButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -395,6 +420,8 @@
 - (void)viewDidUnload {
     [self setTableView:nil];
     [self setErrLabel:nil];
+    [self setLuasServiceButton:nil];
+    [self setRailServiceButton:nil];
     [super viewDidUnload];
 }
 @end
