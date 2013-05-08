@@ -119,6 +119,13 @@
     //general cell properties
     cell.backgroundColor = [self.globalAppProperties.standardCellStyle objectForKey:@"backgroundColor"];
     
+    if(([point isEqual:self.homeViewController.origin] && [self.title isEqual:@"Destination"]) || ([point isEqual:self.homeViewController.destin] && [self.title isEqual:@"Origin"]))
+    {
+        cell.userInteractionEnabled = NO;
+        cell.textLabel.enabled = NO;
+        cell.detailTextLabel.enabled = NO;
+    }
+    
     return cell;
 }
 
@@ -244,18 +251,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *result;
-    if(tableView == self.searchDisplayController.searchResultsTableView)
-    {
-        result = [self.filteredPoints objectAtIndex:indexPath.row];
-    }else result = [self.points objectAtIndex:indexPath.row];
-    if([self.title isEqualToString:@"Origin"])
-    {
-        [self.homeViewController setOrigin:[result mutableCopy]];
-    }
-    if ([self.title isEqualToString:@"Destination"])
-    {
-        [self.homeViewController setDestin:[result mutableCopy]];
-    }
+    
+    if(tableView == self.searchDisplayController.searchResultsTableView) result = [self.filteredPoints objectAtIndex:indexPath.row];
+    else result = [self.points objectAtIndex:indexPath.row];
+    
+    if([self.title isEqualToString:@"Origin"]) [self.homeViewController setOrigin:[result mutableCopy]];
+    else if ([self.title isEqualToString:@"Destination"]) [self.homeViewController setDestin:[result mutableCopy]];
+    
     //return to previous nav controller
     [self.navigationController popToRootViewControllerAnimated:YES];
 }

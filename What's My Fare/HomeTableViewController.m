@@ -102,6 +102,16 @@
              @"Commuter Rail": [UIColor colorWithRed:170/256 green:53/256 blue:53/256 alpha:1.0]};
 }
 
+- (void)setOrigin:(NSMutableDictionary *)origin
+{
+    if([self.selectedService isEqual:@2])
+    {
+        self.destin = self.defaultValues.copy;
+        _origin = origin;
+    }
+else _origin = origin;
+}
+
 #pragma mark - Segue methods
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
