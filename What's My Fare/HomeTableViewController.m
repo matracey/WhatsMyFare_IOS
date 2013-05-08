@@ -116,6 +116,7 @@
     {
         FareResultsViewController *resultViewController = segue.destinationViewController;
         resultViewController.model = [self.model copy];
+        resultViewController.selectedService = self.selectedService.copy;
     }else if ([segue.identifier isEqualToString:SPLASH_SEGUE])
     {
         NSLog(@"Application launched successfully!");
@@ -192,8 +193,6 @@
         
         //detailTextLabel properties
         if([self.selectedService isEqual:@0]) cell.detailTextLabel.text = [data objectForKey:@"service"];
-        else if([self.selectedService isEqual:@1] && ![[data objectForKey:@"service"] isEqual:@""]) cell.detailTextLabel.text = @"DART";
-        else if([self.selectedService isEqual:@2] && ![[data objectForKey:@"service"] isEqual:@""]) cell.detailTextLabel.text = @"Commuter Rail";
         else cell.detailTextLabel.text = @"";
         cell.detailTextLabel.autoresizesSubviews = YES;
         cell.detailTextLabel.font = [self.globalAppProperties.standardCellStyle objectForKey:@"font"];

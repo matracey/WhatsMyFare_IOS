@@ -59,7 +59,7 @@
     {
         //
         if([self.selectedService isEqual: @0]) _webService = [[FareAzureWebServices alloc] initWithTableName:@"LuasStops"];
-        else if ([self.selectedService isEqual: @1] || [self.selectedService isEqual: @2]) _webService = [[FareAzureWebServices alloc] initWithTableName:@"DARTandCommuterRail_Stations"];
+        else if ([self.selectedService isEqual: @1] || [self.selectedService isEqual: @2]) _webService = [[FareAzureWebServices alloc] initWithTableName:@"RailStations"];
     }
     return _webService;
 }
@@ -153,7 +153,7 @@
 
 - (void)dataDidLoadFromWebService:(NSArray *)data withIndicator:(UIActivityIndicatorView *)activityIndicator andSender:(UIBarButtonItem *)sender
 {
-    self.points = [data copy];
+    self.points = data.copy;
     
     //filter the display when selecting destination for commuter rail services.
     if([self.selectedService isEqual:@2] && [self.title isEqual:@"Destination"]){
@@ -164,9 +164,7 @@
     //stop the activity indicator from spinning and put the refresh button back
     [activityIndicator stopAnimating];
     self.navigationItem.rightBarButtonItem = sender;
-    //scroll to the first record in the table view
-    //NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    //[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    
     //make the search bar visible again
     self.searchDisplayController.searchBar.alpha = 1.0;
 }
@@ -174,65 +172,65 @@
 - (NSArray *)removeIrrelevantStationsForCommuterRailFromArray:(NSArray *)array
 {
     NSMutableSet *myMutableSet = [[NSMutableSet alloc] initWithCapacity:self.points.count];
-    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine1"] isEqualToString:@"y"])
+    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine1"] isEqual:@1])
     {
         for (NSDictionary *obj in array) {
-            if ([[obj objectForKey:@"hasCommuterLine1"] isEqualToString:@"y"] && ![obj isEqual:self.homeViewController.origin]) {
+            if ([[obj objectForKey:@"hasCommuterLine1"] isEqual:@1] && ![obj isEqual:self.homeViewController.origin]) {
                 [myMutableSet addObject:obj];
                 //NSLog(@"Commuter Line 1");
             }
         }
     }
-    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine2"] isEqualToString:@"y"])
+    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine2"] isEqual:@1])
     {
         for (NSDictionary *obj in array) {
-            if ([[obj objectForKey:@"hasCommuterLine2"] isEqualToString:@"y"] && ![obj isEqual:self.homeViewController.origin]) {
+            if ([[obj objectForKey:@"hasCommuterLine2"] isEqual:@1] && ![obj isEqual:self.homeViewController.origin]) {
                 [myMutableSet addObject:obj];
                 //NSLog(@"Commuter Line 2");
             }
         }
     }
-    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine3"] isEqualToString:@"y"])
+    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine3"] isEqual:@1])
     {
         for (NSDictionary *obj in array) {
-            if ([[obj objectForKey:@"hasCommuterLine3"] isEqualToString:@"y"] && ![obj isEqual:self.homeViewController.origin]) {
+            if ([[obj objectForKey:@"hasCommuterLine3"] isEqual:@1] && ![obj isEqual:self.homeViewController.origin]) {
                 [myMutableSet addObject:obj];
                 //NSLog(@"Commuter Line 3");
             }
         }
     }
-    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine4"] isEqualToString:@"y"])
+    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine4"] isEqual:@1])
     {
         for (NSDictionary *obj in array) {
-            if ([[obj objectForKey:@"hasCommuterLine4"] isEqualToString:@"y"] && ![obj isEqual:self.homeViewController.origin]) {
+            if ([[obj objectForKey:@"hasCommuterLine4"] isEqual:@1] && ![obj isEqual:self.homeViewController.origin]) {
                 [myMutableSet addObject:obj];
                 //NSLog(@"Commuter Line 4");
             }
         }
     }
-    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine5"] isEqualToString:@"y"])
+    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine5"] isEqual:@1])
     {
         for (NSDictionary *obj in array) {
-            if ([[obj objectForKey:@"hasCommuterLine5"] isEqualToString:@"y"] && ![obj isEqual:self.homeViewController.origin]) {
+            if ([[obj objectForKey:@"hasCommuterLine5"] isEqual:@1] && ![obj isEqual:self.homeViewController.origin]) {
                 [myMutableSet addObject:obj];
                 //NSLog(@"Commuter Line 5");
             }
         }
     }
-    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine6"] isEqualToString:@"y"])
+    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine6"] isEqual:@1])
     {
         for (NSDictionary *obj in array) {
-            if ([[obj objectForKey:@"hasCommuterLine6"] isEqualToString:@"y"] && ![obj isEqual:self.homeViewController.origin]) {
+            if ([[obj objectForKey:@"hasCommuterLine6"] isEqual:@1] && ![obj isEqual:self.homeViewController.origin]) {
                 [myMutableSet addObject:obj];
                 //NSLog(@"Commuter Line 6");
             }
         }
     }
-    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine7"] isEqualToString:@"y"])
+    if([[self.homeViewController.origin objectForKey:@"hasCommuterLine7"] isEqual:@1])
     {
         for (NSDictionary *obj in array) {
             //NSLog(@"%@", [obj objectForKey:@"stopName"]);
-            if ([[obj objectForKey:@"hasCommuterLine7"] isEqualToString:@"y"] && ![obj isEqual:self.homeViewController.origin]) {
+            if ([[obj objectForKey:@"hasCommuterLine7"] isEqual:@1] && ![obj isEqual:self.homeViewController.origin]) {
                 [myMutableSet addObject:obj];
                 //NSLog(@"Commuter Line 7");
             }

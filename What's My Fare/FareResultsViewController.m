@@ -6,7 +6,10 @@
 //  Copyright (c) 2013 Martin Tracey. All rights reserved.
 //
 
-#define LUAS_PRICES_TABLE @"PriceInfo"
+#define LUAS_PRICES_TABLE @"LuasPriceInfo"
+#define LUAS_TARIFF_TABLE @"LuasFareTariffs"
+#define RAIL_PRICES_TABLE @"RailPriceInfo"
+#define RAIL_TARIFF_TABLE @"RailFareTariffs"
 
 #import "FareResultsViewController.h"
 #import "FareAzureWebServices.h"
@@ -26,6 +29,7 @@
 
 //Properties & Model
 @property (strong, nonatomic) NSDictionary *fareResult;
+@property (strong, nonatomic) NSDictionary *farePrice;
 @property (strong, nonatomic) NSNumber *paymentPlatformID; //0 is cash, 1 is Leap Card
 @property (strong, nonatomic) NSString *lineIdentifier;
 @property (strong, nonatomic) FareAzureWebServices *webService;
@@ -37,6 +41,7 @@
 
 @implementation FareResultsViewController
 
+#pragma mark - Init methods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -45,11 +50,13 @@
     return self;
 }
 
+#pragma mark - Property Accessor methods
 - (FareAzureWebServices *)webService
 {
     if(!_webService)
     {
-        _webService = [[FareAzureWebServices alloc] initWithTableName:LUAS_PRICES_TABLE];
+        if([self.selectedService isEqual:@0]) _webService = [[FareAzureWebServices alloc] initWithTableName:LUAS_PRICES_TABLE];
+        else _webService = [[FareAzureWebServices alloc] initWithTableName:RAIL_PRICES_TABLE];
     }
     return _webService;
 }
@@ -83,28 +90,28 @@
         {
             if ([ticketTypes isEqualToString:@"Single"])
             {
-                fare = @"AdultSingle";
+                fare = @"adultSingle";
             }else if ([ticketTypes isEqualToString:@"Return"])
             {
-                fare = @"AdultReturn";
+                fare = @"adultReturn";
             }
         }else if ([fareBracket isEqualToString:@"Child"])
         {
             if ([ticketTypes isEqualToString:@"Single"])
             {
-                fare = @"ChildSingle";
+                fare = @"childSingle";
             }else if ([ticketTypes isEqualToString:@"Return"])
             {
-                fare = @"ChildReturn";
+                fare = @"childReturn";
             }
         }else if ([fareBracket isEqualToString:@"Student"])
         {
             if ([ticketTypes isEqualToString:@"Single"])
             {
-                fare = @"AdultSingle";
+                fare = @"adultSingle";
             }else if ([ticketTypes isEqualToString:@"Return"])
             {
-                fare = @"AdultReturn";
+                fare = @"adultReturn";
             }
         }
     }else if ([self.paymentPlatformID isEqualToNumber:[NSNumber numberWithInt:1]])
@@ -113,28 +120,28 @@
         {
             if ([ticketTypes isEqualToString:@"Single"])
             {
-                fare = @"ScAdult";
+                fare = @"scAdult";
             }else if ([ticketTypes isEqualToString:@"Return"])
             {
-                fare = @"ScAdultReturn";
+                fare = @"scAdultReturn";
             }
         }else if ([fareBracket isEqualToString:@"Child"])
         {
             if ([ticketTypes isEqualToString:@"Single"])
             {
-                fare = @"ScChild";
+                fare = @"scChild";
             }else if ([ticketTypes isEqualToString:@"Return"])
             {
-                fare = @"ScChildReturn";
+                fare = @"scChildReturn";
             }
         }else if ([fareBracket isEqualToString:@"Student"])
         {
             if ([ticketTypes isEqualToString:@"Single"])
             {
-                fare = @"ScStudent";
+                fare = @"scStudent";
             }else if ([ticketTypes isEqualToString:@"Return"])
             {
-                fare = @"ScStudentReturn";
+                fare = @"scStudentReturn";
             }
         }
     }
@@ -152,7 +159,7 @@
     {
         if ([destination isEqualToString:@"Green"]) self.lineIdentifier = @"Green";
         else if([destination isEqualToString:@"Red"]) self.lineIdentifier = @"Both";
-    }else self.lineIdentifier = @"Rail";
+    }else self.lineIdentifier = origin;
 }
 
 - (void)viewDidLoad
@@ -188,8 +195,10 @@
 
 - (void)refreshData
 {
-    NSPredicate *query = [NSPredicate predicateWithFormat:@"stop_from_id == %@ AND stop_to_id == %@", [[self.model objectAtIndex:0] objectForKey:@"id"], [[self.model objectAtIndex:1]objectForKey:@"id"]];
-        
+    NSPredicate *query;
+    if([self.selectedService isEqual:@0]) query = [NSPredicate predicateWithFormat:@"stop_from_id == %@ AND stop_to_id == %@", [[self.model objectAtIndex:0] objectForKey:@"id"], [[self.model objectAtIndex:1]objectForKey:@"id"]];
+    else query = [NSPredicate predicateWithFormat:@"stop_from_id == %@ AND stop_to_id == %@", [[self.model objectAtIndex:0] objectForKey:@"stopId"], [[self.model objectAtIndex:1]objectForKey:@"stopId"]];
+    
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [activityIndicator startAnimating];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
@@ -197,49 +206,60 @@
     [self.webService.veldt readWhere:query completion:^(NSArray *items, NSInteger totalCount, NSError *error)
      {
          if(error) NSLog(@"%@", error);
+         
          [activityIndicator stopAnimating];
          self.navigationItem.rightBarButtonItem = nil;
-         if([[items objectAtIndex:0] isKindOfClass:[NSDictionary class]] && items.count == 1){
+         
+         if([[items objectAtIndex:0] isKindOfClass:[NSDictionary class]] && items.count == 1)
+         {
              self.fareResult = [items objectAtIndex:0];
-             [self getPriceWithZone:[self.fareResult objectForKey:@"zone_code"]];
+             [self getPriceWithZone:[self.fareResult objectForKey:@"price_code"]];
          }
          else NSLog(@"Something went wrong. :(");
      }];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        //Update UI ONLY in main queue for fear of death otherwise
-        self.originLabel.text = [[self.model objectAtIndex:0] objectForKey:@"stopName"];
-        self.destinLabel.text = [[self.model objectAtIndex:1] objectForKey:@"stopName"];
-        
-        //Update FareBracket UI Elements
-        self.fareBracketLabel.text = [NSString stringWithFormat:@"%@ %@", [[self.model objectAtIndex:2] objectAtIndex:0], [[self.model objectAtIndex:2] objectAtIndex:1]];
-        self.fareBracketImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", [[self.model objectAtIndex:2] objectAtIndex:0]] lowercaseString]];
-        
-        //Update Line UI Elements
-        [self setLineIdentifierByOrigin:[[self.model objectAtIndex:0] objectForKey:@"service"] andDestination:[[self.model objectAtIndex:1] objectForKey:@"service"]];
-        self.lineImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", self.lineIdentifier] lowercaseString]];
-        if([self.lineIdentifier isEqualToString:@"Red"] || [self.lineIdentifier isEqualToString:@"Green"]) self.lineLabel.text = [NSString stringWithFormat:@"%@ Line", self.lineIdentifier];
-        else if([self.lineIdentifier isEqualToString:@"Both"]) self.lineLabel.text = @"Red & Green Line";
-        else self.lineLabel.text = @"DART/Commuter Rail";
-    });
+    self.originLabel.text = [[self.model objectAtIndex:0] objectForKey:@"stopName"];
+    self.destinLabel.text = [[self.model objectAtIndex:1] objectForKey:@"stopName"];
+    
+    //Update FareBracket UI Elements
+    self.fareBracketLabel.text = [NSString stringWithFormat:@"%@ %@", [[self.model objectAtIndex:2] objectAtIndex:0], [[self.model objectAtIndex:2] objectAtIndex:1]];
+    self.fareBracketImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", [[self.model objectAtIndex:2] objectAtIndex:0]] lowercaseString]];
+    
+    //Update Line UI Elements
+    [self setLineIdentifierByOrigin:[[self.model objectAtIndex:0] objectForKey:@"service"] andDestination:[[self.model objectAtIndex:1] objectForKey:@"service"]];
+    if([self.selectedService isEqual:@2])self.lineImageView.image = [UIImage imageNamed:@"rail.png"];
+    else if([self.selectedService isEqual:@1])self.lineImageView.image = [UIImage imageNamed:@"dart.png"];
+    else self.lineImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", self.lineIdentifier] lowercaseString]];
+    
+    if([self.lineIdentifier isEqualToString:@"Red"] || [self.lineIdentifier isEqualToString:@"Green"]) self.lineLabel.text = [NSString stringWithFormat:@"%@ Line", self.lineIdentifier];
+    else if([self.lineIdentifier isEqualToString:@"Both"]) self.lineLabel.text = @"Red & Green Line";
+    else if([self.selectedService isEqual:@1]) self.lineLabel.text = @"DART";
+    else self.lineLabel.text = @"Commuter Rail";
     
 }
 
 - (void)getPriceWithZone:(NSString *)zone
 {
-    FareAzureWebServices *fareTarriffs = [[FareAzureWebServices alloc] initWithTableName:@"FareTarrifs"];
-    NSPredicate *query = [NSPredicate predicateWithFormat:@"ZoneCode == %@", zone];
-    [fareTarriffs.veldt readWhere:query completion:^(NSArray *items, NSInteger totalCount, NSError *error)
+    FareAzureWebServices *fareTariffs;
+    if([self.selectedService isEqual:@0]) fareTariffs = [[FareAzureWebServices alloc] initWithTableName:LUAS_TARIFF_TABLE];
+    else fareTariffs = [[FareAzureWebServices alloc] initWithTableName:RAIL_TARIFF_TABLE];
+    NSPredicate *query = [NSPredicate predicateWithFormat:@"priceCode == %@", zone];
+    [fareTariffs.veldt readWhere:query completion:^(NSArray *items, NSInteger totalCount, NSError *error)
     {
         if([[items objectAtIndex:0] isKindOfClass:[NSDictionary class]] && items.count == 1)
         {
-            NSDictionary *priceDictionary = [items objectAtIndex:0];
-            NSNumber *price = [priceDictionary objectForKey:[self getFareBracketFromArray:[self.model objectAtIndex:2]]];
-            NSNumberFormatter *priceFormatter = [[NSNumberFormatter alloc] init];
-            [priceFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_IE"]];
-            [priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-            self.totalFareLabel.text = [priceFormatter stringFromNumber:price];
+            self.farePrice = [items objectAtIndex:0];
+            NSNumber *price = [self.farePrice objectForKey:[self getFareBracketFromArray:[self.model objectAtIndex:2]]];
+            self.totalFareLabel.text = [self getLocalisedPriceStringFromPrice:price];
         }
     }];
+}
+
+- (NSString *)getLocalisedPriceStringFromPrice:(NSNumber *)price
+{
+    NSNumberFormatter *priceFormatter = [[NSNumberFormatter alloc] init];
+    [priceFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_IE"]];
+    [priceFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    return [priceFormatter stringFromNumber:price];
 }
 
 - (void)didReceiveMemoryWarning
@@ -271,7 +291,8 @@
         self.CashButton.enabled = YES;
     }
     sender.enabled = NO;
-    [self refreshData];
+    NSNumber *price = [self.farePrice objectForKey:[self getFareBracketFromArray:[self.model objectAtIndex:2]]];
+    self.totalFareLabel.text = [self getLocalisedPriceStringFromPrice:price];
 }
 
 @end
