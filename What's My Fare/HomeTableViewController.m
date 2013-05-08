@@ -22,10 +22,15 @@
 #define RESULT_SEGUE @"fareResultSegue"
 #define STOP_SELECT_SEGUE @"stopSelect"
 
+#define ORIGIN_ERR @"Please choose an origin before continuing..."
+#define DESTIN_ERR @"Please choose a destination before continuing..."
+#define FAREBR_ERR @"Please choose a fare bracket before continuing..."
+
 @interface HomeTableViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *errLabel;
-@property (strong, nonatomic) IBOutlet UIButton *luasServiceButton;
-@property (strong, nonatomic) IBOutlet UIButton *railServiceButton;
+@property (strong, nonatomic) IBOutlet UIButton *luasServiceButton; //0
+@property (strong, nonatomic) IBOutlet UIButton *dartServiceButton; //1
+@property (strong, nonatomic) IBOutlet UIButton *railServiceButton; //2
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIActionSheet *actionSheet;
 
@@ -36,7 +41,7 @@
 @property (strong, nonatomic) NSString *segueTitle;
 @property (strong, nonatomic) NSArray *model; //
 @property (strong, nonatomic) NSArray *fareBrackets;
-@property (strong, nonatomic) NSNumber *selectedService; //0 for Luas, 1 for Rail
+@property (strong, nonatomic) NSNumber *selectedService; //0 for Luas, 1 for DART, 2 for Rail
 @property (strong, nonatomic) FareAppDelegate *globalAppProperties;
 
 - (IBAction)didChangeSelectedService:(UIButton *)sender;
@@ -86,7 +91,7 @@
 
 - (NSDictionary *)defaultValues
 {
-    return @{@"id":@"", @"stopName":POINTS_CELL_TEXT, @"luasLine":@"", @"luasRoute":@""};
+    return @{@"id":@"", @"stopName":POINTS_CELL_TEXT, @"service":@"", @"luasRoute":@""};
 }
 
 - (NSDictionary *)fontColors
@@ -139,11 +144,11 @@
         label.text = titles[section];
         label.textColor = [self.globalAppProperties.style1 objectForKey:[self.globalAppProperties.styleKeys objectAtIndex:1]];
         label.font = [self.globalAppProperties.style1 objectForKey:[self.globalAppProperties.styleKeys objectAtIndex:0]];
-        label.backgroundColor = self.globalAppProperties.backgroundColor;
+        label.backgroundColor = [UIColor clearColor];
         
         //Create UIView as a frame for label
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-        view.backgroundColor = self.globalAppProperties.backgroundColor;
+        view.backgroundColor = [UIColor clearColor];
         [view addSubview:label];
         
         return view;
@@ -153,10 +158,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if(section != 3)
+    if([self getScreenHeight] == 480){
+        if(section != 3) return 34;
+        else return 6;
+    }else{
+        if(section != 3)return 40;
+        else return 12;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([self getScreenHeight] == 480)
     {
-        return 40;
-    }else return 20;
+        return 34;
+    }else return UITableViewAutomaticDimension;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -175,7 +191,11 @@
         cell.textLabel.textColor = [self.globalAppProperties.standardCellStyle objectForKey:@"color"];
         
         //detailTextLabel properties
-        cell.detailTextLabel.text = [data objectForKey:@"luasLine"];
+        if([self.selectedService isEqual:@0]) cell.detailTextLabel.text = [data objectForKey:@"service"];
+        else if([self.selectedService isEqual:@1] && ![[data objectForKey:@"service"] isEqual:@""]) cell.detailTextLabel.text = @"DART";
+        else if([self.selectedService isEqual:@2] && ![[data objectForKey:@"service"] isEqual:@""]) cell.detailTextLabel.text = @"Commuter Rail";
+        else cell.detailTextLabel.text = @"";
+        cell.detailTextLabel.autoresizesSubviews = YES;
         cell.detailTextLabel.font = [self.globalAppProperties.standardCellStyle objectForKey:@"font"];
         cell.detailTextLabel.textColor = [self.globalAppProperties.fontColors objectForKey:cell.detailTextLabel.text];
         
@@ -220,8 +240,11 @@
         [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
     }else if (indexPath.section == 1)
     {
-        self.segueTitle = @"Destination";
-        [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
+        if([self.selectedService isEqual:@2] && [[self.origin objectForKey:@"stopName"] isEqual:POINTS_CELL_TEXT]) [self displayErrorLabelWithMessage:ORIGIN_ERR];
+        else{
+            self.segueTitle = @"Destination";
+            [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
+        }
     }
     else if (indexPath.section == 2)
 {
@@ -234,9 +257,9 @@
             //[self updateCellSelectionColourWithCell:target andColour:[UIColor redColor]];
             
             //Validation code -- ensuring that the user has set all required values.
-            if([[self.origin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT]) [self displayErrorLabelWithMessage:@"Please choose an origin before continuing..."];
-            else if([[self.destin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT]) [self displayErrorLabelWithMessage:@"Please choose a destination before continuing..."];
-            else if([self.fareBracket isEqualToString:FAREBR_CELL_TEXT]) [self displayErrorLabelWithMessage:@"Please choose a fare bracket before continuing..."];
+            if([[self.origin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT]) [self displayErrorLabelWithMessage:ORIGIN_ERR];
+            else if([[self.destin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT]) [self displayErrorLabelWithMessage:DESTIN_ERR];
+            else if([self.fareBracket isEqualToString:FAREBR_CELL_TEXT]) [self displayErrorLabelWithMessage:FAREBR_ERR];
         }else
         {
             //[self updateCellSelectionColourWithCell:target andColour:[UIColor blueColor]];
@@ -377,15 +400,29 @@
 {
     if(sender.tag == 0)
     {
+        //LUAS selected
         self.selectedService = @0;
         sender.enabled = NO;
+        self.dartServiceButton.enabled = YES;
         self.railServiceButton.enabled = YES;
     }else if(sender.tag == 1)
     {
+        //DART selected
         self.selectedService = @1;
         sender.enabled = NO;
         self.luasServiceButton.enabled = YES;
+        self.railServiceButton.enabled = YES;
+    }else if (sender.tag == 2)
+    {
+        //Commuter Rail selected
+        self.selectedService = @2;
+        sender.enabled = NO;
+        self.luasServiceButton.enabled = YES;
+        self.dartServiceButton.enabled = YES;
     }
+    self.origin = self.defaultValues.copy;
+    self.destin = self.defaultValues.copy;
+    [self.tableView reloadData];
 }
 
 #pragma mark - UIViewControllerLifeCycle
@@ -401,6 +438,7 @@
         self.destin = [self.defaultValues copy];
     }
     [self.tableView reloadData];
+    
     UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 41.0, 35.0)];
     [logoImageView setImage:[UIImage imageNamed:@"logo.png"]];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoImageView];
@@ -422,4 +460,12 @@
     [self setRailServiceButton:nil];
     [super viewDidUnload];
 }
+
+- (CGFloat)getScreenHeight
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height;
+    return screenHeight;
+}
+
 @end

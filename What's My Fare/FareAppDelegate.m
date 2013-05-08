@@ -85,8 +85,8 @@
 {
     return @{@"Red": [UIColor colorWithRed:170.0/256.0 green:53.0/256.0 blue:53.0/256.0 alpha:1.0],
              @"Green": [UIColor colorWithRed:91.0/256.0 green:146.0/256.0 blue:47.0/256.0 alpha:1.0],
-             @"DART": [UIColor colorWithRed:51.0/256.0 green:169.0/256.0 blue:198.0/256.0 alpha:1.0],
-             @"Commuter Rail": [UIColor colorWithRed:170.0/256.0 green:53.0/256.0 blue:53.0/256.0 alpha:1.0]};
+             @"DART": [UIColor colorWithRed:124.0/256.0 green:194.0/256.0 blue:66.0/256.0 alpha:1.0],
+             @"Commuter Rail": [UIColor colorWithRed:51.0/256.0 green:169.0/256.0 blue:198.0/256.0 alpha:1.0]};
 }
 
 - (UIColor *)backgroundColor

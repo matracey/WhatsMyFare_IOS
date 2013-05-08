@@ -12,6 +12,8 @@
 		4B05256117394A8A00989699 /* ServiceDeselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B05255D17394A8A00989699 /* ServiceDeselected@2x.png */; };
 		4B05256217394A8A00989699 /* ServiceSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B05255E17394A8A00989699 /* ServiceSelected.png */; };
 		4B05256317394A8A00989699 /* ServiceSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B05255F17394A8A00989699 /* ServiceSelected@2x.png */; };
+		4B05256617398A3800989699 /* dart.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B05256417398A3700989699 /* dart.png */; };
+		4B05256717398A3800989699 /* dart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B05256517398A3800989699 /* dart@2x.png */; };
 		4B6C5B4B16EB93C200673253 /* FareAzureWebServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */; };
 		4B75928116E3B86800E97980 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928016E3B86800E97980 /* UIKit.framework */; };
 		4B75928316E3B86800E97980 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928216E3B86800E97980 /* Foundation.framework */; };
@@ -65,6 +67,8 @@
 		4B05255D17394A8A00989699 /* ServiceDeselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ServiceDeselected@2x.png"; sourceTree = "<group>"; };
 		4B05255E17394A8A00989699 /* ServiceSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ServiceSelected.png; sourceTree = "<group>"; };
 		4B05255F17394A8A00989699 /* ServiceSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ServiceSelected@2x.png"; sourceTree = "<group>"; };
+		4B05256417398A3700989699 /* dart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dart.png; sourceTree = "<group>"; };
+		4B05256517398A3800989699 /* dart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dart@2x.png"; sourceTree = "<group>"; };
 		4B6C5B4916EB93C200673253 /* FareAzureWebServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareAzureWebServices.h; sourceTree = "<group>"; };
 		4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareAzureWebServices.m; sourceTree = "<group>"; };
 		4B75927D16E3B86800E97980 /* What's My Fare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What's My Fare.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +208,8 @@
 		4BADFEB71738060400836CC4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4B05256417398A3700989699 /* dart.png */,
+				4B05256517398A3800989699 /* dart@2x.png */,
 				4B05255C17394A8A00989699 /* ServiceDeselected.png */,
 				4B05255D17394A8A00989699 /* ServiceDeselected@2x.png */,
 				4B05255E17394A8A00989699 /* ServiceSelected.png */,
@@ -329,6 +335,8 @@
 				4B05256117394A8A00989699 /* ServiceDeselected@2x.png in Resources */,
 				4B05256217394A8A00989699 /* ServiceSelected.png in Resources */,
 				4B05256317394A8A00989699 /* ServiceSelected@2x.png in Resources */,
+				4B05256617398A3800989699 /* dart.png in Resources */,
+				4B05256717398A3800989699 /* dart@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

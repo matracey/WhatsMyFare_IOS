@@ -215,7 +215,7 @@
         self.fareBracketImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", [[self.model objectAtIndex:2] objectAtIndex:0]] lowercaseString]];
         
         //Update Line UI Elements
-        [self setLineIdentifierByOrigin:[[self.model objectAtIndex:0] objectForKey:@"luasLine"] andDestination:[[self.model objectAtIndex:1] objectForKey:@"luasLine"]];
+        [self setLineIdentifierByOrigin:[[self.model objectAtIndex:0] objectForKey:@"service"] andDestination:[[self.model objectAtIndex:1] objectForKey:@"service"]];
         self.lineImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", self.lineIdentifier] lowercaseString]];
         if([self.lineIdentifier isEqualToString:@"Red"] || [self.lineIdentifier isEqualToString:@"Green"]) self.lineLabel.text = [NSString stringWithFormat:@"%@ Line", self.lineIdentifier];
         else if([self.lineIdentifier isEqualToString:@"Both"]) self.lineLabel.text = @"Red & Green Line";
