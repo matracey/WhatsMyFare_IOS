@@ -33,6 +33,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *railServiceButton; //2
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIActionSheet *actionSheet;
+@property (strong, nonatomic) UITableViewCell *bgView;
 
 @property (strong, nonatomic) NSDictionary *defaultValues;
 @property (strong, nonatomic) NSDictionary *fontColors;
@@ -100,6 +101,21 @@
              @"Green": [UIColor colorWithRed:91/256 green:146/256 blue:47/256 alpha:1.0],
              @"DART": [UIColor colorWithRed:51/256 green:169/256 blue:198/256 alpha:1.0],
              @"Commuter Rail": [UIColor colorWithRed:170/256 green:53/256 blue:53/256 alpha:1.0]};
+}
+
+- (UITableViewCell *)bgView
+{
+    if(!_bgView)
+    {
+        //Setting up the background view
+        _bgView = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CalculateSelected"];
+        _bgView.backgroundColor = [UIColor colorWithRed:63.0/256.0 green:45.0/256.0 blue:147.0/256.0 alpha:1.0];
+        _bgView.layer.cornerRadius = 10;
+        _bgView.layer.masksToBounds= YES;
+        _bgView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _bgView.layer.borderWidth = 1.0f;
+    }
+    return _bgView;
 }
 
 - (void)setOrigin:(NSMutableDictionary *)origin
@@ -223,6 +239,8 @@ else _origin = origin;
         cell.detailTextLabel.text = [data objectAtIndex:1];
         cell.detailTextLabel.font = [self.globalAppProperties.standardCellStyle objectForKey:@"font"];
         cell.detailTextLabel.textColor = [self.globalAppProperties.standardCellStyle objectForKey:@"color"];
+        cell.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        if(![cell.detailTextLabel.text isEqual:FAREBR_CELL_TEXT])cell.imageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", [data objectAtIndex:0]] lowercaseString]];
         
         //general cell properties
         cell.backgroundColor = [self.globalAppProperties.standardCellStyle objectForKey:@"backgroundColor"];
@@ -233,6 +251,9 @@ else _origin = origin;
         cell.backgroundColor = [self.globalAppProperties.calculateCellStyle objectForKey:@"backgroundColor"];
         cell.textLabel.font = [self.globalAppProperties.calculateCellStyle objectForKey:@"font"];
         cell.textLabel.textColor = [self.globalAppProperties.calculateCellStyle objectForKey:@"color"];
+        
+        //Now, set the selectedBackgroundView to be this new view
+        cell.selectedBackgroundView = self.bgView;
     }
     
     return cell;
@@ -263,7 +284,8 @@ else _origin = origin;
     {
         if([[self.origin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT] || [[self.destin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT] || [self.fareBracket isEqualToString:FAREBR_CELL_TEXT])
         {
-            //[self updateCellSelectionColourWithCell:target andColour:[UIColor redColor]];
+            self.bgView.backgroundColor = [UIColor redColor];
+            target.selectedBackgroundView = self.bgView;
             
             //Validation code -- ensuring that the user has set all required values.
             if([[self.origin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT]) [self displayErrorLabelWithMessage:ORIGIN_ERR];
@@ -271,21 +293,13 @@ else _origin = origin;
             else if([self.fareBracket isEqualToString:FAREBR_CELL_TEXT]) [self displayErrorLabelWithMessage:FAREBR_ERR];
         }else
         {
-            //[self updateCellSelectionColourWithCell:target andColour:[UIColor blueColor]];
-            target.selectionStyle = UITableViewCellSelectionStyleBlue;
+            self.bgView = nil;
+            target.selectedBackgroundView = self.bgView;
+            
             [self performSegueWithIdentifier:@"fareResultSegue" sender:target];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)updateCellSelectionColourWithCell:(UITableViewCell *)cell andColour:(UIColor *)color
-{
-    UIView *view = [[UIView alloc] initWithFrame:cell.frame];
-    [view setBackgroundColor:color];
-    view.layer.cornerRadius = 5;
-    view.layer.masksToBounds = YES;
-    cell.selectedBackgroundView = view;
 }
 
 - (void)displayErrorLabelWithMessage:(NSString *)message

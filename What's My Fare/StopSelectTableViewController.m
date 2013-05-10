@@ -119,11 +119,16 @@
     //general cell properties
     cell.backgroundColor = [self.globalAppProperties.standardCellStyle objectForKey:@"backgroundColor"];
     
-    if(([point isEqual:self.homeViewController.origin] && [self.title isEqual:@"Destination"]) || ([point isEqual:self.homeViewController.destin] && [self.title isEqual:@"Origin"]))
-    {
+    if(([point isEqual:self.homeViewController.origin] && [self.title isEqual:@"Destination"])||
+        (([point isEqual:self.homeViewController.destin] && [self.title isEqual:@"Origin"]) && ![self.selectedService isEqual:@2])
+       ){
         cell.userInteractionEnabled = NO;
         cell.textLabel.enabled = NO;
         cell.detailTextLabel.enabled = NO;
+    }else{
+        cell.userInteractionEnabled = YES;
+        cell.textLabel.enabled = YES;
+        cell.detailTextLabel.enabled = YES;
     }
     
     return cell;
