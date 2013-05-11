@@ -14,7 +14,7 @@
 #define DEFAULT_TABLE @"LuasStops"
 
 @interface FareAzureWebServices ()
-@property (strong, nonatomic) FareAppDelegate *appDelegate;
+@property (strong, nonatomic) FareAppDelegate *globalAppProperties;
 @property (strong, nonatomic) NSString *table;
 @end
 
@@ -27,6 +27,8 @@
 
 - (FareAzureWebServices *)initWithTableName:(NSString *)tableName
 {
+    BOOL canConnect = [self.globalAppProperties applicationCanConnectToIntenet];
+    if(!canConnect) NSLog(@"Unable to connect to internet");
     self = [super init];
     self.table = [tableName copy];
     self.client = [MSClient clientWithApplicationURLString:AZURE_SERVICE_URL  withApplicationKey:AZURE_SERVICE_KEY];
@@ -45,6 +47,12 @@
 {
     if(!_veldt) [self.client getTable:self.table];
     return _veldt;
+}
+
+- (FareAppDelegate *)globalAppProperties
+{
+    if(!_globalAppProperties) _globalAppProperties = [[FareAppDelegate alloc] init];
+    return _globalAppProperties;
 }
 
 @end

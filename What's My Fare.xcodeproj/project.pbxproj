@@ -27,7 +27,6 @@
 		4B75929A16E3B86800E97980 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929816E3B86800E97980 /* MainStoryboard.storyboard */; };
 		4B7592A516E3C1FB00E97980 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */; };
 		4B8A7C48172D82AD0004D2A1 /* FareResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */; };
-		4BADFEC21738363600836CC4 /* FareBracketCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BADFEC11738363600836CC4 /* FareBracketCell.m */; };
 		4BADFED217385C5400836CC4 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFED117385C5400836CC4 /* AppIcon.png */; };
 		4BADFED417385C5D00836CC4 /* AppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFED317385C5D00836CC4 /* AppIcon@2x.png */; };
 		4BADFF0C1739314D00836CC4 /* add_to_faves.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEF41739314C00836CC4 /* add_to_faves.png */; };
@@ -58,6 +57,8 @@
 		4BADFF271739366800836CC4 /* splash_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFF251739366800836CC4 /* splash_screen@2x.png */; };
 		4BC0618716E8DDBE0067889B /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */; };
 		4BC0618A16E9154A0067889B /* StopSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC0618916E9154A0067889B /* StopSelectTableViewController.m */; };
+		4BF4436C173EF886009F5212 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF4436B173EF886009F5212 /* SystemConfiguration.framework */; };
+		4BF44372173EF9FD009F5212 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF44371173EF9FD009F5212 /* Reachability.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,8 +90,6 @@
 		4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		4B8A7C46172D82AD0004D2A1 /* FareResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareResultsViewController.h; sourceTree = "<group>"; };
 		4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FareResultsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		4BADFEC01738363600836CC4 /* FareBracketCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareBracketCell.h; sourceTree = "<group>"; };
-		4BADFEC11738363600836CC4 /* FareBracketCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareBracketCell.m; sourceTree = "<group>"; };
 		4BADFED117385C5400836CC4 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon.png; path = ../AppIcon.png; sourceTree = "<group>"; };
 		4BADFED317385C5D00836CC4 /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon@2x.png"; path = "../AppIcon@2x.png"; sourceTree = "<group>"; };
 		4BADFEF41739314C00836CC4 /* add_to_faves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_to_faves.png; sourceTree = "<group>"; };
@@ -122,6 +121,9 @@
 		4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		4BC0618816E9154A0067889B /* StopSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopSelectTableViewController.h; sourceTree = "<group>"; };
 		4BC0618916E9154A0067889B /* StopSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopSelectTableViewController.m; sourceTree = "<group>"; };
+		4BF4436B173EF886009F5212 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		4BF44370173EF9FD009F5212 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		4BF44371173EF9FD009F5212 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BF4436C173EF886009F5212 /* SystemConfiguration.framework in Frameworks */,
 				4B75928116E3B86800E97980 /* UIKit.framework in Frameworks */,
 				4B75928316E3B86800E97980 /* Foundation.framework in Frameworks */,
 				4B75928516E3B86800E97980 /* CoreGraphics.framework in Frameworks */,
@@ -159,6 +162,7 @@
 		4B75927F16E3B86800E97980 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4BF4436B173EF886009F5212 /* SystemConfiguration.framework */,
 				4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */,
 				4B75928016E3B86800E97980 /* UIKit.framework */,
 				4B75928216E3B86800E97980 /* Foundation.framework */,
@@ -192,8 +196,8 @@
 		4B75928716E3B86800E97980 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4BADFEC01738363600836CC4 /* FareBracketCell.h */,
-				4BADFEC11738363600836CC4 /* FareBracketCell.m */,
+				4BF44370173EF9FD009F5212 /* Reachability.h */,
+				4BF44371173EF9FD009F5212 /* Reachability.m */,
 				4B75928816E3B86800E97980 /* What's My Fare-Info.plist */,
 				4B75928916E3B86800E97980 /* InfoPlist.strings */,
 				4B75928C16E3B86800E97980 /* main.m */,
@@ -353,8 +357,8 @@
 				4BC0618A16E9154A0067889B /* StopSelectTableViewController.m in Sources */,
 				4B6C5B4B16EB93C200673253 /* FareAzureWebServices.m in Sources */,
 				4B8A7C48172D82AD0004D2A1 /* FareResultsViewController.m in Sources */,
-				4BADFEC21738363600836CC4 /* FareBracketCell.m in Sources */,
 				4B05255B17393B4800989699 /* FareSplashScreenViewController.m in Sources */,
+				4BF44372173EF9FD009F5212 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

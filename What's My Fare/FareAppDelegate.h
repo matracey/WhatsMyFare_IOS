@@ -23,7 +23,9 @@
 @property (strong, nonatomic) NSDictionary *standardCellStyle;
 @property (strong, nonatomic) NSDictionary *calculateCellStyle;
 @property (strong, nonatomic) NSDictionary *fontColors;
+@property BOOL deviceDidHaveIntenetConnectionOnLaunch;
 
 @property (strong, nonatomic) UIColor *backgroundColor;
 
+- (BOOL)applicationCanConnectToIntenet;
 @end

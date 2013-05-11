@@ -7,6 +7,7 @@
 //
 
 #import "FareAppDelegate.h"
+#import "Reachability.h"
 
 @interface FareAppDelegate ()
 @end
@@ -102,9 +103,25 @@
     
 }
 
+- (BOOL)applicationCanConnectToIntenet
+{
+    Reachability *google = [Reachability reachabilityWithHostname:@"www.google.com"];
+    Reachability *apple = [Reachability reachabilityWithHostname:@"www.apple.com"];
+    NetworkStatus googleStatus = [google currentReachabilityStatus];
+    NetworkStatus appleStatus = [apple currentReachabilityStatus];
+    
+    if(googleStatus == NotReachable && appleStatus == NotReachable)
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No intenet connection!" message:@"Please check your internet connection and try again." delegate:self cancelButtonTitle:@"Okay" otherButtonTitles: nil];
+        [alert show];
+    }
+    return googleStatus == NotReachable && appleStatus == NotReachable;
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self setNavigationBarStyling];
+    self.deviceDidHaveIntenetConnectionOnLaunch = [self applicationCanConnectToIntenet];
     return YES;
 }
 
