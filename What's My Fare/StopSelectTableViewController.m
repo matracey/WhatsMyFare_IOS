@@ -31,7 +31,6 @@
 @implementation StopSelectTableViewController
 
 #pragma mark - StopSelectTableViewController init methods
-
 - (StopSelectTableViewController *)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -39,6 +38,7 @@
     return self;
 }
 
+#pragma mark - Property getters
 - (FareAppDelegate *)globalAppProperties
 {
     if(!_globalAppProperties) _globalAppProperties = [[FareAppDelegate alloc] init];
@@ -51,8 +51,6 @@
     return _homeViewController;
 }
 
-#pragma mark - StopSelectTableViewController object instantiation
-
 - (FareAzureWebServices *)webService
 {
     if(!_webService)
@@ -64,7 +62,7 @@
     return _webService;
 }
 
-
+#pragma mark - ViewController Lifecycle methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -72,6 +70,12 @@
     [self setSearchBarOutOfView];
     self.searchDisplayController.searchBar.alpha = 0.0;
     [self refreshData:self.refreshButton];
+}
+
+- (void)viewDidUnload
+{
+    [self setRefreshButton:nil];
+    [super viewDidUnload];
 }
 
 - (void)setSearchBarOutOfView
@@ -134,6 +138,40 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *result;
+    
+    if(tableView == self.searchDisplayController.searchResultsTableView) result = [self.filteredPoints objectAtIndex:indexPath.row];
+    else result = [self.points objectAtIndex:indexPath.row];
+    
+    if([self.title isEqualToString:@"Origin"]) [self.homeViewController setOrigin:[result mutableCopy]];
+    else if ([self.title isEqualToString:@"Destination"]) [self.homeViewController setDestin:[result mutableCopy]];
+    
+    //return to previous nav controller
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+#pragma mark - UISearchDisplayControllerDelegate methods
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    //filter the content by the search string and the scope selector!
+    [self filterContentForSearchQuery:searchString];
+    return YES;
+}
+
+#pragma mark - UITableViewSearch methods
+- (void)filterContentForSearchQuery:(NSString *)searchQuery
+{
+    //Clean out the filtered array
+    [self.filteredPoints removeAllObjects];
+    //Create a predicate that will be used to filter results
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"stopName contains[c] %@", searchQuery];
+    self.filteredPoints = [NSMutableArray arrayWithArray:[self.points filteredArrayUsingPredicate:searchPredicate]];
+}
+
+#pragma mark - Target-Action methods
 - (IBAction)refreshData:(UIBarButtonItem *)sender
 {
     //Create and add the UIActivityIndicator
@@ -152,9 +190,9 @@
     }else if([self.selectedService isEqual:@1]){
         filterPredicate = [NSPredicate predicateWithFormat:@"service ==[c] %@  OR service ==[c] %@", @"DART/Commuter Rail", @"DART"];
         [self.webService.veldt readWhere:filterPredicate completion:^(NSArray *items, NSInteger totalCount, NSError *error)
-        {
-            [self dataDidLoadFromWebService:items withIndicator:activityIndicator andSender:sender];
-        }];
+         {
+             [self dataDidLoadFromWebService:items withIndicator:activityIndicator andSender:sender];
+         }];
     }else if([self.selectedService isEqual:@2]){
         filterPredicate = [NSPredicate predicateWithFormat:@"service ==[c] %@  OR service ==[c] %@", @"DART/Commuter Rail", @"Commuter Rail"];
         [self.webService.veldt readWhere:filterPredicate completion:^(NSArray *items, NSInteger totalCount, NSError *error) {
@@ -163,6 +201,7 @@
     }
 }
 
+#pragma mark - Model
 - (void)dataDidLoadFromWebService:(NSArray *)data withIndicator:(UIActivityIndicatorView *)activityIndicator andSender:(UIBarButtonItem *)sender
 {
     self.points = data.copy;
@@ -249,45 +288,6 @@
         }
     }
     return [myMutableSet allObjects];
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSDictionary *result;
-    
-    if(tableView == self.searchDisplayController.searchResultsTableView) result = [self.filteredPoints objectAtIndex:indexPath.row];
-    else result = [self.points objectAtIndex:indexPath.row];
-    
-    if([self.title isEqualToString:@"Origin"]) [self.homeViewController setOrigin:[result mutableCopy]];
-    else if ([self.title isEqualToString:@"Destination"]) [self.homeViewController setDestin:[result mutableCopy]];
-    
-    //return to previous nav controller
-    [self.navigationController popToRootViewControllerAnimated:YES];
-}
-
-- (void)viewDidUnload {
-    [self setRefreshButton:nil];
-    [super viewDidUnload];
-}
-
-#pragma mark - UISearchDisplayControllerDelegate methods
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    //filter the content by the search string and the scope selector!
-    [self filterContentForSearchQuery:searchString];
-    return YES;
-}
-
-#pragma mark - UITableViewSearch methods
-- (void)filterContentForSearchQuery:(NSString *)searchQuery
-{
-    //Clean out the filtered array
-    [self.filteredPoints removeAllObjects];
-    //Create a predicate that will be used to filter results
-    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"stopName contains[c] %@", searchQuery];
-    self.filteredPoints = [NSMutableArray arrayWithArray:[self.points filteredArrayUsingPredicate:searchPredicate]];
 }
 
 @end

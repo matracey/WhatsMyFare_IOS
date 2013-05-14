@@ -36,7 +36,6 @@
 @property (strong, nonatomic) UITableViewCell *bgView;
 
 @property (strong, nonatomic) NSDictionary *defaultValues;
-@property (strong, nonatomic) NSDictionary *fontColors;
 @property (strong, nonatomic) NSString *fareBracket;
 @property (strong, nonatomic) NSString *ticketType;
 @property (strong, nonatomic) NSString *segueTitle;
@@ -50,21 +49,26 @@
 
 @implementation HomeTableViewController
 
-#pragma mark - Init methods
-
-#pragma mark - Property getters
-- (NSArray *)fareBrackets
+#pragma mark - UIProperty getters
+- (UITableViewCell *)bgView
 {
-    return @[@[@"Adult", @"Child", @"Student"], @[@"Single", @"Return"]];
+    if(!_bgView)
+    {
+        //Setting up the background view
+        _bgView = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CalculateSelected"];
+        _bgView.backgroundColor = [UIColor colorWithRed:63.0/256.0 green:45.0/256.0 blue:147.0/256.0 alpha:1.0];
+        _bgView.layer.cornerRadius = 10;
+        _bgView.layer.masksToBounds= YES;
+        _bgView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        _bgView.layer.borderWidth = 1.0f;
+    }
+    return _bgView;
 }
 
-- (FareAppDelegate *)globalAppProperties
+#pragma mark - Property getters
+- (NSDictionary *)defaultValues
 {
-    if(!_globalAppProperties)
-    {
-        _globalAppProperties = [[FareAppDelegate alloc] init];
-    }
-    return _globalAppProperties;
+    return @{@"id":@"", @"stopName":POINTS_CELL_TEXT, @"service":@"", @"luasRoute":@""};
 }
 
 - (NSString *)fareBracket
@@ -90,38 +94,26 @@
     return @[self.origin, self.destin, @[self.fareBracket, self.ticketType], CALCUL_CELL_TEXT];
 }
 
-- (NSDictionary *)defaultValues
+- (NSArray *)fareBrackets
 {
-    return @{@"id":@"", @"stopName":POINTS_CELL_TEXT, @"service":@"", @"luasRoute":@""};
+    return @[@[@"Adult", @"Child", @"Student"], @[@"Single", @"Return"]];
 }
 
-- (NSDictionary *)fontColors
+- (FareAppDelegate *)globalAppProperties
 {
-    return @{@"Red": [UIColor colorWithRed:170/256 green:53/256 blue:53/256 alpha:1.0],
-             @"Green": [UIColor colorWithRed:91/256 green:146/256 blue:47/256 alpha:1.0],
-             @"DART": [UIColor colorWithRed:51/256 green:169/256 blue:198/256 alpha:1.0],
-             @"Commuter Rail": [UIColor colorWithRed:170/256 green:53/256 blue:53/256 alpha:1.0]};
-}
-
-- (UITableViewCell *)bgView
-{
-    if(!_bgView)
+    if(!_globalAppProperties)
     {
-        //Setting up the background view
-        _bgView = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CalculateSelected"];
-        _bgView.backgroundColor = [UIColor colorWithRed:63.0/256.0 green:45.0/256.0 blue:147.0/256.0 alpha:1.0];
-        _bgView.layer.cornerRadius = 10;
-        _bgView.layer.masksToBounds= YES;
-        _bgView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        _bgView.layer.borderWidth = 1.0f;
+        _globalAppProperties = [[FareAppDelegate alloc] init];
     }
-    return _bgView;
+    return _globalAppProperties;
 }
 
+#pragma mark - Property setters
 - (void)setOrigin:(NSMutableDictionary *)origin
 {
     if([self.selectedService isEqual:@2])
     {
+        //If we're setting the origin for Commuter Rail, we need to reset the value for destination.
         self.destin = self.defaultValues.copy;
         _origin = origin;
     }
@@ -270,7 +262,7 @@ else _origin = origin;
         [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
     }else if (indexPath.section == 1)
     {
-        if([self.selectedService isEqual:@2] && [[self.origin objectForKey:@"stopName"] isEqual:POINTS_CELL_TEXT]) [self displayErrorLabelWithMessage:ORIGIN_ERR];
+        if([self.selectedService isEqual:@2] && [[self.origin objectForKey:@"stopName"] isEqual:POINTS_CELL_TEXT]) [self displayValidationErrorLabelWithMessage:ORIGIN_ERR];
         else{
             self.segueTitle = @"Destination";
             [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
@@ -288,9 +280,9 @@ else _origin = origin;
             target.selectedBackgroundView = self.bgView;
             
             //Validation code -- ensuring that the user has set all required values.
-            if([[self.origin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT]) [self displayErrorLabelWithMessage:ORIGIN_ERR];
-            else if([[self.destin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT]) [self displayErrorLabelWithMessage:DESTIN_ERR];
-            else if([self.fareBracket isEqualToString:FAREBR_CELL_TEXT]) [self displayErrorLabelWithMessage:FAREBR_ERR];
+            if([[self.origin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT]) [self displayValidationErrorLabelWithMessage:ORIGIN_ERR];
+            else if([[self.destin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT]) [self displayValidationErrorLabelWithMessage:DESTIN_ERR];
+            else if([self.fareBracket isEqualToString:FAREBR_CELL_TEXT]) [self displayValidationErrorLabelWithMessage:FAREBR_ERR];
         }else
         {
             self.bgView = nil;
@@ -302,7 +294,7 @@ else _origin = origin;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)displayErrorLabelWithMessage:(NSString *)message
+- (void)displayValidationErrorLabelWithMessage:(NSString *)message
 {
     self.errLabel.text = message;
     [UIView animateWithDuration:1.0 animations:^{
@@ -315,7 +307,7 @@ else _origin = origin;
     }];
 }
 
-#pragma mark - UIPickerViewDelegate
+#pragma mark - Display and Dismiss PickerView
 - (void)displayPickerView
 {
     self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
@@ -371,6 +363,7 @@ else _origin = origin;
     [self.tableView reloadData];
 }
 
+#pragma mark - UIPickerViewDelegate
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     //Create label for title
@@ -419,6 +412,7 @@ else _origin = origin;
     return [[self.fareBrackets objectAtIndex:component] count];
 }
 
+#pragma mark - Target-Action methods
 - (IBAction)didChangeSelectedService:(UIButton *)sender
 {
     if(sender.tag == 0)
@@ -476,7 +470,8 @@ else _origin = origin;
     [self.tableView reloadData];
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload
+{
     [self setTableView:nil];
     [self setErrLabel:nil];
     [self setLuasServiceButton:nil];
@@ -484,6 +479,7 @@ else _origin = origin;
     [super viewDidUnload];
 }
 
+#pragma mark - 586hSupportMethods
 - (CGFloat)getScreenHeight
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];

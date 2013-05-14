@@ -15,11 +15,11 @@
 
 @interface FareAzureWebServices ()
 @property (strong, nonatomic) FareAppDelegate *globalAppProperties;
-@property (strong, nonatomic) NSString *table;
 @end
 
 @implementation FareAzureWebServices
 
+#pragma mark - Init methods
 - (FareAzureWebServices *)init
 {
     return [self initWithTableName:DEFAULT_TABLE];
@@ -30,22 +30,22 @@
     BOOL canConnect = [self.globalAppProperties applicationCanConnectToIntenet];
     if(!canConnect) NSLog(@"Unable to connect to internet");
     self = [super init];
-    self.table = [tableName copy];
     self.client = [MSClient clientWithApplicationURLString:AZURE_SERVICE_URL  withApplicationKey:AZURE_SERVICE_KEY];
     self.veldt = [self.client getTable:tableName];
     
     return self;
 }
 
+#pragma mark - Property getters
 - (MSClient *)client
 {
     if(!_client) _client = [MSClient clientWithApplicationURLString:AZURE_SERVICE_URL withApplicationKey:AZURE_SERVICE_KEY];
     return _client;
 }
 
-- (MSTable *)luasTable
+- (MSTable *)veldt
 {
-    if(!_veldt) [self.client getTable:self.table];
+    if(!_veldt) [self.client getTable:DEFAULT_TABLE];
     return _veldt;
 }
 

@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'FareUnitTests' target in the 'FareUnitTests' project
+//
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif

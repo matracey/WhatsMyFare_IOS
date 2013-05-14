@@ -59,7 +59,24 @@
 		4BC0618A16E9154A0067889B /* StopSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC0618916E9154A0067889B /* StopSelectTableViewController.m */; };
 		4BF4436C173EF886009F5212 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF4436B173EF886009F5212 /* SystemConfiguration.framework */; };
 		4BF44372173EF9FD009F5212 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF44371173EF9FD009F5212 /* Reachability.m */; };
+		4BF4437A173F0622009F5212 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF44379173F0622009F5212 /* SenTestingKit.framework */; };
+		4BF4437B173F0622009F5212 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928016E3B86800E97980 /* UIKit.framework */; };
+		4BF4437C173F0622009F5212 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928216E3B86800E97980 /* Foundation.framework */; };
+		4BF44382173F0622009F5212 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4BF44380173F0622009F5212 /* InfoPlist.strings */; };
+		4BF44385173F0622009F5212 /* FareUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF44384173F0622009F5212 /* FareUnitTests.m */; };
+		4BFB4851174110D2002DA399 /* FareAzureWebServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */; };
+		4BFB485317411117002DA399 /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4BF4438A173F064B009F5212 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4B75927516E3B86800E97980 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4B75927C16E3B86800E97980;
+			remoteInfo = "What's My Fare";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4B05255917393B4800989699 /* FareSplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareSplashScreenViewController.h; sourceTree = "<group>"; };
@@ -124,6 +141,13 @@
 		4BF4436B173EF886009F5212 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4BF44370173EF9FD009F5212 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4BF44371173EF9FD009F5212 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		4BF44378173F0622009F5212 /* FareUnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FareUnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BF44379173F0622009F5212 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		4BF4437F173F0622009F5212 /* FareUnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FareUnitTests-Info.plist"; sourceTree = "<group>"; };
+		4BF44381173F0622009F5212 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		4BF44383173F0622009F5212 /* FareUnitTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FareUnitTests.h; sourceTree = "<group>"; };
+		4BF44384173F0622009F5212 /* FareUnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FareUnitTests.m; sourceTree = "<group>"; };
+		4BF44386173F0622009F5212 /* FareUnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FareUnitTests-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +163,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BF44374173F0622009F5212 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BF4437A173F0622009F5212 /* SenTestingKit.framework in Frameworks */,
+				4BFB485317411117002DA399 /* WindowsAzureMobileServices.framework in Frameworks */,
+				4BF4437B173F0622009F5212 /* UIKit.framework in Frameworks */,
+				4BF4437C173F0622009F5212 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -146,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				4B75928616E3B86800E97980 /* What's My Fare */,
+				4BF4437D173F0622009F5212 /* FareUnitTests */,
 				4B75927F16E3B86800E97980 /* Frameworks */,
 				4B75927E16E3B86800E97980 /* Products */,
 			);
@@ -155,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				4B75927D16E3B86800E97980 /* What's My Fare.app */,
+				4BF44378173F0622009F5212 /* FareUnitTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +204,7 @@
 				4B75928016E3B86800E97980 /* UIKit.framework */,
 				4B75928216E3B86800E97980 /* Foundation.framework */,
 				4B75928416E3B86800E97980 /* CoreGraphics.framework */,
+				4BF44379173F0622009F5212 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -250,6 +288,26 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		4BF4437D173F0622009F5212 /* FareUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				4BF44383173F0622009F5212 /* FareUnitTests.h */,
+				4BF44384173F0622009F5212 /* FareUnitTests.m */,
+				4BF4437E173F0622009F5212 /* Supporting Files */,
+			);
+			path = FareUnitTests;
+			sourceTree = "<group>";
+		};
+		4BF4437E173F0622009F5212 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4BF4437F173F0622009F5212 /* FareUnitTests-Info.plist */,
+				4BF44380173F0622009F5212 /* InfoPlist.strings */,
+				4BF44386173F0622009F5212 /* FareUnitTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -269,6 +327,25 @@
 			productName = "What's My Fare";
 			productReference = 4B75927D16E3B86800E97980 /* What's My Fare.app */;
 			productType = "com.apple.product-type.application";
+		};
+		4BF44377173F0622009F5212 /* FareUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4BF44387173F0622009F5212 /* Build configuration list for PBXNativeTarget "FareUnitTests" */;
+			buildPhases = (
+				4BF44373173F0622009F5212 /* Sources */,
+				4BF44374173F0622009F5212 /* Frameworks */,
+				4BF44375173F0622009F5212 /* Resources */,
+				4BF44376173F0622009F5212 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4BF4438B173F064B009F5212 /* PBXTargetDependency */,
+			);
+			name = FareUnitTests;
+			productName = FareUnitTests;
+			productReference = 4BF44378173F0622009F5212 /* FareUnitTests.octest */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -293,6 +370,7 @@
 			projectRoot = "";
 			targets = (
 				4B75927C16E3B86800E97980 /* What's My Fare */,
+				4BF44377173F0622009F5212 /* FareUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -344,7 +422,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BF44375173F0622009F5212 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BF44382173F0622009F5212 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4BF44376173F0622009F5212 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4B75927916E3B86800E97980 /* Sources */ = {
@@ -362,7 +464,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4BF44373173F0622009F5212 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4BF44385173F0622009F5212 /* FareUnitTests.m in Sources */,
+				4BFB4851174110D2002DA399 /* FareAzureWebServices.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4BF4438B173F064B009F5212 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4B75927C16E3B86800E97980 /* What's My Fare */;
+			targetProxy = 4BF4438A173F064B009F5212 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4B75928916E3B86800E97980 /* InfoPlist.strings */ = {
@@ -379,6 +498,14 @@
 				4B75929916E3B86800E97980 /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		4BF44380173F0622009F5212 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4BF44381173F0622009F5212 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -449,6 +576,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "What's My Fare/What's My Fare-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = "What's My Fare/What's My Fare-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -465,10 +593,49 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "What's My Fare/What's My Fare-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				INFOPLIST_FILE = "What's My Fare/What's My Fare-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		4BF44388173F0622009F5212 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/What's My Fare.app/What's My Fare";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FareUnitTests/FareUnitTests-Prefix.pch";
+				INFOPLIST_FILE = "FareUnitTests/FareUnitTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		4BF44389173F0622009F5212 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/What's My Fare.app/What's My Fare";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "FareUnitTests/FareUnitTests-Prefix.pch";
+				INFOPLIST_FILE = "FareUnitTests/FareUnitTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -489,6 +656,15 @@
 			buildConfigurations = (
 				4B7592A116E3B86800E97980 /* Debug */,
 				4B7592A216E3B86800E97980 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4BF44387173F0622009F5212 /* Build configuration list for PBXNativeTarget "FareUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4BF44388173F0622009F5212 /* Debug */,
+				4BF44389173F0622009F5212 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
