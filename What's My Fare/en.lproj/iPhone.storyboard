@@ -178,7 +178,7 @@
                         <outlet property="tableView" destination="gxA-uG-t8G" id="CWC-bv-qOD"/>
                         <segue destination="aeW-KO-42S" kind="push" identifier="stopSelect" id="zoG-Ox-UNu"/>
                         <segue destination="Nma-eu-csN" kind="push" identifier="fareResultSegue" id="dTw-1w-jxJ"/>
-                        <segue destination="GtI-NK-e5r" kind="modal" identifier="splashSegue" animates="NO" id="idf-Yw-kIz"/>
+                        <segue destination="GtI-NK-e5r" kind="modal" identifier="splashSegue" modalTransitionStyle="coverVertical" animates="NO" id="idf-Yw-kIz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iof-Lt-NMO" userLabel="First Responder" sceneMemberID="firstResponder"/>

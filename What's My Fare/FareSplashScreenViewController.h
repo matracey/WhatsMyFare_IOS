@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SplitViewBarButtonItemPresenter.h"
+#import "SplitViewControllerDelegate.h"
 
 @interface FareSplashScreenViewController : UIViewController <SplitViewBarButtonItemPresenter>
 @property (strong, nonatomic) UIBarButtonItem *splitViewBarButtonItem;
