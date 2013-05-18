@@ -7,7 +7,7 @@
 //
 
 #import "FareSplashScreenViewController.h"
-#import "SplitViewControllerDelegate.h"
+#import "NavigationControllerWithSplitViewDelegate.h"
 #import "StopSelectTableViewController.h"
 #import "HomeTableViewController.h"
 #import "FareResultsViewController.h"
@@ -17,7 +17,6 @@
 
 @interface FareSplashScreenViewController ()
 @property (nonatomic, strong) IBOutlet UIToolbar *toolbar;
-@property (nonatomic, strong) SplitViewControllerDelegate *delegate;
 @property (nonatomic, strong) HomeTableViewController *masterVC;
 @end
 
@@ -28,8 +27,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithRed:(96.0/256.0) green:(67.0/256.0) blue:(142.0/256.0) alpha:1.0];
-    self.splitViewController.delegate = self.delegate;
-    NSLog(@"%@", self.masterVC.title);
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -37,11 +34,6 @@
     if(UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) [self performSelector:@selector(dismissSelf) withObject:nil afterDelay:3.0];
 }
 #pragma - mark Property getters
-- (SplitViewControllerDelegate *)delegate
-{
-    if(!_delegate) _delegate = [[SplitViewControllerDelegate alloc] initWithSender:self];
-    return _delegate;
-}
 
 - (HomeTableViewController *)masterVC
 {
@@ -63,11 +55,8 @@
 {
     if(_splitViewBarButtonItem != splitViewBarButtonItem)
     {
-        NSMutableArray *barButtonItems = self.toolbar.items.mutableCopy;
-        if(_splitViewBarButtonItem) [barButtonItems removeObject:_splitViewBarButtonItem];
-        if(splitViewBarButtonItem) [barButtonItems insertObject:splitViewBarButtonItem atIndex:0];
-        self.toolbar.items = barButtonItems;
-        _splitViewBarButtonItem = splitViewBarButtonItem;
+        if(splitViewBarButtonItem) self.navigationItem.leftBarButtonItems = @[splitViewBarButtonItem];
+        else if(_splitViewBarButtonItem) self.navigationItem.leftBarButtonItems = @[];
     }
 }
 
@@ -79,7 +68,8 @@
         StopSelectTableViewController *destination = segue.destinationViewController;
         destination.title = self.masterVC.segueTitle;
         destination.selectedService = self.masterVC.selectedService;
-        NSLog(@"%@", self.masterVC.segueTitle);
+        destination.toolbarItems = self.toolbarItems.copy;
+        destination.navigationController.toolbarHidden = NO;
     }else if ([segue.identifier isEqualToString:RESULT_SEGUE])
     {
         FareResultsViewController *resultViewController = segue.destinationViewController;

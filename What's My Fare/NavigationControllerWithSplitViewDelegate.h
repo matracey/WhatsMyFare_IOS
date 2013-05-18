@@ -12,6 +12,5 @@
 @property (nonatomic, strong) UIBarButtonItem *splitViewBarButtonItem;
 @end
 
-@interface SplitViewControllerDelegate : UISplitViewController <UISplitViewControllerDelegate>
-- (SplitViewControllerDelegate *)initWithSender:(id)sender;
+@interface NavigationControllerWithSplitViewDelegate : UINavigationController <UISplitViewControllerDelegate>
 @end

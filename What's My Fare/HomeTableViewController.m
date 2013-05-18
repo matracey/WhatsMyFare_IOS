@@ -259,7 +259,7 @@
         self.segueTitle = @"Origin";
         if([self isDeviceIdiomiPad])
         {
-             [[self.splitViewController.viewControllers objectAtIndex:1] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+            [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
         }
         else [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
     }else if (indexPath.section == 1)
@@ -269,7 +269,7 @@
             self.segueTitle = @"Destination";
             if([self isDeviceIdiomiPad])
             {
-             [[self.splitViewController.viewControllers objectAtIndex:1] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+                [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
             }else [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
         }
     }
