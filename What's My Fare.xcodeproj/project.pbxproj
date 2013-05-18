@@ -30,6 +30,8 @@
 		4B75929A16E3B86800E97980 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929816E3B86800E97980 /* iPhone.storyboard */; };
 		4B7592A516E3C1FB00E97980 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */; };
 		4B8A7C48172D82AD0004D2A1 /* FareResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */; };
+		4BA6EDA817480D0500C911EF /* PickerViewInActionSheetDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA6EDA717480D0500C911EF /* PickerViewInActionSheetDelegate.m */; };
+		4BA6EDAB1748471300C911EF /* PickerViewPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BA6EDAA1748471300C911EF /* PickerViewPopoverViewController.m */; };
 		4BADFED217385C5400836CC4 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFED117385C5400836CC4 /* AppIcon.png */; };
 		4BADFED417385C5D00836CC4 /* AppIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFED317385C5D00836CC4 /* AppIcon@2x.png */; };
 		4BADFF0C1739314D00836CC4 /* add_to_faves.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFEF41739314C00836CC4 /* add_to_faves.png */; };
@@ -115,6 +117,10 @@
 		4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		4B8A7C46172D82AD0004D2A1 /* FareResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareResultsViewController.h; sourceTree = "<group>"; };
 		4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = FareResultsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		4BA6EDA617480D0500C911EF /* PickerViewInActionSheetDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewInActionSheetDelegate.h; sourceTree = "<group>"; };
+		4BA6EDA717480D0500C911EF /* PickerViewInActionSheetDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewInActionSheetDelegate.m; sourceTree = "<group>"; };
+		4BA6EDA91748471300C911EF /* PickerViewPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerViewPopoverViewController.h; sourceTree = "<group>"; };
+		4BA6EDAA1748471300C911EF /* PickerViewPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerViewPopoverViewController.m; sourceTree = "<group>"; };
 		4BADFED117385C5400836CC4 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = AppIcon.png; path = ../AppIcon.png; sourceTree = "<group>"; };
 		4BADFED317385C5D00836CC4 /* AppIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "AppIcon@2x.png"; path = "../AppIcon@2x.png"; sourceTree = "<group>"; };
 		4BADFEF41739314C00836CC4 /* add_to_faves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add_to_faves.png; sourceTree = "<group>"; };
@@ -233,6 +239,10 @@
 				4BDE9C1D1743EBB900B30308 /* NavigationControllerWithSplitViewDelegate.m */,
 				4B7592A316E3C1FB00E97980 /* HomeTableViewController.h */,
 				4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */,
+				4BA6EDA91748471300C911EF /* PickerViewPopoverViewController.h */,
+				4BA6EDAA1748471300C911EF /* PickerViewPopoverViewController.m */,
+				4BA6EDA617480D0500C911EF /* PickerViewInActionSheetDelegate.h */,
+				4BA6EDA717480D0500C911EF /* PickerViewInActionSheetDelegate.m */,
 				4BC0618816E9154A0067889B /* StopSelectTableViewController.h */,
 				4BC0618916E9154A0067889B /* StopSelectTableViewController.m */,
 				4B6C5B4916EB93C200673253 /* FareAzureWebServices.h */,
@@ -477,6 +487,8 @@
 				4B05255B17393B4800989699 /* FareSplashScreenViewController.m in Sources */,
 				4BF44372173EF9FD009F5212 /* Reachability.m in Sources */,
 				4BDE9C1E1743EBB900B30308 /* NavigationControllerWithSplitViewDelegate.m in Sources */,
+				4BA6EDA817480D0500C911EF /* PickerViewInActionSheetDelegate.m in Sources */,
+				4BA6EDAB1748471300C911EF /* PickerViewPopoverViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

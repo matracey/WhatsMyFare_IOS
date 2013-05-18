@@ -12,6 +12,7 @@
 #import "FareSplashScreenViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "FareAppDelegate.h"
+#import "PickerViewInActionSheetDelegate.h"
 
 #define PRIMAR_CELL_ID @"primaryCell"
 #define CALCUL_CELL_ID @"calculateButtonCell"
@@ -27,13 +28,16 @@
 #define DESTIN_ERR @"Please choose a destination before continuing..."
 #define FAREBR_ERR @"Please choose a fare bracket before continuing..."
 
-@interface HomeTableViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface HomeTableViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *errLabel;
 @property (strong, nonatomic) IBOutlet UIButton *luasServiceButton; //0
 @property (strong, nonatomic) IBOutlet UIButton *dartServiceButton; //1
 @property (strong, nonatomic) IBOutlet UIButton *railServiceButton; //2
+
+//Fare Bracket Selector Views
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIActionSheet *actionSheet;
+
 @property (strong, nonatomic) UITableViewCell *bgView;
 @property (strong, nonatomic) NSDictionary *defaultValues;
 @property (strong, nonatomic) NSArray *model;
@@ -259,7 +263,15 @@
         self.segueTitle = @"Origin";
         if([self isDeviceIdiomiPad])
         {
-            [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+            id dvc = [[[self.splitViewController.viewControllers lastObject] viewControllers] lastObject];
+            if (![dvc isKindOfClass:[StopSelectTableViewController class]]) {
+                [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+            }
+            else if([dvc isKindOfClass:[StopSelectTableViewController class]] && [[dvc title] isEqual:@"Destination"])
+            {
+                [[dvc navigationController] popToRootViewControllerAnimated:NO];
+                [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+            }
         }
         else [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
     }else if (indexPath.section == 1)
@@ -267,9 +279,17 @@
         if([self.selectedService isEqual:@2] && [[self.origin objectForKey:@"stopName"] isEqual:POINTS_CELL_TEXT]) [self displayValidationErrorLabelWithMessage:ORIGIN_ERR];
         else{
             self.segueTitle = @"Destination";
+            id dvc = [[[self.splitViewController.viewControllers lastObject] viewControllers] lastObject];
             if([self isDeviceIdiomiPad])
             {
-                [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+                if (![dvc isKindOfClass:[StopSelectTableViewController class]]) {
+                    [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+                }
+                else if([dvc isKindOfClass:[StopSelectTableViewController class]] && [[dvc title] isEqual:@"Origin"])
+                {
+                    [[dvc navigationController] popToRootViewControllerAnimated:NO];
+                    [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+                }
             }else [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
         }
     }
@@ -315,49 +335,44 @@
 #pragma mark - Display and Dismiss PickerView
 - (void)displayPickerView
 {
-    self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:nil
-                                                    cancelButtonTitle:nil
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil];
+    PickerViewInActionSheetDelegate *delegate = [[PickerViewInActionSheetDelegate alloc] init];
+    [delegate setFareBrackets:self.fareBrackets.copy];
     
-    [self.actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-    
-    CGRect pickerFrame = CGRectMake(0, 40, 0, 0);
-    
+    CGRect pickerFrame = CGRectMake(0.0, 40.0, 320.0, 200.0);
     self.pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
     self.pickerView.showsSelectionIndicator = YES;
-    self.pickerView.dataSource = self;
-    self.pickerView.delegate = self;
+    self.pickerView.dataSource = delegate;
+    self.pickerView.delegate = delegate;
     
-    //this makes the UIPickerView scroll to whatever is currently selected (or 0,0 if nothing is selected yet)
-    int bracketInt = 0;
-    int ticketsInt = 0;
-    for (int i=0; i<[[self.fareBrackets objectAtIndex:0] count]; i++)
-    {
-        if([self.fareBracket isEqualToString:[[self.fareBrackets objectAtIndex:0] objectAtIndex:i]]) bracketInt = i;
-    }
-    for (int j=0; j<[[self.fareBrackets objectAtIndex:1] count]; j++)
-    {
-        if([self.ticketType isEqualToString:[[self.fareBrackets objectAtIndex:1] objectAtIndex:j]]) ticketsInt = j;
-    }
+    //Get the location of the currently selected bracket and scroll to it
+    PickerLocation location = [self getPickerLocationForCurrentlySelectedFareBracket];
+    [self.pickerView selectRow:location.b inComponent:0 animated:NO];
+    [self.pickerView selectRow:location.t inComponent:1 animated:NO];
     
-    [self.pickerView selectRow:bracketInt inComponent:0 animated:NO];
-    [self.pickerView selectRow:ticketsInt inComponent:1 animated:NO];
+    //Create and add a done button
+    UISegmentedControl *doneButton = [[UISegmentedControl alloc] initWithItems:@[@"Done"]];
+    doneButton.momentary = YES;
+    doneButton.frame = CGRectMake(260.0, 7.0f, 50.0f, 30.0f);
+    doneButton.segmentedControlStyle = UISegmentedControlStyleBar;
+    doneButton.tintColor = [UIColor blueColor];
+    [doneButton addTarget:self action:@selector(dismissPickerView) forControlEvents:UIControlEventValueChanged];
     
+    self.actionSheet = [[UIActionSheet alloc]initWithTitle:@"Select a Fare Bracket" delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+    [self.actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     [self.actionSheet addSubview:self.pickerView];
     
-    UISegmentedControl *closeButton = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObject:@"Done"]];
-    closeButton.momentary = YES;
-    closeButton.frame = CGRectMake(260, 7.0f, 50.0f, 30.0f);
-    closeButton.segmentedControlStyle = UISegmentedControlStyleBar;
-    closeButton.tintColor = [UIColor blueColor];
-    [closeButton addTarget:self action:@selector(dismissPickerView) forControlEvents:UIControlEventValueChanged];
-    [self.actionSheet addSubview:closeButton];
+    [self.actionSheet addSubview:doneButton];
     
-    [self.actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
-    
-    [self.actionSheet setBounds:CGRectMake(0, 0, 320, 485)];
+    if([self isDeviceIdiomiPad])
+    {
+        //display actionsheet here
+        [self.actionSheet showFromRect:CGRectMake(0.0, 360.0, 320.0, 200.0) inView:self.splitViewController.view animated:YES];
+        [self.actionSheet sizeThatFits:CGSizeMake(320.0, 200.0)];
+    }
+    else{
+        [self.actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
+        [self.actionSheet setBounds:CGRectMake(0.0, 0.0, 320.0, 485.0)];
+    }
 }
 
 - (void)dismissPickerView
@@ -368,53 +383,34 @@
     [self.tableView reloadData];
 }
 
-#pragma mark - UIPickerViewDelegate
-- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+- (PickerLocation)getPickerLocationForCurrentlySelectedFareBracket
 {
-    //Create label for title
-    UILabel *label;
-    UIImageView *imgView;
+    //this makes the UIPickerView scroll to whatever is currently selected (or 0,0 if nothing is selected yet)
+    int bracketInt = 0;
+    int ticketsInt = 0;
     
-    if(component == 0)
-    {
-        UIImage *image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", [[self.fareBrackets objectAtIndex:0] objectAtIndex:row]] lowercaseString]];
-        //Creating the image view that will hold our fare bracket images
-        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(12, 0, 30, 40)];
-        [imgView setImage:image];
-        label = [[UILabel alloc] initWithFrame:CGRectMake(42, 0, 160, 40)];
-    }else
-    {
-        label = label = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 160, 40)];
+    for (NSArray *a in self.fareBrackets) {
+        for (int i = 0; i < a.count; i++) {
+            if([[a objectAtIndex:i] isEqual:self.fareBracket]) bracketInt = i;
+            else if([[a objectAtIndex:i] isEqual:self.ticketType]) ticketsInt = i;
+        }
     }
     
-    label.text = [[self.fareBrackets objectAtIndex:component] objectAtIndex:row];
-    label.textColor = [self.globalAppProperties.style1 objectForKey:[self.globalAppProperties.styleKeys objectAtIndex:1]];
-    label.font = [self.globalAppProperties.style1 objectForKey:[self.globalAppProperties.styleKeys objectAtIndex:0]];
-    label.backgroundColor = [UIColor clearColor];
+//    for (int i=0; i<[[self.fareBrackets objectAtIndex:0] count]; i++)
+//    {
+//        if([self.fareBracket isEqualToString:[[self.fareBrackets objectAtIndex:0] objectAtIndex:i]]) bracketInt = i;
+//    }
+//    for (int j=0; j<[[self.fareBrackets objectAtIndex:1] count]; j++)
+//    {
+//        if([self.ticketType isEqualToString:[[self.fareBrackets objectAtIndex:1] objectAtIndex:j]]) ticketsInt = j;
+//    }
     
-    //Create UIView as a frame for label
-    UIView *pickerViewRow = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
-    [pickerViewRow addSubview:label];
-    if(component == 0) [pickerViewRow addSubview:imgView];
+    //Create and populate the PickerLocation to be returned
+    PickerLocation location;
+    location.b = bracketInt;
+    location.t = ticketsInt;
     
-    return pickerViewRow;
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return 40.0;
-}
-
-#pragma mark - UIPickerViewDataSource
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return self.fareBrackets.count;
-}
-
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [[self.fareBrackets objectAtIndex:component] count];
+    return location;
 }
 
 #pragma mark - Target-Action methods

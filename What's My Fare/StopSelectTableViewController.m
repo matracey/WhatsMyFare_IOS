@@ -155,6 +155,8 @@
     if([self.title isEqualToString:@"Origin"]) [self.homeViewController setOrigin:[result mutableCopy]];
     else if ([self.title isEqualToString:@"Destination"]) [self.homeViewController setDestin:[result mutableCopy]];
     
+    [[[[[self.splitViewController.viewControllers objectAtIndex:0] viewControllers] lastObject] tableView] reloadData];
+    
     //return to previous nav controller
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
