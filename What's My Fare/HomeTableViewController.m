@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "FareAppDelegate.h"
 #import "PickerViewInActionSheetDelegate.h"
+#import "PickerViewPopoverViewController.h"
 
 #define PRIMAR_CELL_ID @"primaryCell"
 #define CALCUL_CELL_ID @"calculateButtonCell"
@@ -37,6 +38,7 @@
 //Fare Bracket Selector Views
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIActionSheet *actionSheet;
+@property (strong, nonatomic) UIPopoverController *popover;
 
 @property (strong, nonatomic) UITableViewCell *bgView;
 @property (strong, nonatomic) NSDictionary *defaultValues;
@@ -108,6 +110,12 @@
         _globalAppProperties = [[FareAppDelegate alloc] init];
     }
     return _globalAppProperties;
+}
+
+- (UIPopoverController *)popover
+{
+    if(!_popover) _popover = [[UIPopoverController alloc] initWithContentViewController:[[PickerViewPopoverViewController alloc] initWithPickerView:self.pickerView]];
+    return _popover;
 }
 
 #pragma mark - Property setters
@@ -257,14 +265,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *target = [self.tableView cellForRowAtIndexPath:indexPath];
+    id dvc = [[[self.splitViewController.viewControllers lastObject] viewControllers] lastObject];
+
     
     if (indexPath.section == 0)
     {
         self.segueTitle = @"Origin";
         if([self isDeviceIdiomiPad])
-        {
-            id dvc = [[[self.splitViewController.viewControllers lastObject] viewControllers] lastObject];
-            if (![dvc isKindOfClass:[StopSelectTableViewController class]]) {
+        {            if (![dvc isKindOfClass:[StopSelectTableViewController class]]) {
                 [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
             }
             else if([dvc isKindOfClass:[StopSelectTableViewController class]] && [[dvc title] isEqual:@"Destination"])
@@ -279,7 +287,6 @@
         if([self.selectedService isEqual:@2] && [[self.origin objectForKey:@"stopName"] isEqual:POINTS_CELL_TEXT]) [self displayValidationErrorLabelWithMessage:ORIGIN_ERR];
         else{
             self.segueTitle = @"Destination";
-            id dvc = [[[self.splitViewController.viewControllers lastObject] viewControllers] lastObject];
             if([self isDeviceIdiomiPad])
             {
                 if (![dvc isKindOfClass:[StopSelectTableViewController class]]) {
@@ -313,7 +320,8 @@
             self.bgView = nil;
             target.selectedBackgroundView = self.bgView;
             
-            [self performSegueWithIdentifier:@"fareResultSegue" sender:target];
+            if(![self isDeviceIdiomiPad]) [self performSegueWithIdentifier:@"fareResultSegue" sender:target];
+            else [dvc performSegueWithIdentifier:@"resultSegue" sender:target];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -352,24 +360,23 @@
     //Create and add a done button
     UISegmentedControl *doneButton = [[UISegmentedControl alloc] initWithItems:@[@"Done"]];
     doneButton.momentary = YES;
-    doneButton.frame = CGRectMake(260.0, 7.0f, 50.0f, 30.0f);
+    doneButton.frame = CGRectMake(260.0, 5.0f, 50.0f, 30.0f);
     doneButton.segmentedControlStyle = UISegmentedControlStyleBar;
     doneButton.tintColor = [UIColor blueColor];
     [doneButton addTarget:self action:@selector(dismissPickerView) forControlEvents:UIControlEventValueChanged];
     
-    self.actionSheet = [[UIActionSheet alloc]initWithTitle:@"Select a Fare Bracket" delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
-    [self.actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
-    [self.actionSheet addSubview:self.pickerView];
-    
-    [self.actionSheet addSubview:doneButton];
-    
     if([self isDeviceIdiomiPad])
     {
-        //display actionsheet here
-        [self.actionSheet showFromRect:CGRectMake(0.0, 360.0, 320.0, 200.0) inView:self.splitViewController.view animated:YES];
-        [self.actionSheet sizeThatFits:CGSizeMake(320.0, 200.0)];
-    }
-    else{
+        PickerViewPopoverViewController *popoverVC = (PickerViewPopoverViewController *)self.popover.contentViewController;
+        [popoverVC setDoneButton:doneButton];
+        [self.popover setPopoverContentSize:CGSizeMake(320, 220)];
+        [self.popover presentPopoverFromRect:CGRectMake(0.0, 0.0, 320.0, 485.0) inView:self.splitViewController.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        
+    }else{
+        self.actionSheet = [[UIActionSheet alloc]initWithTitle:@"Select a Fare Bracket" delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+        [self.actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+        [self.actionSheet addSubview:self.pickerView];
+        [self.actionSheet addSubview:doneButton];
         [self.actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
         [self.actionSheet setBounds:CGRectMake(0.0, 0.0, 320.0, 485.0)];
     }
@@ -379,7 +386,11 @@
 {
     self.fareBracket = [[self.fareBrackets objectAtIndex:0] objectAtIndex:[self.pickerView selectedRowInComponent:0]];
     self.ticketType = [[self.fareBrackets objectAtIndex:1] objectAtIndex:[self.pickerView selectedRowInComponent:1]];
-    [self.actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+    if([self isDeviceIdiomiPad])
+    {
+        [self.popover dismissPopoverAnimated:YES];
+    }
+    else [self.actionSheet dismissWithClickedButtonIndex:0 animated:YES];
     [self.tableView reloadData];
 }
 
