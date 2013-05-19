@@ -47,6 +47,7 @@
 @property (strong, nonatomic) NSString *ticketType;
 @property (strong, nonatomic) NSArray *fareBrackets;
 @property (strong, nonatomic) FareAppDelegate *globalAppProperties;
+@property (strong, nonatomic) FareResultsViewController *resultViewController;
 
 - (IBAction)didChangeSelectedService:(UIButton *)sender;
 @end
@@ -272,12 +273,13 @@
     {
         self.segueTitle = @"Origin";
         if([self isDeviceIdiomiPad])
-        {            if (![dvc isKindOfClass:[StopSelectTableViewController class]]) {
-                [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
-            }
-            else if([dvc isKindOfClass:[StopSelectTableViewController class]] && [[dvc title] isEqual:@"Destination"])
+        {
+            if(([dvc isKindOfClass:[StopSelectTableViewController class]] && !([[dvc title] isEqual:self.segueTitle])) || [dvc isKindOfClass:[FareResultsViewController class]])
             {
                 [[dvc navigationController] popToRootViewControllerAnimated:NO];
+                [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+            }else if (![dvc isKindOfClass:[StopSelectTableViewController class]])
+            {
                 [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
             }
         }
@@ -289,12 +291,12 @@
             self.segueTitle = @"Destination";
             if([self isDeviceIdiomiPad])
             {
-                if (![dvc isKindOfClass:[StopSelectTableViewController class]]) {
-                    [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
-                }
-                else if([dvc isKindOfClass:[StopSelectTableViewController class]] && [[dvc title] isEqual:@"Origin"])
+                if(([dvc isKindOfClass:[StopSelectTableViewController class]] && !([[dvc title] isEqual:self.segueTitle])) || [dvc isKindOfClass:[FareResultsViewController class]])
                 {
                     [[dvc navigationController] popToRootViewControllerAnimated:NO];
+                    [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+                }else if (![dvc isKindOfClass:[StopSelectTableViewController class]])
+                {
                     [[[[self.splitViewController.viewControllers objectAtIndex:1] viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
                 }
             }else [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
@@ -321,7 +323,24 @@
             target.selectedBackgroundView = self.bgView;
             
             if(![self isDeviceIdiomiPad]) [self performSegueWithIdentifier:@"fareResultSegue" sender:target];
-            else [dvc performSegueWithIdentifier:@"resultSegue" sender:target];
+            else if([dvc isKindOfClass:[FareResultsViewController class]])
+            {
+                self.resultViewController = (FareResultsViewController *)dvc;
+                self.resultViewController.model = [self.model copy];
+                self.resultViewController.selectedService = self.selectedService.copy;
+                [self.resultViewController refreshData];
+            }else if([dvc isKindOfClass:[FareSplashScreenViewController class]])
+            {
+                [dvc performSegueWithIdentifier:@"resultSegue" sender:target];
+                UINavigationController *navController = self.splitViewController.viewControllers.lastObject;
+                NSMutableArray *viewControllers = navController.viewControllers.mutableCopy;
+                
+                [viewControllers removeObject:dvc];
+                [navController setViewControllers:viewControllers.copy];
+            }else{
+                [[dvc navigationController] popToRootViewControllerAnimated:NO];
+                [[[self.splitViewController.viewControllers.lastObject viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"resultSegue" sender:target];
+            }
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -363,16 +382,17 @@
     doneButton.frame = CGRectMake(260.0, 5.0f, 50.0f, 30.0f);
     doneButton.segmentedControlStyle = UISegmentedControlStyleBar;
     doneButton.tintColor = [UIColor blueColor];
-    [doneButton addTarget:self action:@selector(dismissPickerView) forControlEvents:UIControlEventValueChanged];
     
     if([self isDeviceIdiomiPad])
     {
         PickerViewPopoverViewController *popoverVC = (PickerViewPopoverViewController *)self.popover.contentViewController;
-        [popoverVC setDoneButton:doneButton];
-        [self.popover setPopoverContentSize:CGSizeMake(320, 220)];
-        [self.popover presentPopoverFromRect:CGRectMake(0.0, 0.0, 320.0, 485.0) inView:self.splitViewController.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        [popoverVC setDoneButton:doneButton fromSender:self];
+        
+        [self.popover setPopoverContentSize:CGSizeMake(320.0, 220.0)];
+        [self.popover presentPopoverFromRect:CGRectMake(0.0, 190.0, 320.0, 220.0) inView:self.splitViewController.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
         
     }else{
+        [doneButton addTarget:self action:@selector(dismissPickerView) forControlEvents:UIControlEventValueChanged];
         self.actionSheet = [[UIActionSheet alloc]initWithTitle:@"Select a Fare Bracket" delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
         [self.actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
         [self.actionSheet addSubview:self.pickerView];
@@ -384,13 +404,20 @@
 
 - (void)dismissPickerView
 {
-    self.fareBracket = [[self.fareBrackets objectAtIndex:0] objectAtIndex:[self.pickerView selectedRowInComponent:0]];
-    self.ticketType = [[self.fareBrackets objectAtIndex:1] objectAtIndex:[self.pickerView selectedRowInComponent:1]];
     if([self isDeviceIdiomiPad])
     {
+        PickerViewPopoverViewController *popoverVC = (PickerViewPopoverViewController *)self.popover.contentViewController;
+        self.pickerView = popoverVC.pickerView;
+        self.fareBracket = [[self.fareBrackets objectAtIndex:0] objectAtIndex:[self.pickerView selectedRowInComponent:0]];
+        self.ticketType = [[self.fareBrackets objectAtIndex:1] objectAtIndex:[self.pickerView selectedRowInComponent:1]];
         [self.popover dismissPopoverAnimated:YES];
     }
-    else [self.actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+    else
+    {
+        self.fareBracket = [[self.fareBrackets objectAtIndex:0] objectAtIndex:[self.pickerView selectedRowInComponent:0]];
+        self.ticketType = [[self.fareBrackets objectAtIndex:1] objectAtIndex:[self.pickerView selectedRowInComponent:1]];
+        [self.actionSheet dismissWithClickedButtonIndex:0 animated:YES];
+    }
     [self.tableView reloadData];
 }
 
@@ -451,6 +478,7 @@
     }
     self.origin = self.defaultValues.copy;
     self.destin = self.defaultValues.copy;
+    [self.resultViewController setWebServicesToNil];
     [self.tableView reloadData];
 }
 

@@ -8,31 +8,25 @@
 
 #import "PickerViewPopoverViewController.h"
 
-@interface PickerViewPopoverViewController ()
-{
-    UIPickerView *pickerView;
-}
-
-@end
-
 @implementation PickerViewPopoverViewController
 
 - (PickerViewPopoverViewController *)initWithPickerView:(UIPickerView *)picker
 {
     self = [super init];
     
-    pickerView = picker;
-    [self.view setBounds:pickerView.bounds];
-    [self.view addSubview:pickerView];
+    self.pickerView = picker;
+    [self.view setBounds:self.pickerView.bounds];
+    [self.view addSubview:self.pickerView];
     
     return self;
 }
 
-- (void)setDoneButton:(UISegmentedControl *)doneButton
+- (void)setDoneButton:(UISegmentedControl *)doneButton fromSender:(id)sender
 {
     NSMutableArray *subviews = self.view.subviews.mutableCopy;
+    [doneButton addTarget:sender action:@selector(dismissPickerView) forControlEvents:UIControlEventValueChanged];
     [subviews insertObject:doneButton atIndex:0];
-    [pickerView removeFromSuperview];
+    [self.pickerView removeFromSuperview];
     
     for (id obj in subviews) {
         [self.view addSubview:obj];

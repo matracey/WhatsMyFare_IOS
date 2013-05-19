@@ -11,4 +11,7 @@
 @interface FareResultsViewController : UIViewController
 @property (strong, nonatomic) NSArray *model; //data model set by HomeTableViewController
 @property (strong, nonatomic) NSNumber *selectedService; //0 is Luas, 1 is DART, 2 is Commuter Rail
+
+- (void)refreshData;
+- (void)setWebServicesToNil;
 @end
