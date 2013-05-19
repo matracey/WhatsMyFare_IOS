@@ -203,13 +203,21 @@
     
     //Update FareBracket UI Elements
     self.fareBracketLabel.text = [NSString stringWithFormat:@"%@ %@", [[self.model objectAtIndex:2] objectAtIndex:0], [[self.model objectAtIndex:2] objectAtIndex:1]];
-    self.fareBracketImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", [[self.model objectAtIndex:2] objectAtIndex:0]] lowercaseString]];
-    
-    //Update Line UI Elements
     [self setLineIdentifierByOrigin:[[self.model objectAtIndex:0] objectForKey:@"service"] andDestination:[[self.model objectAtIndex:1] objectForKey:@"service"]];
-    if([self.selectedService isEqual:@2])self.lineImageView.image = [UIImage imageNamed:@"rail.png"];
-    else if([self.selectedService isEqual:@1])self.lineImageView.image = [UIImage imageNamed:@"dart.png"];
-    else self.lineImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", self.lineIdentifier] lowercaseString]];
+    
+    //Setting the images
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    {
+        self.fareBracketImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@_lrg.png", [[self.model objectAtIndex:2] objectAtIndex:0]] lowercaseString]];
+        if([self.selectedService isEqual:@2])self.lineImageView.image = [UIImage imageNamed:@"rail_lrg.png"];
+        else if([self.selectedService isEqual:@1])self.lineImageView.image = [UIImage imageNamed:@"dart_lrg.png"];
+        else self.lineImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@_lrg.png", self.lineIdentifier] lowercaseString]];
+    }else{
+        self.fareBracketImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", [[self.model objectAtIndex:2] objectAtIndex:0]] lowercaseString]];
+        if([self.selectedService isEqual:@2])self.lineImageView.image = [UIImage imageNamed:@"rail.png"];
+        else if([self.selectedService isEqual:@1])self.lineImageView.image = [UIImage imageNamed:@"dart.png"];
+        else self.lineImageView.image = [UIImage imageNamed:[[NSString stringWithFormat:@"%@.png", self.lineIdentifier] lowercaseString]];
+    }
     
     if([self.lineIdentifier isEqualToString:@"Red"] || [self.lineIdentifier isEqualToString:@"Green"]) self.lineLabel.text = [NSString stringWithFormat:@"%@ Line", self.lineIdentifier];
     else if([self.lineIdentifier isEqualToString:@"Both"]) self.lineLabel.text = @"Red & Green Line";
