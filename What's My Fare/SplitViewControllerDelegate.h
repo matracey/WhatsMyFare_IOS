@@ -8,10 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol SplitViewBarButtonItemPresenter
-@property (nonatomic, strong) UIBarButtonItem *splitViewBarButtonItem;
-@end
-
 @interface SplitViewControllerDelegate : UISplitViewController <UISplitViewControllerDelegate>
+
 - (SplitViewControllerDelegate *)initWithSender:(id)sender;
 @end
