@@ -187,9 +187,6 @@
     [activityIndicator startAnimating];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:activityIndicator];
     
-    //Disable the tableView so that the user can't make any selections while data is loading
-    self.tableView.userInteractionEnabled = NO;
-    
     //Access our data
     NSPredicate *filterPredicate;
     if([self.selectedService isEqual:@0])
@@ -212,28 +209,15 @@
     }
 }
 
-- (void)refreshData
-{
-    [self refreshData:self.refreshButton];
-}
-
-- (void)setWebServicesToNil
-{
-    self.webService = nil;
-}
-
 #pragma mark - Model
 - (void)dataDidLoadFromWebService:(NSArray *)data withIndicator:(UIActivityIndicatorView *)activityIndicator andSender:(UIBarButtonItem *)sender
 {
     self.points = data.copy;
     
-    
     //filter the display when selecting destination for commuter rail services.
     if([self.selectedService isEqual:@2] && [self.title isEqual:@"Destination"]){
         self.points = [self removeIrrelevantStationsForCommuterRailFromArray:self.points];
     }
-    //Re-Enable the tableView user interaction
-    self.tableView.userInteractionEnabled = YES;
     //reload the data so that the table view is updated
     [self.tableView reloadData];
     //stop the activity indicator from spinning and put the refresh button back
