@@ -9,7 +9,6 @@
 #import "HomeTableViewController.h"
 #import "StopSelectTableViewController.h"
 #import "FareResultsViewController.h"
-#import "FareSplashScreenViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "FareAppDelegate.h"
 
@@ -462,18 +461,8 @@ else _origin = origin;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoImageView];
     [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil]];
     self.view.backgroundColor = self.globalAppProperties.backgroundColor;
-    if(![self splitSplashViewController]) [self performSegueWithIdentifier:@"splashSegue" sender:self];
+    [self performSegueWithIdentifier:@"splashSegue" sender:self];
     [self didChangeSelectedService:self.luasServiceButton];
-}
-
-- (FareResultsViewController *)splitSplashViewController
-{
-    id svc = [self.splitViewController.viewControllers lastObject];
-    if(![svc isKindOfClass:[FareSplashScreenViewController class]])
-    {
-        svc = nil;
-    }
-    return svc;
 }
 
 - (void)viewWillAppear:(BOOL)animated
