@@ -6,37 +6,36 @@
 //  Copyright (c) 2013 Martin Tracey. All rights reserved.
 //
 
-#import "NavigationControllerWithSplitViewDelegate.h"
+#import "SplitViewControllerDelegate.h"
 
-@interface NavigationControllerWithSplitViewDelegate ()
+@interface SplitViewControllerDelegate ()
 @property (nonatomic, strong) UIViewController *sender;
 @end
 
-@implementation NavigationControllerWithSplitViewDelegate
+@implementation SplitViewControllerDelegate
 
 -(id<SplitViewBarButtonItemPresenter>)splitViewBarButtonItemPresenter
 {
-    id detailVC = [self.splitViewController.viewControllers lastObject];
-    detailVC = [[detailVC viewControllers] lastObject];
-    if(![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)]){
+    id detailVC = ([self.sender.splitViewController.viewControllers lastObject]);
+    if(![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)])
+    {
         detailVC = nil;
     }
     return detailVC;
 }
 
-- (void)awakeFromNib
+- (SplitViewControllerDelegate *)initWithSender:(UIViewController *)sender
 {
-    [super awakeFromNib];
-    self.splitViewController.delegate = self;
+    self = [super init];
+    self.sender = sender;
+    return self;
 }
 
 - (BOOL)splitViewController:(UISplitViewController *)svc
    shouldHideViewController:(UIViewController *)vc
               inOrientation:(UIInterfaceOrientation)orientation
 {
-    
-    //return orientation == UIInterfaceOrientationMaskPortrait;
-    return NO;
+    return [self splitViewBarButtonItemPresenter] ? UIInterfaceOrientationIsPortrait(orientation) : NO;
 }
 
 - (void)splitViewController:(UISplitViewController *)svc
@@ -44,12 +43,6 @@
           withBarButtonItem:(UIBarButtonItem *)barButtonItem
        forPopoverController:(UIPopoverController *)pc
 {
-    NSLog(@"Will hide!");
-    //getting the HomeViewController from the navigation controller
-    UINavigationController *hiddenVC = (UINavigationController *)aViewController;
-    aViewController = [hiddenVC.viewControllers objectAtIndex:0];
-    
-    //setting the bar button item
     barButtonItem.title = aViewController.title;
     [[self splitViewBarButtonItemPresenter] setSplitViewBarButtonItem:barButtonItem];
 }
@@ -58,7 +51,6 @@
      willShowViewController:(UIViewController *)aViewController
   invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    NSLog(@"Will Show!");
     [[self splitViewBarButtonItemPresenter] setSplitViewBarButtonItem:nil];
 }
 

@@ -47,13 +47,7 @@
 
 - (HomeTableViewController *)homeViewController
 {
-    if(!_homeViewController)
-    {
-        if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-        {
-            _homeViewController = [[[self.splitViewController.viewControllers objectAtIndex:0] viewControllers] objectAtIndex:0];
-        }else _homeViewController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-    }
+    if(!_homeViewController) _homeViewController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
     return _homeViewController;
 }
 
