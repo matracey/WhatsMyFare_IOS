@@ -425,7 +425,7 @@
         <image name="ServiceDeselected.png" width="80" height="35"/>
         <image name="ServiceSelected.png" width="80" height="35"/>
         <image name="both_luas.png" width="55" height="70"/>
-        <image name="child.png" width="40" height="60"/>
+        <image name="child.png" width="40" height="61"/>
         <image name="dart.png" width="69" height="62"/>
         <image name="rail.png" width="69" height="62"/>
         <image name="red_luas.png" width="55" height="70"/>
