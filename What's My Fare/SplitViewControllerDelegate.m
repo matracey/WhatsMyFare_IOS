@@ -7,7 +7,6 @@
 //
 
 #import "SplitViewControllerDelegate.h"
-#import "SplitViewBarButtonItemPresenter.h"
 
 @interface SplitViewControllerDelegate ()
 @property (nonatomic, strong) UIViewController *sender;
@@ -17,7 +16,6 @@
 
 -(id<SplitViewBarButtonItemPresenter>)splitViewBarButtonItemPresenter
 {
-    NSLog(@"%@", self.sender);
     id detailVC = ([self.sender.splitViewController.viewControllers lastObject]);
     if(![detailVC conformsToProtocol:@protocol(SplitViewBarButtonItemPresenter)])
     {

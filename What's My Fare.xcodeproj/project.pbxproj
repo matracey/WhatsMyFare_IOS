@@ -27,9 +27,6 @@
 		4B75928B16E3B86800E97980 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B75928916E3B86800E97980 /* InfoPlist.strings */; };
 		4B75928D16E3B86800E97980 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B75928C16E3B86800E97980 /* main.m */; };
 		4B75929116E3B86800E97980 /* FareAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B75929016E3B86800E97980 /* FareAppDelegate.m */; };
-		4B75929316E3B86800E97980 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929216E3B86800E97980 /* Default.png */; };
-		4B75929516E3B86800E97980 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929416E3B86800E97980 /* Default@2x.png */; };
-		4B75929716E3B86800E97980 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929616E3B86800E97980 /* Default-568h@2x.png */; };
 		4B75929A16E3B86800E97980 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929816E3B86800E97980 /* iPhone.storyboard */; };
 		4B7592A516E3C1FB00E97980 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */; };
 		4B8A7C48172D82AD0004D2A1 /* FareResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */; };
@@ -149,7 +146,6 @@
 		4BC0618916E9154A0067889B /* StopSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopSelectTableViewController.m; sourceTree = "<group>"; };
 		4BDE9C1C1743EBB900B30308 /* SplitViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewControllerDelegate.h; sourceTree = "<group>"; };
 		4BDE9C1D1743EBB900B30308 /* SplitViewControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewControllerDelegate.m; sourceTree = "<group>"; };
-		4BDE9C1F1743EDE800B30308 /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; };
 		4BF4436B173EF886009F5212 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4BF44370173EF9FD009F5212 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4BF44371173EF9FD009F5212 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -233,15 +229,14 @@
 				4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */,
 				4B05255917393B4800989699 /* FareSplashScreenViewController.h */,
 				4B05255A17393B4800989699 /* FareSplashScreenViewController.m */,
-				4B7592A316E3C1FB00E97980 /* HomeTableViewController.h */,
-				4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */,
 				4BDE9C1C1743EBB900B30308 /* SplitViewControllerDelegate.h */,
 				4BDE9C1D1743EBB900B30308 /* SplitViewControllerDelegate.m */,
+				4B7592A316E3C1FB00E97980 /* HomeTableViewController.h */,
+				4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */,
 				4BC0618816E9154A0067889B /* StopSelectTableViewController.h */,
 				4BC0618916E9154A0067889B /* StopSelectTableViewController.m */,
 				4B6C5B4916EB93C200673253 /* FareAzureWebServices.h */,
 				4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */,
-				4BDE9C1F1743EDE800B30308 /* SplitViewBarButtonItemPresenter.h */,
 				4B75928716E3B86800E97980 /* Supporting Files */,
 			);
 			path = "What's My Fare";
@@ -400,9 +395,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B75928B16E3B86800E97980 /* InfoPlist.strings in Resources */,
-				4B75929316E3B86800E97980 /* Default.png in Resources */,
-				4B75929516E3B86800E97980 /* Default@2x.png in Resources */,
-				4B75929716E3B86800E97980 /* Default-568h@2x.png in Resources */,
 				4B75929A16E3B86800E97980 /* iPhone.storyboard in Resources */,
 				4BADFED217385C5400836CC4 /* AppIcon.png in Resources */,
 				4BADFED417385C5D00836CC4 /* AppIcon@2x.png in Resources */,

@@ -35,14 +35,11 @@
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) UIActionSheet *actionSheet;
 @property (strong, nonatomic) UITableViewCell *bgView;
-
 @property (strong, nonatomic) NSDictionary *defaultValues;
+@property (strong, nonatomic) NSArray *model;
 @property (strong, nonatomic) NSString *fareBracket;
 @property (strong, nonatomic) NSString *ticketType;
-@property (strong, nonatomic) NSString *segueTitle;
-@property (strong, nonatomic) NSArray *model; //
 @property (strong, nonatomic) NSArray *fareBrackets;
-@property (strong, nonatomic) NSNumber *selectedService; //0 for Luas, 1 for DART, 2 for Rail
 @property (strong, nonatomic) FareAppDelegate *globalAppProperties;
 
 - (IBAction)didChangeSelectedService:(UIButton *)sender;
@@ -118,7 +115,7 @@
         self.destin = self.defaultValues.copy;
         _origin = origin;
     }
-else _origin = origin;
+    else _origin = origin;
 }
 
 #pragma mark - Segue methods
@@ -260,19 +257,26 @@ else _origin = origin;
     if (indexPath.section == 0)
     {
         self.segueTitle = @"Origin";
-        [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
+        if([self isDeviceIdiomiPad])
+        {
+             [[self.splitViewController.viewControllers objectAtIndex:1] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+        }
+        else [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
     }else if (indexPath.section == 1)
     {
         if([self.selectedService isEqual:@2] && [[self.origin objectForKey:@"stopName"] isEqual:POINTS_CELL_TEXT]) [self displayValidationErrorLabelWithMessage:ORIGIN_ERR];
         else{
             self.segueTitle = @"Destination";
-            [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
+            if([self isDeviceIdiomiPad])
+            {
+             [[self.splitViewController.viewControllers objectAtIndex:1] performSegueWithIdentifier:@"stopSelectSegue" sender:target];
+            }else [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
         }
     }
     else if (indexPath.section == 2)
-{
-    [self displayPickerView];
-}
+    {
+        [self displayPickerView];
+    }
     else if (indexPath.section == 3)
     {
         if([[self.origin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT] || [[self.destin objectForKey:@"stopName"] isEqualToString:POINTS_CELL_TEXT] || [self.fareBracket isEqualToString:FAREBR_CELL_TEXT])
@@ -462,18 +466,15 @@ else _origin = origin;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoImageView];
     [self.navigationItem setBackBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:nil action:nil]];
     self.view.backgroundColor = self.globalAppProperties.backgroundColor;
-    if(![self splitSplashViewController]) [self performSegueWithIdentifier:@"splashSegue" sender:self];
+    
+    if(![self isDeviceIdiomiPad]) [self performSegueWithIdentifier:@"splashSegue" sender:self];
     [self didChangeSelectedService:self.luasServiceButton];
 }
 
-- (FareResultsViewController *)splitSplashViewController
+- (BOOL)isDeviceIdiomiPad
 {
-    id svc = [self.splitViewController.viewControllers lastObject];
-    if(![svc isKindOfClass:[FareSplashScreenViewController class]])
-    {
-        svc = nil;
-    }
-    return svc;
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)return YES;
+    else return NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
