@@ -192,67 +192,67 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" id="PzD-cd-bHN">
-                                <rect key="frame" x="20" y="309" width="355" height="21"/>
+                                <rect key="frame" x="20" y="274" width="355" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="From" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9RP-WO-8cD">
-                                <rect key="frame" x="110" y="360" width="80" height="40"/>
+                                <rect key="frame" x="390" y="244" width="50" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Not Selected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" id="ese-vm-b4d">
-                                <rect key="frame" x="198" y="360" width="460" height="40"/>
+                                <rect key="frame" x="465" y="247" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="To" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t26-hA-qNe">
-                                <rect key="frame" x="110" y="408" width="80" height="40"/>
+                                <rect key="frame" x="390" y="275" width="50" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-CondensedExtraBold" family="Futura" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Not Selected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" id="9Vr-B0-Xaw">
-                                <rect key="frame" x="198" y="408" width="460" height="40"/>
+                                <rect key="frame" x="465" y="276" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Total Fare:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8l9-NU-3Ve">
-                                <rect key="frame" x="207" y="489" width="220" height="44"/>
+                                <rect key="frame" x="207" y="400" width="220" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="32"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" adjustsLetterSpacingToFitWidth="YES" id="yMr-g3-xHj">
-                                <rect key="frame" x="435" y="489" width="125" height="44"/>
+                                <rect key="frame" x="435" y="400" width="125" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Not Selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PiG-JJ-heh">
-                                <rect key="frame" x="390" y="309" width="355" height="21"/>
+                                <rect key="frame" x="390" y="216" width="355" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="child@2x.png" id="3NJ-Rs-tjX">
-                                <rect key="frame" x="390" y="88" width="355" height="213"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="child.png" id="3NJ-Rs-tjX">
+                                <rect key="frame" x="390" y="88" width="355" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="dart@2x.png" id="oAz-lJ-vxN">
-                                <rect key="frame" x="78" y="88" width="239" height="213"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="dart.png" id="oAz-lJ-vxN">
+                                <rect key="frame" x="96" y="88" width="202" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FJX-kN-sBz">
@@ -448,10 +448,9 @@
         <image name="PaymentPlatformSelected.png" width="80" height="25"/>
         <image name="ServiceDeselected.png" width="80" height="35"/>
         <image name="ServiceSelected.png" width="80" height="35"/>
-        <image name="both_luas.png" width="16" height="16"/>
-        <image name="child@2x.png" width="80" height="120"/>
+        <image name="both_luas.png" width="55" height="70"/>
+        <image name="child.png" width="40" height="60"/>
         <image name="dart.png" width="69" height="62"/>
-        <image name="dart@2x.png" width="137" height="124"/>
         <image name="rail.png" width="69" height="62"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
