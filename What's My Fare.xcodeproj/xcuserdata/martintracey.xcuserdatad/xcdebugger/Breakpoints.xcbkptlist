@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "What&apos;s My Fare/FareSplashScreenViewController.m"
-         timestampString = "390573605.569496"
+         timestampString = "390663564.414961"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "55"
-         endingLineNumber = "55"
+         startingLineNumber = "60"
+         endingLineNumber = "60"
          landmarkName = "-setSplitViewBarButtonItem:"
          landmarkType = "5">
       </FileBreakpoint>

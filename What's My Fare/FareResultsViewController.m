@@ -11,9 +11,14 @@
 #define RAIL_PRICES_TABLE @"RailPriceInfo"
 #define RAIL_TARIFF_TABLE @"RailFareTariffs"
 
+//iPad Segues
+#define IPAD_STOP_SELECT_SEGUE_TITLE @"stopSelectSegue"
+
 #import "FareResultsViewController.h"
 #import "FareAzureWebServices.h"
 #import "FareAppDelegate.h"
+#import "StopSelectTableViewController.h"
+#import "HomeTableViewController.h"
 
 @interface FareResultsViewController ()
 //UIView Outlets
@@ -34,6 +39,7 @@
 @property (strong, nonatomic) NSString *lineIdentifier;
 @property (strong, nonatomic) FareAzureWebServices *webService;
 @property (strong, nonatomic) FareAppDelegate *globalAppProperties;
+@property (strong, nonatomic) HomeTableViewController *masterVC;
 
 //Target-Action methods
 - (IBAction)paymentPlatformDidChange:(UIButton *)sender;
@@ -77,6 +83,33 @@
         _lineIdentifier = [[NSString alloc] init];
     }
     return _lineIdentifier;
+}
+
+- (HomeTableViewController *)masterVC
+{
+    if(!_masterVC)
+    {
+        UINavigationController *navController;
+        if([[self.splitViewController.viewControllers objectAtIndex:0] isKindOfClass:[UINavigationController class]])
+        {
+            navController = [self.splitViewController.viewControllers objectAtIndex:0];
+        }
+        _masterVC = [navController.viewControllers objectAtIndex:0];
+    }
+    return _masterVC;
+}
+
+#pragma mark - Segue Methods
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
+{
+    if([segue.identifier isEqual:IPAD_STOP_SELECT_SEGUE_TITLE])
+    {
+        StopSelectTableViewController *destination = segue.destinationViewController;
+        destination.title = self.masterVC.segueTitle;
+        destination.selectedService = self.masterVC.selectedService;
+        destination.toolbarItems = self.toolbarItems.copy;
+        destination.navigationController.toolbarHidden = NO;
+    }else NSLog(@"Err: Segue did not execute correctly.");
 }
 
 #pragma mark - Property Setter methods
@@ -155,9 +188,12 @@
          [activityIndicator stopAnimating];
          self.navigationItem.rightBarButtonItem = nil;
          
-         if([[items objectAtIndex:0] isKindOfClass:[NSDictionary class]] && items.count == 1)
+         id item;
+         if(items.count == 1) item = [items objectAtIndex:0];
+         
+         if([item isKindOfClass:[NSDictionary class]])
          {
-             self.fareResult = [items objectAtIndex:0];
+             self.fareResult = item;
              [self getPriceWithZone:[self.fareResult objectForKey:@"price_code"]];
          }
          else NSLog(@"Something went wrong. :(");
@@ -180,6 +216,11 @@
     else if([self.selectedService isEqual:@1]) self.lineLabel.text = @"DART";
     else self.lineLabel.text = @"Commuter Rail";
     
+}
+
+- (void)setWebServicesToNil
+{
+    self.webService = nil;
 }
 
 - (void)getPriceWithZone:(NSString *)zone
