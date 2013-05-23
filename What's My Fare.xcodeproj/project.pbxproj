@@ -14,6 +14,12 @@
 		4B05256317394A8A00989699 /* ServiceSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B05255F17394A8A00989699 /* ServiceSelected@2x.png */; };
 		4B05256617398A3800989699 /* dart.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B05256417398A3700989699 /* dart.png */; };
 		4B05256717398A3800989699 /* dart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B05256517398A3800989699 /* dart@2x.png */; };
+		4B088A481742E38100E04761 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B088A451742E38100E04761 /* Default.png */; };
+		4B088A491742E38100E04761 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B088A461742E38100E04761 /* Default-568h@2x.png */; };
+		4B088A4A1742E38100E04761 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B088A471742E38100E04761 /* Default@2x.png */; };
+		4B088A4C1742E77200E04761 /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B088A4B1742E77200E04761 /* Default-Portrait@2x~ipad.png */; };
+		4B088A4E1742E7A100E04761 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B088A4D1742E7A100E04761 /* Default-Portrait~ipad.png */; };
+		4B4B0D8B1742DDF200122FC5 /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B0D8A1742DDF200122FC5 /* iPad.storyboard */; };
 		4B6C5B4B16EB93C200673253 /* FareAzureWebServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */; };
 		4B75928116E3B86800E97980 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928016E3B86800E97980 /* UIKit.framework */; };
 		4B75928316E3B86800E97980 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B75928216E3B86800E97980 /* Foundation.framework */; };
@@ -24,7 +30,7 @@
 		4B75929316E3B86800E97980 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929216E3B86800E97980 /* Default.png */; };
 		4B75929516E3B86800E97980 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929416E3B86800E97980 /* Default@2x.png */; };
 		4B75929716E3B86800E97980 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929616E3B86800E97980 /* Default-568h@2x.png */; };
-		4B75929A16E3B86800E97980 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929816E3B86800E97980 /* MainStoryboard.storyboard */; };
+		4B75929A16E3B86800E97980 /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B75929816E3B86800E97980 /* iPhone.storyboard */; };
 		4B7592A516E3C1FB00E97980 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */; };
 		4B8A7C48172D82AD0004D2A1 /* FareResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */; };
 		4BADFED217385C5400836CC4 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFED117385C5400836CC4 /* AppIcon.png */; };
@@ -53,10 +59,9 @@
 		4BADFF211739314D00836CC4 /* red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFF091739314D00836CC4 /* red@2x.png */; };
 		4BADFF221739314D00836CC4 /* student.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFF0A1739314D00836CC4 /* student.png */; };
 		4BADFF231739314D00836CC4 /* student@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFF0B1739314D00836CC4 /* student@2x.png */; };
-		4BADFF261739366800836CC4 /* splash_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFF241739366800836CC4 /* splash_screen.png */; };
-		4BADFF271739366800836CC4 /* splash_screen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFF251739366800836CC4 /* splash_screen@2x.png */; };
 		4BC0618716E8DDBE0067889B /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */; };
 		4BC0618A16E9154A0067889B /* StopSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC0618916E9154A0067889B /* StopSelectTableViewController.m */; };
+		4BDE9C1E1743EBB900B30308 /* SplitViewControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE9C1D1743EBB900B30308 /* SplitViewControllerDelegate.m */; };
 		4BF4436C173EF886009F5212 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF4436B173EF886009F5212 /* SystemConfiguration.framework */; };
 		4BF44372173EF9FD009F5212 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF44371173EF9FD009F5212 /* Reachability.m */; };
 		4BF4437A173F0622009F5212 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF44379173F0622009F5212 /* SenTestingKit.framework */; };
@@ -87,6 +92,12 @@
 		4B05255F17394A8A00989699 /* ServiceSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ServiceSelected@2x.png"; sourceTree = "<group>"; };
 		4B05256417398A3700989699 /* dart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dart.png; sourceTree = "<group>"; };
 		4B05256517398A3800989699 /* dart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dart@2x.png"; sourceTree = "<group>"; };
+		4B088A451742E38100E04761 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		4B088A461742E38100E04761 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4B088A471742E38100E04761 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		4B088A4B1742E77200E04761 /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait@2x~ipad.png"; path = "../Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		4B088A4D1742E7A100E04761 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		4B4B0D8A1742DDF200122FC5 /* iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPad.storyboard; sourceTree = "<group>"; };
 		4B6C5B4916EB93C200673253 /* FareAzureWebServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareAzureWebServices.h; sourceTree = "<group>"; };
 		4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FareAzureWebServices.m; sourceTree = "<group>"; };
 		4B75927D16E3B86800E97980 /* What's My Fare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "What's My Fare.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,7 +113,7 @@
 		4B75929216E3B86800E97980 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		4B75929416E3B86800E97980 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		4B75929616E3B86800E97980 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		4B75929916E3B86800E97980 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		4B75929916E3B86800E97980 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
 		4B7592A316E3C1FB00E97980 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		4B8A7C46172D82AD0004D2A1 /* FareResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FareResultsViewController.h; sourceTree = "<group>"; };
@@ -133,11 +144,12 @@
 		4BADFF091739314D00836CC4 /* red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "red@2x.png"; sourceTree = "<group>"; };
 		4BADFF0A1739314D00836CC4 /* student.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = student.png; sourceTree = "<group>"; };
 		4BADFF0B1739314D00836CC4 /* student@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "student@2x.png"; sourceTree = "<group>"; };
-		4BADFF241739366800836CC4 /* splash_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen.png; sourceTree = "<group>"; };
-		4BADFF251739366800836CC4 /* splash_screen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash_screen@2x.png"; sourceTree = "<group>"; };
 		4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		4BC0618816E9154A0067889B /* StopSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopSelectTableViewController.h; sourceTree = "<group>"; };
 		4BC0618916E9154A0067889B /* StopSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopSelectTableViewController.m; sourceTree = "<group>"; };
+		4BDE9C1C1743EBB900B30308 /* SplitViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewControllerDelegate.h; sourceTree = "<group>"; };
+		4BDE9C1D1743EBB900B30308 /* SplitViewControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewControllerDelegate.m; sourceTree = "<group>"; };
+		4BDE9C1F1743EDE800B30308 /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; };
 		4BF4436B173EF886009F5212 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4BF44370173EF9FD009F5212 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4BF44371173EF9FD009F5212 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -213,7 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				4BADFEB71738060400836CC4 /* Images */,
-				4B75929816E3B86800E97980 /* MainStoryboard.storyboard */,
+				4B75929816E3B86800E97980 /* iPhone.storyboard */,
+				4B4B0D8A1742DDF200122FC5 /* iPad.storyboard */,
 				4B75928F16E3B86800E97980 /* FareAppDelegate.h */,
 				4B75929016E3B86800E97980 /* FareAppDelegate.m */,
 				4B8A7C46172D82AD0004D2A1 /* FareResultsViewController.h */,
@@ -222,10 +235,13 @@
 				4B05255A17393B4800989699 /* FareSplashScreenViewController.m */,
 				4B7592A316E3C1FB00E97980 /* HomeTableViewController.h */,
 				4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */,
+				4BDE9C1C1743EBB900B30308 /* SplitViewControllerDelegate.h */,
+				4BDE9C1D1743EBB900B30308 /* SplitViewControllerDelegate.m */,
 				4BC0618816E9154A0067889B /* StopSelectTableViewController.h */,
 				4BC0618916E9154A0067889B /* StopSelectTableViewController.m */,
 				4B6C5B4916EB93C200673253 /* FareAzureWebServices.h */,
 				4B6C5B4A16EB93C200673253 /* FareAzureWebServices.m */,
+				4BDE9C1F1743EDE800B30308 /* SplitViewBarButtonItemPresenter.h */,
 				4B75928716E3B86800E97980 /* Supporting Files */,
 			);
 			path = "What's My Fare";
@@ -250,6 +266,11 @@
 		4BADFEB71738060400836CC4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4B088A4D1742E7A100E04761 /* Default-Portrait~ipad.png */,
+				4B088A4B1742E77200E04761 /* Default-Portrait@2x~ipad.png */,
+				4B088A451742E38100E04761 /* Default.png */,
+				4B088A461742E38100E04761 /* Default-568h@2x.png */,
+				4B088A471742E38100E04761 /* Default@2x.png */,
 				4B05256417398A3700989699 /* dart.png */,
 				4B05256517398A3800989699 /* dart@2x.png */,
 				4B05255C17394A8A00989699 /* ServiceDeselected.png */,
@@ -258,8 +279,6 @@
 				4B05255F17394A8A00989699 /* ServiceSelected@2x.png */,
 				4BADFED317385C5D00836CC4 /* AppIcon@2x.png */,
 				4BADFED117385C5400836CC4 /* AppIcon.png */,
-				4BADFF241739366800836CC4 /* splash_screen.png */,
-				4BADFF251739366800836CC4 /* splash_screen@2x.png */,
 				4BADFEF41739314C00836CC4 /* add_to_faves.png */,
 				4BADFEF51739314C00836CC4 /* add_to_faves@2x.png */,
 				4BADFEF61739314C00836CC4 /* adult.png */,
@@ -384,7 +403,7 @@
 				4B75929316E3B86800E97980 /* Default.png in Resources */,
 				4B75929516E3B86800E97980 /* Default@2x.png in Resources */,
 				4B75929716E3B86800E97980 /* Default-568h@2x.png in Resources */,
-				4B75929A16E3B86800E97980 /* MainStoryboard.storyboard in Resources */,
+				4B75929A16E3B86800E97980 /* iPhone.storyboard in Resources */,
 				4BADFED217385C5400836CC4 /* AppIcon.png in Resources */,
 				4BADFED417385C5D00836CC4 /* AppIcon@2x.png in Resources */,
 				4BADFF0C1739314D00836CC4 /* add_to_faves.png in Resources */,
@@ -411,14 +430,18 @@
 				4BADFF211739314D00836CC4 /* red@2x.png in Resources */,
 				4BADFF221739314D00836CC4 /* student.png in Resources */,
 				4BADFF231739314D00836CC4 /* student@2x.png in Resources */,
-				4BADFF261739366800836CC4 /* splash_screen.png in Resources */,
-				4BADFF271739366800836CC4 /* splash_screen@2x.png in Resources */,
 				4B05256017394A8A00989699 /* ServiceDeselected.png in Resources */,
 				4B05256117394A8A00989699 /* ServiceDeselected@2x.png in Resources */,
 				4B05256217394A8A00989699 /* ServiceSelected.png in Resources */,
 				4B05256317394A8A00989699 /* ServiceSelected@2x.png in Resources */,
 				4B05256617398A3800989699 /* dart.png in Resources */,
 				4B05256717398A3800989699 /* dart@2x.png in Resources */,
+				4B4B0D8B1742DDF200122FC5 /* iPad.storyboard in Resources */,
+				4B088A481742E38100E04761 /* Default.png in Resources */,
+				4B088A491742E38100E04761 /* Default-568h@2x.png in Resources */,
+				4B088A4A1742E38100E04761 /* Default@2x.png in Resources */,
+				4B088A4C1742E77200E04761 /* Default-Portrait@2x~ipad.png in Resources */,
+				4B088A4E1742E7A100E04761 /* Default-Portrait~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +484,7 @@
 				4B8A7C48172D82AD0004D2A1 /* FareResultsViewController.m in Sources */,
 				4B05255B17393B4800989699 /* FareSplashScreenViewController.m in Sources */,
 				4BF44372173EF9FD009F5212 /* Reachability.m in Sources */,
+				4BDE9C1E1743EBB900B30308 /* SplitViewControllerDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,12 +516,12 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		4B75929816E3B86800E97980 /* MainStoryboard.storyboard */ = {
+		4B75929816E3B86800E97980 /* iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				4B75929916E3B86800E97980 /* en */,
 			);
-			name = MainStoryboard.storyboard;
+			name = iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 		4BF44380173F0622009F5212 /* InfoPlist.strings */ = {
@@ -580,6 +604,7 @@
 				INFOPLIST_FILE = "What's My Fare/What's My Fare-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -597,6 +622,7 @@
 				INFOPLIST_FILE = "What's My Fare/What's My Fare-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

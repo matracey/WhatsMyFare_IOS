@@ -323,7 +323,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nOG-Wb-zO3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1163" y="633"/>
+            <point key="canvasLocation" x="1377" y="643"/>
         </scene>
         <!--Fare Splash Screen View Controller-->
         <scene sceneID="XNj-A0-5Ah">
@@ -333,7 +333,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="splash_screen.png" id="HvW-lA-XWg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Default.png" id="HvW-lA-XWg">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -343,7 +343,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BZC-ZD-MPD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1163" y="-563"/>
+            <point key="canvasLocation" x="1377" y="-563"/>
         </scene>
         <!--Stop Select Table View Controller - Stop Select-->
         <scene sceneID="eJF-Sw-bhd">
@@ -415,10 +415,11 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1163" y="26"/>
+            <point key="canvasLocation" x="1377" y="35"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Default.png" width="320" height="460"/>
         <image name="PaymentPlatformDeselected.png" width="80" height="25"/>
         <image name="PaymentPlatformSelected.png" width="80" height="25"/>
         <image name="ServiceDeselected.png" width="80" height="35"/>
@@ -428,7 +429,6 @@
         <image name="dart.png" width="69" height="62"/>
         <image name="rail.png" width="69" height="62"/>
         <image name="red_luas.png" width="55" height="70"/>
-        <image name="splash_screen.png" width="320" height="480"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
