@@ -477,22 +477,8 @@
         self.dartServiceButton.enabled = YES;
     }
     self.origin = self.defaultValues.copy;
-    self.destin = self.defaultValues.copy; //if we change the selected service, we need to reset the values for origin and destination
-    [self.resultViewController setWebServicesToNil]; //does nothing if resultViewController is nil
-    
-    //we need to check if the StopSelectTableViewController is displaying in the SplitViewController
-    id _currentViewControllerInDetailView = [[[self.splitViewController.viewControllers lastObject] viewControllers] lastObject];
-    if([_currentViewControllerInDetailView isKindOfClass:[StopSelectTableViewController class]])
-    {
-        StopSelectTableViewController *currentViewControllerInDetailView = (StopSelectTableViewController *)_currentViewControllerInDetailView;
-        //We must update the selectedService of the StopSelectTableViewController
-        currentViewControllerInDetailView.selectedService = self.selectedService;
-        //Then we need to set the webService to nil.
-        [currentViewControllerInDetailView setWebServicesToNil];
-        //And finally call reloadData on the tableView.
-        [currentViewControllerInDetailView refreshData];
-    }
-    
+    self.destin = self.defaultValues.copy;
+    [self.resultViewController setWebServicesToNil];
     [self.tableView reloadData];
 }
 

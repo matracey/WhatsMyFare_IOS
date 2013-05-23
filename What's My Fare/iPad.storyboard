@@ -251,8 +251,8 @@
                                 <rect key="frame" x="390" y="88" width="355" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="dart.png" id="oAz-lJ-vxN">
-                                <rect key="frame" x="96" y="88" width="202" height="180"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="red_luas.png" id="oAz-lJ-vxN">
+                                <rect key="frame" x="20" y="88" width="355" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FJX-kN-sBz">
@@ -452,13 +452,55 @@
         <image name="child.png" width="40" height="60"/>
         <image name="dart.png" width="69" height="62"/>
         <image name="rail.png" width="69" height="62"/>
+        <image name="red_luas.png" width="55" height="70"/>
     </resources>
+    <classes>
+        <class className="FareResultsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FareResultsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="paymentPlatformDidChange:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="CashButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="LeapCardButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="destinLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="fareBracketImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="fareBracketLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lineImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lineLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="originLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="totalFareLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FareSplashScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FareSplashScreenViewController.h"/>
+        </class>
+        <class className="HomeTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/HomeTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didChangeSelectedService:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="dartServiceButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="errLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="luasServiceButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="railServiceButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="NavigationControllerWithSplitViewDelegate" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NavigationControllerWithSplitViewDelegate.h"/>
+        </class>
+        <class className="StopSelectTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StopSelectTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshData:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="pointSearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="refreshButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="w09-GT-7RJ"/>
+        <segue reference="yDl-5e-mKL"/>
     </inferredMetricsTieBreakers>
 </document>

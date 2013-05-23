@@ -10,7 +10,4 @@
 
 @interface StopSelectTableViewController : UITableViewController
 @property (strong, nonatomic) NSNumber *selectedService; //0 is Luas, 1 is DART, 2 is Commuter Rail
-
-- (void)setWebServicesToNil;
-- (void)refreshData;
 @end
