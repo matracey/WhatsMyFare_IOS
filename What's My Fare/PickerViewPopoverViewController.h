@@ -9,9 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PickerViewPopoverViewController : UIViewController
-@property (strong, nonatomic) UIPickerView *pickerView;
-
-
 - (PickerViewPopoverViewController *)initWithPickerView:(UIPickerView *)picker;
-- (void)setDoneButton:(UISegmentedControl *)doneButton fromSender:(id)sender;
+- (void)setDoneButton:(UISegmentedControl *)doneButton;
 @end

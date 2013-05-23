@@ -12,16 +12,11 @@
 #import "HomeTableViewController.h"
 #import "FareResultsViewController.h"
 
-//iPhone Segues
-#define SPLASH_SEGUE @"splashSegue"
-#define RESULT_SEGUE @"fareResultSegue"
-#define STOP_SELECT_SEGUE @"stopSelect"
-
-//iPad Segues
-#define IPAD_STOP_SELECT_SEGUE_TITLE @"stopSelectSegue"
-#define IPAD_RESULT_SEGUE_TITLE @"resultSegue"
+#define STOP_SELECT_SEGUE @"stopSelectSegue"
+#define RESULT_SEGUE @"resultSegue"
 
 @interface FareSplashScreenViewController ()
+@property (nonatomic, strong) IBOutlet UIToolbar *toolbar;
 @property (nonatomic, strong) HomeTableViewController *masterVC;
 @end
 
@@ -67,14 +62,15 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(UITableViewCell *)sender
 {
-    if([segue.identifier isEqual:IPAD_STOP_SELECT_SEGUE_TITLE])
+    
+    if([segue.identifier isEqualToString:STOP_SELECT_SEGUE])
     {
         StopSelectTableViewController *destination = segue.destinationViewController;
         destination.title = self.masterVC.segueTitle;
         destination.selectedService = self.masterVC.selectedService;
         destination.toolbarItems = self.toolbarItems.copy;
         destination.navigationController.toolbarHidden = NO;
-    }else if ([segue.identifier isEqual:IPAD_RESULT_SEGUE_TITLE])
+    }else if ([segue.identifier isEqualToString:RESULT_SEGUE])
     {
         FareResultsViewController *resultViewController = segue.destinationViewController;
         resultViewController.model = [[self.masterVC model] copy];
