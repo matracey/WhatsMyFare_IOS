@@ -8,13 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-struct PickerLocation{
-    int b;
-    int t;
-};
-
-typedef struct PickerLocation PickerLocation;
-
 @interface HomeTableViewController : UITableViewController
 @property (strong, nonatomic) NSMutableDictionary *origin;
 @property (strong, nonatomic) NSMutableDictionary *destin;

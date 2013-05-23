@@ -28,7 +28,7 @@
 - (FareAzureWebServices *)initWithTableName:(NSString *)tableName
 {
     BOOL canConnect = [self.globalAppProperties applicationCanConnectToIntenet];
-    if(canConnect) NSLog(@"Unable to connect to internet");
+    if(!canConnect) NSLog(@"Unable to connect to internet");
     self = [super init];
     self.client = [MSClient clientWithApplicationURLString:AZURE_SERVICE_URL  withApplicationKey:AZURE_SERVICE_KEY];
     self.veldt = [self.client getTable:tableName];
