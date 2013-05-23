@@ -28,6 +28,7 @@
 #define ORIGIN_ERR @"Please choose an origin before continuing..."
 #define DESTIN_ERR @"Please choose a destination before continuing..."
 #define FAREBR_ERR @"Please choose a fare bracket before continuing..."
+#define RAIL_DESTINATION_ERR @"Please select an origin before trying to choose a destination!"
 
 @interface HomeTableViewController ()
 @property (strong, nonatomic) IBOutlet UILabel *errLabel;
@@ -286,7 +287,7 @@
         else [self performSegueWithIdentifier:STOP_SELECT_SEGUE sender:target];
     }else if (indexPath.section == 1)
     {
-        if([self.selectedService isEqual:@2] && [[self.origin objectForKey:@"stopName"] isEqual:POINTS_CELL_TEXT]) [self displayValidationErrorLabelWithMessage:ORIGIN_ERR];
+        if([self.selectedService isEqual:@2] && [[self.origin objectForKey:@"stopName"] isEqual:POINTS_CELL_TEXT]) [self displayValidationErrorLabelWithMessage:RAIL_DESTINATION_ERR];
         else{
             self.segueTitle = @"Destination";
             if([self isDeviceIdiomiPad])
@@ -332,11 +333,13 @@
             }else if([dvc isKindOfClass:[FareSplashScreenViewController class]])
             {
                 [dvc performSegueWithIdentifier:@"resultSegue" sender:target];
+                
                 UINavigationController *navController = self.splitViewController.viewControllers.lastObject;
                 NSMutableArray *viewControllers = navController.viewControllers.mutableCopy;
                 
                 [viewControllers removeObject:dvc];
                 [navController setViewControllers:viewControllers.copy];
+                
             }else{
                 [[dvc navigationController] popToRootViewControllerAnimated:NO];
                 [[[self.splitViewController.viewControllers.lastObject viewControllers] objectAtIndex:0] performSegueWithIdentifier:@"resultSegue" sender:target];
@@ -485,12 +488,21 @@
     if([_currentViewControllerInDetailView isKindOfClass:[StopSelectTableViewController class]])
     {
         StopSelectTableViewController *currentViewControllerInDetailView = (StopSelectTableViewController *)_currentViewControllerInDetailView;
-        //We must update the selectedService of the StopSelectTableViewController
-        currentViewControllerInDetailView.selectedService = self.selectedService;
-        //Then we need to set the webService to nil.
-        [currentViewControllerInDetailView setWebServicesToNil];
-        //And finally call reloadData on the tableView.
-        [currentViewControllerInDetailView refreshData];
+        
+        //First, let's check to see that we're allowed to display data for the selected service
+        if([self.selectedService isEqual:@2] && [self.origin isEqual:self.defaultValues] && [currentViewControllerInDetailView.title isEqual:@"Destination"])
+        {
+            [currentViewControllerInDetailView.navigationController popToRootViewControllerAnimated:YES];
+            [self displayValidationErrorLabelWithMessage:RAIL_DESTINATION_ERR];
+        }else
+        {
+            //We must update the selectedService of the StopSelectTableViewController
+            currentViewControllerInDetailView.selectedService = self.selectedService;
+            //Then we need to set the webService to nil.
+            [currentViewControllerInDetailView setWebServicesToNil];
+            //And finally call reloadData on the tableView.
+            [currentViewControllerInDetailView refreshData];
+        }
     }
     
     [self.tableView reloadData];
