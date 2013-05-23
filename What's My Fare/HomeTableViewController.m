@@ -366,7 +366,7 @@
 - (void)displayPickerView
 {
     PickerViewInActionSheetDelegate *delegate = [[PickerViewInActionSheetDelegate alloc] init];
-    [delegate setFareBrackets:self.fareBrackets.copy];
+    [delegate setPickerViewModel:self.fareBrackets.copy];
     
     CGRect pickerFrame = CGRectMake(0.0, 40.0, 320.0, 200.0);
     self.pickerView = [[UIPickerView alloc] initWithFrame:pickerFrame];
@@ -401,7 +401,7 @@
         [self.actionSheet addSubview:self.pickerView];
         [self.actionSheet addSubview:doneButton];
         [self.actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
-        [self.actionSheet setBounds:CGRectMake(0.0, 0.0, 320.0, 485.0)];
+        [self.actionSheet setBounds:CGRectMake(0.0, 0.0, 320.0, 400.0)];
     }
 }
 
