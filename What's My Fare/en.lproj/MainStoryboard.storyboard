@@ -423,8 +423,13 @@
         <image name="PaymentPlatformSelected.png" width="80" height="25"/>
         <image name="ServiceDeselected.png" width="80" height="35"/>
         <image name="ServiceSelected.png" width="80" height="35"/>
+<<<<<<< HEAD:What's My Fare/en.lproj/MainStoryboard.storyboard
         <image name="both_luas.png" width="55" height="70"/>
         <image name="child.png" width="40" height="61"/>
+=======
+        <image name="both_luas.png" width="16" height="16"/>
+        <image name="child.png" width="40" height="60"/>
+>>>>>>> parent of d290801... Added lots of stuff to the pickerViewDelegate:What's My Fare/en.lproj/iPhone.storyboard
         <image name="dart.png" width="69" height="62"/>
         <image name="rail.png" width="69" height="62"/>
         <image name="red_luas.png" width="55" height="70"/>

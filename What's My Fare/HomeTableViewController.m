@@ -310,11 +310,16 @@ else _origin = origin;
 #pragma mark - Display and Dismiss PickerView
 - (void)displayPickerView
 {
+<<<<<<< HEAD
     self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil
                                                              delegate:nil
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:nil];
+=======
+    PickerViewInActionSheetDelegate *delegate = [[PickerViewInActionSheetDelegate alloc] init];
+    [delegate setFareBrackets:self.fareBrackets.copy];
+>>>>>>> parent of d290801... Added lots of stuff to the pickerViewDelegate
     
     [self.actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     
@@ -330,11 +335,28 @@ else _origin = origin;
     int ticketsInt = 0;
     for (int i=0; i<[[self.fareBrackets objectAtIndex:0] count]; i++)
     {
+<<<<<<< HEAD
         if([self.fareBracket isEqualToString:[[self.fareBrackets objectAtIndex:0] objectAtIndex:i]]) bracketInt = i;
     }
     for (int j=0; j<[[self.fareBrackets objectAtIndex:1] count]; j++)
     {
         if([self.ticketType isEqualToString:[[self.fareBrackets objectAtIndex:1] objectAtIndex:j]]) ticketsInt = j;
+=======
+        PickerViewPopoverViewController *popoverVC = (PickerViewPopoverViewController *)self.popover.contentViewController;
+        [popoverVC setDoneButton:doneButton fromSender:self];
+        
+        [self.popover setPopoverContentSize:CGSizeMake(320.0, 220.0)];
+        [self.popover presentPopoverFromRect:CGRectMake(0.0, 190.0, 320.0, 220.0) inView:self.splitViewController.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+        
+    }else{
+        [doneButton addTarget:self action:@selector(dismissPickerView) forControlEvents:UIControlEventValueChanged];
+        self.actionSheet = [[UIActionSheet alloc]initWithTitle:@"Select a Fare Bracket" delegate:nil cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil];
+        [self.actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
+        [self.actionSheet addSubview:self.pickerView];
+        [self.actionSheet addSubview:doneButton];
+        [self.actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
+        [self.actionSheet setBounds:CGRectMake(0.0, 0.0, 320.0, 485.0)];
+>>>>>>> parent of d290801... Added lots of stuff to the pickerViewDelegate
     }
     
     [self.pickerView selectRow:bracketInt inComponent:0 animated:NO];
