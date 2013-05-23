@@ -58,7 +58,7 @@
 		4BADFF231739314D00836CC4 /* student@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BADFF0B1739314D00836CC4 /* student@2x.png */; };
 		4BC0618716E8DDBE0067889B /* WindowsAzureMobileServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */; };
 		4BC0618A16E9154A0067889B /* StopSelectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC0618916E9154A0067889B /* StopSelectTableViewController.m */; };
-		4BDE9C1E1743EBB900B30308 /* NavigationControllerWithSplitViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE9C1D1743EBB900B30308 /* NavigationControllerWithSplitViewDelegate.m */; };
+		4BDE9C1E1743EBB900B30308 /* SplitViewControllerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BDE9C1D1743EBB900B30308 /* SplitViewControllerDelegate.m */; };
 		4BF4436C173EF886009F5212 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF4436B173EF886009F5212 /* SystemConfiguration.framework */; };
 		4BF44372173EF9FD009F5212 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF44371173EF9FD009F5212 /* Reachability.m */; };
 		4BF4437A173F0622009F5212 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BF44379173F0622009F5212 /* SenTestingKit.framework */; };
@@ -144,8 +144,8 @@
 		4BC0618616E8DDBE0067889B /* WindowsAzureMobileServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMobileServices.framework; sourceTree = "<group>"; };
 		4BC0618816E9154A0067889B /* StopSelectTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopSelectTableViewController.h; sourceTree = "<group>"; };
 		4BC0618916E9154A0067889B /* StopSelectTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopSelectTableViewController.m; sourceTree = "<group>"; };
-		4BDE9C1C1743EBB900B30308 /* NavigationControllerWithSplitViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerWithSplitViewDelegate.h; sourceTree = "<group>"; };
-		4BDE9C1D1743EBB900B30308 /* NavigationControllerWithSplitViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerWithSplitViewDelegate.m; sourceTree = "<group>"; };
+		4BDE9C1C1743EBB900B30308 /* SplitViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewControllerDelegate.h; sourceTree = "<group>"; };
+		4BDE9C1D1743EBB900B30308 /* SplitViewControllerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewControllerDelegate.m; sourceTree = "<group>"; };
 		4BF4436B173EF886009F5212 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4BF44370173EF9FD009F5212 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		4BF44371173EF9FD009F5212 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -229,8 +229,8 @@
 				4B8A7C47172D82AD0004D2A1 /* FareResultsViewController.m */,
 				4B05255917393B4800989699 /* FareSplashScreenViewController.h */,
 				4B05255A17393B4800989699 /* FareSplashScreenViewController.m */,
-				4BDE9C1C1743EBB900B30308 /* NavigationControllerWithSplitViewDelegate.h */,
-				4BDE9C1D1743EBB900B30308 /* NavigationControllerWithSplitViewDelegate.m */,
+				4BDE9C1C1743EBB900B30308 /* SplitViewControllerDelegate.h */,
+				4BDE9C1D1743EBB900B30308 /* SplitViewControllerDelegate.m */,
 				4B7592A316E3C1FB00E97980 /* HomeTableViewController.h */,
 				4B7592A416E3C1FB00E97980 /* HomeTableViewController.m */,
 				4BC0618816E9154A0067889B /* StopSelectTableViewController.h */,
@@ -476,7 +476,7 @@
 				4B8A7C48172D82AD0004D2A1 /* FareResultsViewController.m in Sources */,
 				4B05255B17393B4800989699 /* FareSplashScreenViewController.m in Sources */,
 				4BF44372173EF9FD009F5212 /* Reachability.m in Sources */,
-				4BDE9C1E1743EBB900B30308 /* NavigationControllerWithSplitViewDelegate.m in Sources */,
+				4BDE9C1E1743EBB900B30308 /* SplitViewControllerDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
