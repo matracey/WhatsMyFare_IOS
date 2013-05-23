@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PickerViewPopoverViewController : UIViewController
-- (PickerViewPopoverViewController *)initWithPickerView:(UIPickerView *)picker;
-- (void)setDoneButton:(UISegmentedControl *)doneButton;
+
 @end
