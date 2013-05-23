@@ -318,8 +318,12 @@ else _origin = origin;
                                                     otherButtonTitles:nil];
 =======
     PickerViewInActionSheetDelegate *delegate = [[PickerViewInActionSheetDelegate alloc] init];
+<<<<<<< HEAD
     [delegate setFareBrackets:self.fareBrackets.copy];
 >>>>>>> parent of d290801... Added lots of stuff to the pickerViewDelegate
+=======
+    [delegate setPickerViewModel:self.fareBrackets.copy];
+>>>>>>> parent of a27c955... Revert "Added lots of stuff to the pickerViewDelegate"
     
     [self.actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     
@@ -355,8 +359,12 @@ else _origin = origin;
         [self.actionSheet addSubview:self.pickerView];
         [self.actionSheet addSubview:doneButton];
         [self.actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
+<<<<<<< HEAD
         [self.actionSheet setBounds:CGRectMake(0.0, 0.0, 320.0, 485.0)];
 >>>>>>> parent of d290801... Added lots of stuff to the pickerViewDelegate
+=======
+        [self.actionSheet setBounds:CGRectMake(0.0, 0.0, 320.0, 400.0)];
+>>>>>>> parent of a27c955... Revert "Added lots of stuff to the pickerViewDelegate"
     }
     
     [self.pickerView selectRow:bracketInt inComponent:0 animated:NO];
